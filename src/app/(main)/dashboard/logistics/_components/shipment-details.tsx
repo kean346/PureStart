@@ -237,7 +237,10 @@ function ShipmentOverview({ shipment }: { shipment: Shipment }) {
 export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
   if (!shipment) {
     return (
-      <div className="grid h-full min-h-0 grid-rows-[minmax(180px,36dvh)_1fr] overflow-hidden lg:grid-rows-[minmax(240px,46dvh)_1fr]">
+      <div
+        data-motion-panel="empty"
+        className="grid h-full min-h-0 grid-rows-[minmax(180px,36dvh)_1fr] overflow-hidden lg:grid-rows-[minmax(240px,46dvh)_1fr]"
+      >
         <div className="min-h-0 overflow-hidden">
           <ShipmentRouteMap shipment={null} />
         </div>
@@ -249,7 +252,10 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
   }
 
   return (
-    <div className="grid h-full min-h-0 grid-rows-[minmax(180px,36dvh)_1fr] overflow-hidden lg:grid-rows-[minmax(240px,46dvh)_1fr]">
+    <div
+      data-motion-panel={shipment?.id ?? "empty"}
+      className="grid h-full min-h-0 grid-rows-[minmax(180px,36dvh)_1fr] overflow-hidden lg:grid-rows-[minmax(240px,46dvh)_1fr]"
+    >
       <div className="min-h-0 overflow-hidden">
         <ShipmentRouteMap shipment={shipment} />
       </div>

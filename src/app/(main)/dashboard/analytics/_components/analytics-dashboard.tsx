@@ -19,7 +19,6 @@ const views = ["overview", "audience", "acquisition", "engagement", "conversions
 export function AnalyticsDashboard({ initialView, initialRange }: { initialView: string; initialRange: RangeKey }) {
   const [range, setRange] = useState(initialRange);
   const [view, setView] = useState(initialView);
-  const [replay, setReplay] = useState(0);
   const data = getAnalytics(range);
   useEffect(() => {
     setView(initialView);
@@ -33,7 +32,7 @@ export function AnalyticsDashboard({ initialView, initialRange }: { initialView:
   };
   return (
     <AnalyticsContext value={data}>
-      <div className="noreva-dashboard flex min-w-0 flex-col gap-4" key={`${replay}-${view}`}>
+      <div className="noreva-dashboard flex min-w-0 flex-col gap-4">
         <div className="noreva-reveal flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-col gap-1">
             <p className="text-muted-foreground text-xs font-medium tracking-widest uppercase">NOREVA Insights</p>
@@ -70,7 +69,7 @@ export function AnalyticsDashboard({ initialView, initialRange }: { initialView:
                 setRange(next);
                 updateUrl(view, next);
               }}
-              onReplay={() => setReplay((value) => value + 1)}
+              onReplay={() => document.querySelector("[data-motion-page]")?.dispatchEvent(new Event("noreva:replay"))}
             />
           </div>
           <div className="text-muted-foreground flex flex-wrap items-center justify-between gap-2 text-xs">

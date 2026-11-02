@@ -10,21 +10,52 @@ export function CountUp({ value, rate = false, delay = 0 }: { value: number; rat
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     const node = ref.current;
-    if (!node || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!node) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const format = (n: number) => (rate ? percent(n) : number(Math.round(n)));
     let frame = 0;
     let started = 0;
-    const format = (n: number) => (rate ? percent(n) : number(Math.round(n)));
+    const stop = () => {
+      cancelAnimationFrame(frame);
+      node.textContent = format(value);
+    };
     const animate = (time: number) => {
       if (!started) started = time;
-      const progress = Math.min(1, Math.max(0, (time - started - delay) / 850));
-      node.textContent = format(value * (1 - (1 - progress) ** 3));
-      if (progress < 1) frame = requestAnimationFrame(animate);
+      const p = Math.min(1, Math.max(0, (time - started - delay) / 850));
+      node.textContent = format(value * (1 - (1 - p) ** 3));
+      if (p < 1) frame = requestAnimationFrame(animate);
     };
-    frame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(frame);
+    const run = () => {
+      stop();
+      started = 0;
+      if (!media.matches) frame = requestAnimationFrame(animate);
+    };
+    if (typeof IntersectionObserver === "undefined") {
+      run();
+      return stop;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        observer.unobserve(node);
+        run();
+      }
+    });
+    const replay = () => {
+      observer.unobserve(node);
+      observer.observe(node);
+    };
+    observer.observe(node);
+    node.addEventListener("noreva:counter-replay", replay);
+    media.addEventListener("change", stop);
+    return () => {
+      observer.disconnect();
+      stop();
+      node.removeEventListener("noreva:counter-replay", replay);
+      media.removeEventListener("change", stop);
+    };
   }, [value, rate, delay]);
   return (
-    <span ref={ref} className="tabular-nums">
+    <span ref={ref} data-motion-counter="managed" className="tabular-nums">
       {rate ? percent(value) : number(value)}
     </span>
   );

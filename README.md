@@ -33,9 +33,9 @@ npm start          # Production server
 
 ## Motion and accessibility
 
-CSS entrance timing coordinates the shell, staggered KPI cards, trends, and rows. Recharts draws the traffic line and area, expands horizontal bars, and draws the device donut. Realtime bars grow from the baseline with a small stagger. Counters animate for 850ms, chart animations take 850–1000ms, and the overall reveal completes in about 1.6 seconds. The actions menu can replay the dashboard entrance.
+The shared motion controller animates meaningful page elements on every route visit and newly opened panels, without forced component remounts. It defers offscreen reveals, bounds table work, preserves exact counter values, and retains native Recharts and Radix interactions. The global theme switch uses a circular reveal with a CSS fallback. Reduced motion disables entrances, counting, and theme reveal.
 
-`prefers-reduced-motion` disables CSS entrances, chart interpolation, and number counting. Fixed chart heights and tabular numerals keep the layout stable. Existing keyboard-accessible Radix controls and responsive sidebar behavior are retained.
+See [the motion architecture and verification report](docs/MOTION.md) for implementation details, tested routes, browser checks, and the approved subtle Slate-neutral palette refinements. Layout, typography, data, and existing UI component source are preserved.
 
 ## Deploy to Vercel
 

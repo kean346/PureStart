@@ -50,7 +50,7 @@ export function Calendar() {
   const days = dateInfo.days;
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-md border">
+    <div data-motion-calendar className="flex flex-col overflow-hidden rounded-md border">
       <div className="bg-sidebar text-sidebar-foreground flex flex-col gap-4 border-b p-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="flex min-w-0 shrink-0 flex-col gap-1">
           <div className="text-lg leading-none font-medium">{title}</div>

@@ -7,7 +7,7 @@ export function SupportCard() {
         <CardDescription>
           Analytics & Intelligence
           <br />
-          Fictional concept · Built by paceIT
+          Fictional concept · Built by <span className="text-foreground">paceIT</span>
         </CardDescription>
       </CardHeader>
     </Card>

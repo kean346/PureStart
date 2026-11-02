@@ -308,12 +308,12 @@ html:has([data-landing-page]) {
 :root,
 html[data-theme-preset="default"] {
   --font-geist: var(--font-geist-sans);
-  --primary: var(--color-zinc-800);
+  --primary: var(--color-slate-800);
   --primary-foreground: var(--color-zinc-50);
   --ring: var(--color-zinc-500);
-  --chart-1: var(--color-zinc-500);
-  --chart-2: var(--color-zinc-300);
-  --chart-3: var(--color-zinc-700);
+  --chart-1: var(--color-slate-500);
+  --chart-2: var(--color-slate-300);
+  --chart-3: var(--color-slate-700);
   --chart-4: var(--color-slate-400);
   --chart-5: var(--color-slate-500);
   --sidebar-primary: var(--primary);
@@ -338,11 +338,14 @@ html.dark[data-theme-preset="default"] {
   --accent-foreground: var(--color-zinc-100);
   --secondary: var(--color-zinc-700);
   --secondary-foreground: var(--color-zinc-100);
-  --primary: var(--color-zinc-200);
+  --primary: var(--color-slate-200);
   --primary-foreground: var(--color-zinc-950);
-  --chart-1: var(--color-zinc-300);
-  --chart-2: var(--color-zinc-500);
-  --chart-3: var(--color-zinc-200);
+  --chart-1: var(--color-slate-300);
+  --chart-2: var(--color-slate-500);
+  --chart-3: var(--color-slate-200);
+}
+html[data-theme-preset="default"] [data-slot="sidebar-menu-button"][data-active="true"] {
+  box-shadow: inset 2px 0 0 var(--color-slate-400);
 }
 .noreva-logistics {
   font-size: 0.875rem;
@@ -454,35 +457,6 @@ html.dark[data-theme-preset="default"] {
   }
 }
 
-/* A restrained entrance on every dashboard route, with no layout movement. */
-.noreva-page-enter {
-  animation: noreva-reveal 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.noreva-page-enter > div:not(.noreva-dashboard, .noreva-logistics) > * {
-  animation: noreva-reveal 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-.noreva-page-enter > div:not(.noreva-dashboard, .noreva-logistics) > :nth-child(2) {
-  animation-delay: 75ms;
-}
-.noreva-page-enter > div:not(.noreva-dashboard, .noreva-logistics) > :nth-child(3) {
-  animation-delay: 150ms;
-}
-.noreva-page-enter > div:not(.noreva-dashboard, .noreva-logistics) > :nth-child(n + 4) {
-  animation-delay: 225ms;
-}
-.noreva-logistics button[aria-pressed] {
-  animation: noreva-reveal 400ms ease-out both;
-}
-.noreva-logistics button[aria-pressed]:nth-child(2) {
-  animation-delay: 60ms;
-}
-.noreva-logistics button[aria-pressed]:nth-child(3) {
-  animation-delay: 120ms;
-}
-.noreva-logistics button[aria-pressed]:nth-child(n + 4) {
-  animation-delay: 180ms;
-}
-
 @keyframes noreva-theme-reveal {
   from {
     clip-path: circle(0px at var(--theme-origin-x) var(--theme-origin-y));
@@ -513,34 +487,108 @@ html[data-theme-transition]::view-transition-new(root) {
   }
 }
 
-/* Recreated route wrappers replay the complete information reveal on each visit. */
-.noreva-page-enter [data-slot="card"] {
-  animation: noreva-reveal 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+/* The shared observer coordinates entrances; do not stack the legacy CSS reveals. */
+[data-motion-page]
+  :is(
+    .noreva-reveal,
+    .noreva-row,
+    .noreva-trend,
+    .noreva-axis,
+    .noreva-funnel,
+    .noreva-visitor-bar,
+    .recharts-cartesian-axis
+  ) {
+  animation: none;
 }
-.noreva-page-enter [data-slot="card"]:nth-child(2) {
-  animation-delay: 70ms;
+[data-motion-page] [data-slot="card"] {
+  transition:
+    box-shadow 180ms ease,
+    translate 180ms ease;
 }
-.noreva-page-enter [data-slot="card"]:nth-child(3) {
-  animation-delay: 140ms;
+@media (hover: hover) {
+  [data-motion-page] [data-slot="card"]:hover {
+    translate: 0 -1px;
+  }
 }
-.noreva-page-enter [data-slot="card"]:nth-child(n + 4) {
-  animation-delay: 210ms;
+[data-slot="button"] {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    scale 120ms ease;
 }
-.noreva-page-enter tbody tr {
-  animation: noreva-reveal 340ms ease-out both;
+[data-slot="button"]:active:not(:disabled) {
+  scale: 0.98;
 }
-.noreva-page-enter tbody tr:nth-child(2) {
-  animation-delay: 50ms;
+[data-slot="sidebar-menu-button"] {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
 }
-.noreva-page-enter tbody tr:nth-child(3) {
-  animation-delay: 100ms;
+[data-slot="tabs-trigger"] {
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease;
 }
-.noreva-page-enter tbody tr:nth-child(n + 4) {
-  animation-delay: 150ms;
+[data-slot="tabs-trigger"]::after {
+  transition:
+    opacity 180ms ease,
+    background-color 180ms ease;
+}
+@keyframes noreva-icon-enter {
+  from {
+    opacity: 0;
+    transform: rotate(-35deg) scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+.noreva-theme-icon {
+  animation: noreva-icon-enter 300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+html[data-theme-transition="fallback"],
+html[data-theme-transition="fallback"] * {
+  transition-property: background-color, color, border-color, fill, stroke, box-shadow;
+  transition-duration: 350ms;
+  transition-timing-function: ease;
 }
 @media (prefers-reduced-motion: reduce) {
-  .noreva-page-enter [data-slot="card"],
-  .noreva-page-enter tbody tr {
+  .noreva-theme-icon {
     animation: none;
   }
+  [data-motion-page] *,
+  [data-slot="button"],
+  [data-slot="tabs-trigger"],
+  [data-slot="sidebar-menu-button"] {
+    transition-duration: 0ms !important;
+  }
+  [data-motion-page] [data-slot="card"]:hover {
+    translate: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(
+    [data-slot="dialog-content"],
+    [data-slot="dialog-overlay"],
+    [data-slot="sheet-content"],
+    [data-slot="sheet-overlay"],
+    [data-slot="popover-content"],
+    [data-slot="dropdown-menu-content"],
+    [data-slot="select-content"],
+    [data-slot="tooltip-content"],
+    [data-slot="accordion-content"]
+  ) {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+
+@property --motion-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 360deg;
 }

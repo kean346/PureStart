@@ -1,4 +1,7 @@
-import { Ellipsis, FileDown, FileUp, RefreshCw, Share2 } from "lucide-react";
+"use client";
+
+import { Ellipsis, FileDown, RefreshCw, Share2 } from "lucide-react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -7,55 +10,91 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-export function AnalyticsToolbar() {
+import { useAnalytics } from "./analytics-context";
+import { type RangeKey, rangeLabels } from "./analytics-data";
+export function AnalyticsToolbar({
+  onRangeChange,
+  onReplay,
+}: {
+  onRangeChange: (range: RangeKey) => void;
+  onReplay: () => void;
+}) {
+  const data = useAnalytics();
+  const exportReport = () => {
+    const rows = [
+      "NOREVA Insights — fictional concept by paceIT",
+      `Period,${data.period}`,
+      "Metric,Value",
+      ...data.kpis.map((kpi) => `${kpi.label},${kpi.value.toFixed(kpi.rate ? 1 : 0)}`),
+      "",
+      "Date,Visitors,Sessions,Pageviews,Engaged sessions,Conversions",
+      ...data.daily.map(
+        (day) => `${day.date},${day.visitors},${day.sessions},${day.pageviews},${day.engaged},${day.conversions}`,
+      ),
+    ];
+    const url = URL.createObjectURL(new Blob([rows.join("\n")], { type: "text/csv;charset=utf-8" }));
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = `noreva-insights-${data.days}-days.csv`;
+    anchor.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast.success("Your demo report has been exported.");
+  };
+  const share = async () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("range", data.range);
+    try {
+      await navigator.clipboard.writeText(url.toString());
+      toast.success("Dashboard link copied, including the selected range.");
+    } catch {
+      toast.info("Copy the dashboard URL from your browser to share this demo.");
+    }
+  };
   return (
     <div className="flex items-center gap-2">
-      <Select defaultValue="last-4-weeks">
-        <SelectTrigger className="w-34">
-          <SelectValue placeholder="Select range" />
+      <Select value={data.range} onValueChange={(value) => onRangeChange(value as RangeKey)}>
+        <SelectTrigger className="w-36" aria-label="Date range">
+          <SelectValue />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectItem value="last-7-days">Last 7 days</SelectItem>
-            <SelectItem value="last-4-weeks">Last 4 weeks</SelectItem>
-            <SelectItem value="last-3-months">Last 3 months</SelectItem>
-            <SelectItem value="year-to-date">Year to date</SelectItem>
+            {Object.entries(rangeLabels).map(([value, label]) => (
+              <SelectItem key={value} value={value}>
+                {label}
+              </SelectItem>
+            ))}
           </SelectGroup>
         </SelectContent>
       </Select>
-
+      <Button variant="outline" onClick={exportReport}>
+        <FileDown data-icon="inline-start" />
+        <span className="hidden sm:inline">Export</span>
+        <span className="sr-only sm:hidden">Export report</span>
+      </Button>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button size="icon" variant="outline" aria-label="More analytics actions">
             <Ellipsis />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuContent align="end">
           <DropdownMenuGroup>
-            <DropdownMenuLabel>Analytics actions</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <FileDown />
-              Export report
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <FileUp />
-              Import data
-            </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuLabel>Demo actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onSelect={() => {
+                void share();
+              }}
+            >
               <Share2 />
-              Share dashboard
+              Copy dashboard link
             </DropdownMenuItem>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem>
+            <DropdownMenuItem onSelect={onReplay}>
               <RefreshCw />
-              Refresh metrics
+              Replay entrance
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>

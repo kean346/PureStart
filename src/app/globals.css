@@ -303,3 +303,132 @@ html:has([data-landing-page]) {
     -webkit-print-color-adjust: exact;
   }
 }
+
+/* NOREVA's restrained accent uses Tailwind's named palette and the existing tokens. */
+:root,
+html[data-theme-preset="default"] {
+  --font-geist: var(--font-geist-sans);
+  --primary: var(--color-violet-700);
+  --primary-foreground: var(--color-white);
+  --ring: var(--color-violet-500);
+  --chart-1: var(--color-violet-500);
+  --chart-2: var(--color-violet-300);
+  --chart-3: var(--color-violet-600);
+  --chart-4: var(--color-slate-400);
+  --chart-5: var(--color-slate-500);
+  --sidebar-primary: var(--primary);
+}
+.dark,
+html.dark[data-theme-preset="default"] {
+  --primary: var(--color-violet-400);
+  --primary-foreground: var(--color-violet-950);
+  --chart-1: var(--color-violet-400);
+  --chart-2: var(--color-violet-300);
+  --chart-3: var(--color-violet-400);
+}
+
+@keyframes noreva-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes noreva-sidebar {
+  from {
+    opacity: 0;
+    translate: -8px 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes noreva-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes noreva-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.noreva-reveal {
+  animation: noreva-reveal 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.noreva-row {
+  animation: noreva-reveal 350ms ease-out both;
+}
+.noreva-trend {
+  animation: noreva-fade 350ms ease-out both;
+}
+.noreva-axis {
+  animation: noreva-fade 650ms ease-out both;
+}
+.noreva-funnel {
+  animation: noreva-grow 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+[data-slot="sidebar-container"] {
+  animation: noreva-sidebar 450ms ease-out both;
+}
+.noreva-header {
+  animation: noreva-fade 450ms 80ms ease-out both;
+}
+.noreva-dashboard [data-slot="card"] {
+  transition: box-shadow 180ms ease-out;
+}
+.noreva-dashboard [data-slot="card"]:hover {
+  box-shadow: 0 2px 12px color-mix(in srgb, var(--foreground) 4%, transparent);
+}
+.noreva-dashboard .recharts-tooltip-wrapper {
+  transition: translate 150ms ease-out;
+}
+.noreva-dashboard .recharts-cartesian-axis {
+  animation: noreva-fade 700ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noreva-reveal,
+  .noreva-row,
+  .noreva-trend,
+  .noreva-axis,
+  .noreva-funnel,
+  .noreva-header,
+  [data-slot="sidebar-container"],
+  .noreva-dashboard .recharts-cartesian-axis {
+    animation: none;
+  }
+  .noreva-dashboard *,
+  [data-slot="sidebar-container"] {
+    transition-duration: 0ms !important;
+  }
+}
+
+@keyframes noreva-bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.noreva-visitor-bar {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: noreva-bar-grow 850ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .noreva-visitor-bar {
+    animation: none;
+  }
+}

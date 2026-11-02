@@ -1,20 +1,19 @@
 export const users = [
   {
     id: "1",
-    name: "Arham Khan",
-    username: "Aarhamkhnz",
-    email: "hello@arhamkhnz.com",
-    avatar: "https://avatars.githubusercontent.com/u/43849669",
-    role: "administrator",
+    name: "Avery Sloan",
+    username: "avery.sloan",
+    email: "avery@noreva.example",
+    avatar: "",
+    role: "Growth lead",
   },
   {
     id: "2",
-    name: "Ammar Khan",
-    username: "ammarkhnz",
-    email: "hello@ammarkhnz.com",
+    name: "Ellis Marlow",
+    username: "ellis.marlow",
+    email: "ellis@noreva.example",
     avatar: "",
-    role: "admin",
+    role: "Data analyst",
   },
 ];
-
 export const rootUser = users[0];

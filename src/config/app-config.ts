@@ -1,16 +1,17 @@
 import packageJson from "../../package.json";
-
-const currentYear = new Date().getFullYear();
-
 export const APP_CONFIG = {
-  name: "Studio Admin",
-  url: "https://studio-admin.arhamkhnz.com",
-  repository: "https://github.com/arhamkhnz/next-shadcn-admin-dashboard",
+  name: "NOREVA",
+  url:
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : "https://noreva.example"),
+  repository: "https://github.com/kean346/dashboard-2-",
   version: packageJson.version,
-  copyright: `© ${currentYear}, Studio Admin.`,
+  copyright: "Fictional concept · Built by paceIT",
   meta: {
-    title: "Studio Admin: Open Source shadcn/ui Admin Dashboard",
+    title: "NOREVA Insights | Analytics & Intelligence",
     description:
-      "Free, MIT-licensed shadcn/ui admin dashboard with 25+ screens and editions for Radix UI, Base UI, React Aria, and TanStack Start.",
+      "A fictional analytics and intelligence platform. A portfolio concept by paceIT, built on the MIT-licensed Studio Admin foundation.",
   },
 };

@@ -1,5 +1,5 @@
 {
-  "name": "studio-admin",
+  "name": "noreva-insights",
   "version": "2.2.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,8 @@
     "check": "biome check",
     "check:fix": "biome check --write",
     "prepare": "husky",
-    "generate:presets": "ts-node -P tsconfig.scripts.json src/scripts/generate-theme-presets.ts"
+    "generate:presets": "ts-node -P tsconfig.scripts.json src/scripts/generate-theme-presets.ts",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": ["biome check --write --no-errors-on-unmatched"]

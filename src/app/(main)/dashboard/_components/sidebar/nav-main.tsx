@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { cn } from "cn";
-import { ChevronRight, MailIcon, PlusCircleIcon } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   DropdownMenu,
@@ -84,13 +83,16 @@ function hasSubItems(item: NavMainItem): item is NavMainParentItem {
 
 export function NavMain({ items }: NavMainProps) {
   const path = usePathname();
+  const params = useSearchParams();
+  const activeView = params.get("view") ?? "overview";
 
   const isItemActive = (item: NavMainItem) => {
     if (hasSubItems(item)) {
       return item.subItems.some((sub) => path.startsWith(sub.url));
     }
 
-    return path === item.url;
+    const [pathname, query] = item.url.split("?");
+    return path === pathname && activeView === (new URLSearchParams(query).get("view") ?? "overview");
   };
 
   const isSubItemActive = (url: string) => {
@@ -103,29 +105,6 @@ export function NavMain({ items }: NavMainProps) {
 
   return (
     <>
-      <SidebarGroup>
-        <SidebarGroupContent className="flex flex-col gap-2">
-          <SidebarMenu>
-            <SidebarMenuItem className="flex items-center gap-2">
-              <SidebarMenuButton
-                tooltip="Quick Create"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
-              >
-                <PlusCircleIcon />
-                <span>Quick Create</span>
-              </SidebarMenuButton>
-              <Button
-                size="icon"
-                className="h-9 w-9 shrink-0 group-data-[collapsible=icon]:opacity-0"
-                variant="outline"
-              >
-                <MailIcon />
-                <span className="sr-only">Inbox</span>
-              </Button>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarGroup>
       {items.map((group) => (
         <SidebarGroup key={group.id}>
           {group.label && (
@@ -175,12 +154,16 @@ function NavItem({ item, isItemActive, isSubItemActive, isSubmenuOpen }: NavItem
 }
 
 function NavLinkItem({ item, isActive, showIconFallback }: NavLinkItemProps) {
+  const { isMobile, setOpenMobile } = useSidebar();
   return (
     <SidebarMenuItem>
       <SidebarMenuButton asChild aria-disabled={item.disabled} tooltip={item.title} isActive={isActive}>
         <Link
           prefetch={false}
           href={item.url}
+          onClick={() => {
+            if (isMobile) setOpenMobile(false);
+          }}
           target={item.newTab ? "_blank" : undefined}
           rel={item.newTab ? "noreferrer" : undefined}
         >

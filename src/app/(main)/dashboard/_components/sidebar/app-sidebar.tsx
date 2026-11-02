@@ -1,5 +1,7 @@
 "use client";
 
+import { Suspense } from "react";
+
 import Link from "next/link";
 
 import { useShallow } from "zustand/react/shallow";
@@ -41,16 +43,21 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link prefetch={false} href="/dashboard/default">
-                <AppLogo viewBox="72 96 356 308" />
-                <span className="text-base font-semibold">{APP_CONFIG.name}</span>
+              <Link prefetch={false} href="/dashboard/analytics">
+                <AppLogo />
+                <span className="flex flex-col gap-0.5">
+                  <span className="text-base font-semibold tracking-[0.16em]">{APP_CONFIG.name}</span>
+                  <span className="text-muted-foreground text-[10px] font-normal">Analytics & Intelligence</span>
+                </span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={sidebarItems} />
+        <Suspense>
+          <NavMain items={sidebarItems} />
+        </Suspense>
       </SidebarContent>
       <SidebarFooter>
         <SupportCard />

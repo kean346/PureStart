@@ -58,7 +58,7 @@ export const sidebarItems: NavGroup[] = [
     id: 1,
     label: "Dashboards",
     items: [
-      { id: "default", title: "Default", url: "/dashboard/default", icon: LayoutDashboard },
+      { id: "default", title: "Home", url: "/dashboard/default", icon: LayoutDashboard },
       { id: "crm", title: "CRM", url: "/dashboard/crm", icon: ChartBar },
       { id: "finance", title: "Finance", url: "/dashboard/finance", icon: Banknote },
       { id: "analytics", title: "Analytics", url: "/dashboard/analytics", icon: Gauge },
@@ -68,7 +68,6 @@ export const sidebarItems: NavGroup[] = [
       { id: "logistics", title: "Logistics", url: "/dashboard/logistics", icon: Truck },
       { id: "infrastructure", title: "Infrastructure", url: "/dashboard/infrastructure", icon: Server },
       { id: "file-manager", title: "File Manager", url: "/dashboard/file-manager", icon: FolderOpen },
-      { id: "patient-monitoring", title: "Patient Monitoring", url: "/dashboard/patient-monitoring", icon: HeartPulse },
     ],
   },
   {

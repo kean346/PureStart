@@ -13,7 +13,7 @@ npm ci
 npm run dev
 ```
 
-Open the application root; it redirects to `/dashboard/analytics`. Both `localhost` and `127.0.0.1` are supported in development. All fonts are locally bundled through the existing Geist package; no Google Fonts network access is needed.
+Open the application root; it redirects to `/dashboard/default` (Home). Both `localhost` and `127.0.0.1` are supported in development. All fonts are locally bundled through the existing Geist package; no Google Fonts network access is needed.
 
 ```bash
 npm test            # Five deterministic data-consistency tests
@@ -45,7 +45,7 @@ Optionally set `NEXT_PUBLIC_SITE_URL` to the public origin, including `https://`
 
 ## Review artifacts
 
-See `artifacts/noreva-desktop.png`, `artifacts/noreva-mobile.png`, `artifacts/noreva-dark.png`, `artifacts/noreva-audience.png`, and `artifacts/noreva-entrance.mp4`. Browser checks cover filters, tabs, campaign switching, export, notifications, About, dark mode, sidebar collapse, mobile navigation, and reduced motion. All eleven original dashboard modules are available in the sidebar with NOREVA titles and a charcoal-black default theme. Existing finance, commerce, academy, infrastructure, file manager, productivity, CRM, and patient monitoring layouts are portfolio demo modules, not connected backend services. Logistics includes working status/search/transport filters, route and cargo details, activity milestones, and a downloadable demo manifest. The local world atlas uses Natural Earth public-domain map data, with the world-atlas ISC notice in public/licenses/World-Atlas-ISC.txt.
+See `artifacts/noreva-desktop.png`, `artifacts/noreva-mobile.png`, `artifacts/noreva-dark.png`, `artifacts/noreva-audience.png`, and `artifacts/noreva-entrance.mp4`. Browser checks cover filters, tabs, campaign switching, export, notifications, About, dark mode, sidebar collapse, mobile navigation, and reduced motion. The ten selected dashboard modules are available in the sidebar with NOREVA titles and a charcoal-black default theme. Existing finance, commerce, academy, infrastructure, file manager, productivity, and CRM layouts are portfolio demo modules, not connected backend services. Logistics includes working status/search/transport filters, route and cargo details, activity milestones, and a downloadable demo manifest. The local world atlas uses Natural Earth public-domain map data, with the world-atlas ISC notice in public/licenses/World-Atlas-ISC.txt.
 
 ## Licenses
 
@@ -53,6 +53,12 @@ The original MIT copyright notice remains in [LICENSE](LICENSE); a distribution 
 
 ### Charcoal workspace update
 
-All eleven dashboard modules now appear under Dashboards. The shared shell uses NOREVA Charcoal with charcoal-black surfaces by default; light and system modes remain available. Every dashboard route has a brief staggered entrance. Changing theme mode or preset uses a 700ms screen-covering circular reveal from the control through the browser View Transition API, with instant switching for reduced motion or unsupported browsers.
+All ten dashboard modules now appear under Dashboards. The shared shell uses NOREVA Charcoal with charcoal-black surfaces by default; light and system modes remain available. Every dashboard route has a brief staggered entrance. Changing theme mode or preset uses a 700ms screen-covering circular reveal from the control through the browser View Transition API, with instant switching for reduced motion or unsupported browsers.
 
 Logistics matches the original shipment-list/map/detail composition and uses a local atlas, real status/search/transport filtering, functional detail tabs, clipboard actions, and downloadable fictional manifests. Desktop and mobile review images are in `artifacts/noreva-logistics-*.png`.
+
+Home now opens the reference-style business dashboard: four KPI cards, the wide Customer Activity chart with period/segment filters and CSV reporting, and the searchable customer table. Chart data uses a fixed November 2026 demo window; customer records use fictional names and reserved `.example` email domains.
+
+Page entrances replay on sidebar navigation, including returning to an earlier route. Analytics subview changes also remount their content to replay the metric, chart, and table sequence. Cards and table rows reveal with a short stagger, with reduced motion respected throughout.
+
+Patient Monitoring has been removed from the application and sidebar. Its previous route returns a not-found response. The header and appearance controls retain the full-screen colour transition on every remaining page.

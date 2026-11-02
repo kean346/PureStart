@@ -43,7 +43,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild>
-              <Link prefetch={false} href="/dashboard/analytics">
+              <Link prefetch={false} href="/dashboard/default">
                 <AppLogo />
                 <span className="flex flex-col gap-0.5">
                   <span className="text-base font-semibold tracking-[0.16em]">{APP_CONFIG.name}</span>

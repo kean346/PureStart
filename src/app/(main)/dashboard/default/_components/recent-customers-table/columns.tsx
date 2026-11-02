@@ -1,7 +1,7 @@
 "use client";
 import type { ColumnDef } from "@tanstack/react-table";
 import { Subscribe } from "@tanstack/react-table";
-import { addMinutes, differenceInCalendarDays, endOfToday, format, parseISO } from "date-fns";
+import { addMinutes, differenceInCalendarDays, format, parseISO } from "date-fns";
 import { CircleAlertIcon, CircleCheckIcon, Clock3Icon, LoaderIcon, UserRound } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -117,7 +117,7 @@ export const recentCustomersColumns: ColumnDef<DataTableFeatures, RecentCustomer
   {
     id: "joinedWindow",
     accessorFn: (row) => {
-      const daysSinceJoined = differenceInCalendarDays(endOfToday(), parseISO(row.joined));
+      const daysSinceJoined = differenceInCalendarDays(new Date("2026-05-01T00:00:00Z"), parseISO(row.joined));
 
       if (daysSinceJoined <= 30) return ["30", "90"];
       if (daysSinceJoined <= 90) return ["90"];

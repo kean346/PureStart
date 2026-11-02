@@ -33,7 +33,7 @@ export function AnalyticsDashboard({ initialView, initialRange }: { initialView:
   };
   return (
     <AnalyticsContext value={data}>
-      <div className="noreva-dashboard flex min-w-0 flex-col gap-4" key={replay}>
+      <div className="noreva-dashboard flex min-w-0 flex-col gap-4" key={`${replay}-${view}`}>
         <div className="noreva-reveal flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-col gap-1">
             <p className="text-muted-foreground text-xs font-medium tracking-widest uppercase">NOREVA Insights</p>

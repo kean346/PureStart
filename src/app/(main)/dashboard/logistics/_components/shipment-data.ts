@@ -76,86 +76,86 @@ export type Shipment = {
 
 const customerAccounts = {
   techCorp: {
-    name: "TechCorp",
+    name: "Northstar Devices",
     initials: "TC",
-    id: "SDA-1001-2401-01",
+    id: "NRV-1001-2401-01",
     tier: "Priority",
-    tierLabel: "Top 1% by shipment volume",
+    tierLabel: "Priority demo account",
   },
   regionalRoadExpress: {
-    name: "Regional Road Express",
+    name: "Meridian Freight",
     initials: "RR",
-    id: "SDA-1002-2402-02",
+    id: "NRV-1002-2402-02",
     tier: "Priority",
-    tierLabel: "Top 1% by shipment volume",
+    tierLabel: "Priority demo account",
   },
   sendWell: {
-    name: "SendWell B.V.",
+    name: "Harborline Goods",
     initials: "SW",
-    id: "SDA-1003-2403-03",
+    id: "NRV-1003-2403-03",
     tier: "Priority",
-    tierLabel: "Top 1% by shipment volume",
+    tierLabel: "Priority demo account",
   },
   sourceDay: {
-    name: "SourceDay",
+    name: "Fieldwork Supply",
     initials: "SD",
-    id: "SDA-1004-2404-04",
+    id: "NRV-1004-2404-04",
     tier: "Standard",
     tierLabel: "Recurring shipment account",
   },
   shippingEasy: {
-    name: "ShippingEasy",
+    name: "Rowan Distribution",
     initials: "SE",
-    id: "SDA-1005-2405-05",
+    id: "NRV-1005-2405-05",
     tier: "Standard",
     tierLabel: "Recurring shipment account",
   },
   freightView: {
-    name: "FreightView",
+    name: "Vale Trading",
     initials: "FV",
-    id: "SDA-1006-2406-06",
+    id: "NRV-1006-2406-06",
     tier: "Priority",
-    tierLabel: "Top 1% by shipment volume",
+    tierLabel: "Priority demo account",
   },
   logisticsPlus: {
-    name: "Logistics Plus",
+    name: "Cedar Logistics",
     initials: "LP",
-    id: "SDA-1007-2407-07",
+    id: "NRV-1007-2407-07",
     tier: "Standard",
     tierLabel: "Managed freight account",
   },
   transvirtual: {
-    name: "Transvirtual",
+    name: "Aster Transport",
     initials: "TV",
-    id: "SDA-1008-2408-08",
+    id: "NRV-1008-2408-08",
     tier: "Standard",
     tierLabel: "Managed freight account",
   },
   skyTrack: {
-    name: "SkyTrack",
+    name: "Lumen Cargo",
     initials: "ST",
-    id: "SDA-1009-2409-09",
+    id: "NRV-1009-2409-09",
     tier: "Non-priority",
     tierLabel: "Occasional shipment account",
   },
   maersk: {
-    name: "Maersk",
+    name: "Ellery Maritime",
     initials: "MK",
-    id: "SDA-1010-2410-10",
+    id: "NRV-1010-2410-10",
     tier: "Priority",
-    tierLabel: "Top 1% by shipment volume",
+    tierLabel: "Priority demo account",
   },
   flexport: {
-    name: "Flexport",
+    name: "Orion Forwarding",
     initials: "FX",
-    id: "SDA-1011-2411-11",
+    id: "NRV-1011-2411-11",
     tier: "Priority",
-    tierLabel: "Top 1% by shipment volume",
+    tierLabel: "Priority demo account",
   },
   piedPiper: {
-    name: "Pied Piper",
+    name: "Kestrel Goods",
     initials: "PP",
-    id: "SDA-1012-2412-12",
+    id: "NRV-1012-2412-12",
     tier: "Non-priority",
     tierLabel: "Occasional shipment account",
   },
@@ -163,7 +163,7 @@ const customerAccounts = {
 
 export const shipments: Shipment[] = [
   {
-    id: "SDA-01-2401",
+    id: "NRV-01-2401",
     customer: customerAccounts.techCorp,
     origin: {
       display: "CGK Airport",
@@ -197,7 +197,7 @@ export const shipments: Shipment[] = [
     transportNumber: "GA-884",
   },
   {
-    id: "SDA-02-2402",
+    id: "NRV-02-2402",
     customer: customerAccounts.regionalRoadExpress,
     origin: {
       display: "Surabaya",
@@ -231,7 +231,7 @@ export const shipments: Shipment[] = [
     transportNumber: "B 9042 KX",
   },
   {
-    id: "SDA-03-2403",
+    id: "NRV-03-2403",
     customer: customerAccounts.sendWell,
     origin: {
       display: "Tanjung Priok Port",
@@ -265,7 +265,7 @@ export const shipments: Shipment[] = [
     transportNumber: "MV SEA-318",
   },
   {
-    id: "SDA-04-2404",
+    id: "NRV-04-2404",
     customer: customerAccounts.maersk,
     origin: {
       display: "KUL Airport",
@@ -299,7 +299,7 @@ export const shipments: Shipment[] = [
     transportNumber: "MH-728",
   },
   {
-    id: "SDA-05-2405",
+    id: "NRV-05-2405",
     customer: customerAccounts.sourceDay,
     origin: {
       display: "Bandung",
@@ -333,7 +333,7 @@ export const shipments: Shipment[] = [
     transportNumber: "D 1284 YA",
   },
   {
-    id: "SDA-06-2406",
+    id: "NRV-06-2406",
     customer: customerAccounts.logisticsPlus,
     origin: {
       display: "Port Klang",
@@ -367,7 +367,7 @@ export const shipments: Shipment[] = [
     transportNumber: "MV LC-204",
   },
   {
-    id: "SDA-07-2407",
+    id: "NRV-07-2407",
     customer: customerAccounts.flexport,
     origin: {
       display: "HKG Airport",
@@ -401,7 +401,7 @@ export const shipments: Shipment[] = [
     transportNumber: "CX-901",
   },
   {
-    id: "SDA-08-2408",
+    id: "NRV-08-2408",
     customer: customerAccounts.shippingEasy,
     origin: {
       display: "Jakarta",
@@ -435,7 +435,7 @@ export const shipments: Shipment[] = [
     transportNumber: "B 7712 JKT",
   },
   {
-    id: "SDA-09-2409",
+    id: "NRV-09-2409",
     customer: customerAccounts.freightView,
     origin: {
       display: "Shanghai Port",
@@ -469,7 +469,7 @@ export const shipments: Shipment[] = [
     transportNumber: "MV BUSAN-54",
   },
   {
-    id: "SDA-10-2410",
+    id: "NRV-10-2410",
     customer: customerAccounts.techCorp,
     origin: {
       display: "NRT Airport",
@@ -503,7 +503,7 @@ export const shipments: Shipment[] = [
     transportNumber: "KE-704",
   },
   {
-    id: "SDA-11-2411",
+    id: "NRV-11-2411",
     customer: customerAccounts.sourceDay,
     origin: {
       display: "Kuala Lumpur",
@@ -537,7 +537,7 @@ export const shipments: Shipment[] = [
     transportNumber: "WQH 2184",
   },
   {
-    id: "SDA-12-2412",
+    id: "NRV-12-2412",
     customer: customerAccounts.transvirtual,
     origin: {
       display: "Cebu Port",
@@ -571,7 +571,7 @@ export const shipments: Shipment[] = [
     transportNumber: "MV DAVAO-12",
   },
   {
-    id: "SDA-13-2413",
+    id: "NRV-13-2413",
     customer: customerAccounts.flexport,
     origin: {
       display: "SIN Airport",
@@ -605,7 +605,7 @@ export const shipments: Shipment[] = [
     transportNumber: "SQ-938",
   },
   {
-    id: "SDA-14-2414",
+    id: "NRV-14-2414",
     customer: customerAccounts.sendWell,
     origin: {
       display: "Port of Manila",
@@ -639,7 +639,7 @@ export const shipments: Shipment[] = [
     transportNumber: "MV PRI-77",
   },
   {
-    id: "SDA-15-2415",
+    id: "NRV-15-2415",
     customer: customerAccounts.skyTrack,
     origin: {
       display: "Medan",
@@ -673,7 +673,7 @@ export const shipments: Shipment[] = [
     transportNumber: "BK 4520 RA",
   },
   {
-    id: "SDA-16-2416",
+    id: "NRV-16-2416",
     customer: customerAccounts.regionalRoadExpress,
     origin: {
       display: "BOM Airport",
@@ -707,7 +707,7 @@ export const shipments: Shipment[] = [
     transportNumber: "AI-864",
   },
   {
-    id: "SDA-17-2417",
+    id: "NRV-17-2417",
     customer: customerAccounts.logisticsPlus,
     origin: {
       display: "Rotterdam Port",
@@ -741,7 +741,7 @@ export const shipments: Shipment[] = [
     transportNumber: "MV HAM-902",
   },
   {
-    id: "SDA-18-2418",
+    id: "NRV-18-2418",
     customer: customerAccounts.transvirtual,
     origin: {
       display: "Ho Chi Minh City",
@@ -775,7 +775,7 @@ export const shipments: Shipment[] = [
     transportNumber: "51C-208.44",
   },
   {
-    id: "SDA-19-2419",
+    id: "NRV-19-2419",
     customer: customerAccounts.maersk,
     origin: {
       display: "DXB Airport",
@@ -809,7 +809,7 @@ export const shipments: Shipment[] = [
     transportNumber: "SV-591",
   },
   {
-    id: "SDA-20-2420",
+    id: "NRV-20-2420",
     customer: customerAccounts.freightView,
     origin: {
       display: "Nhava Sheva Port",
@@ -843,7 +843,7 @@ export const shipments: Shipment[] = [
     transportNumber: "MV COL-620",
   },
   {
-    id: "SDA-21-2421",
+    id: "NRV-21-2421",
     customer: customerAccounts.piedPiper,
     origin: {
       display: "Chiang Mai",
@@ -877,7 +877,7 @@ export const shipments: Shipment[] = [
     transportNumber: "กท 8842",
   },
   {
-    id: "SDA-22-2422",
+    id: "NRV-22-2422",
     customer: customerAccounts.techCorp,
     origin: {
       display: "KIX Airport",
@@ -911,7 +911,7 @@ export const shipments: Shipment[] = [
     transportNumber: "BR-129",
   },
   {
-    id: "SDA-23-2423",
+    id: "NRV-23-2423",
     customer: customerAccounts.maersk,
     origin: {
       display: "Port of Singapore",
@@ -945,7 +945,7 @@ export const shipments: Shipment[] = [
     transportNumber: "MV PKG-315",
   },
   {
-    id: "SDA-24-2424",
+    id: "NRV-24-2424",
     customer: customerAccounts.shippingEasy,
     origin: {
       display: "Bandar Lampung",

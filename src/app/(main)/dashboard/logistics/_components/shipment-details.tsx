@@ -1,5 +1,8 @@
+"use client";
+
 import { cn } from "cn";
 import { AlertTriangleIcon, Copy, Plane, Ship, Star, Truck } from "lucide-react";
+import { toast } from "sonner";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -9,6 +12,7 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import type { Shipment } from "./shipment-data";
+import { ShipmentPanel } from "./shipment-panels";
 import { ShipmentRouteMap } from "./shipment-route-map";
 
 const modeIcons = {
@@ -83,7 +87,17 @@ function ShipmentOverview({ shipment }: { shipment: Shipment }) {
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <div className="flex items-center gap-2">
           <h1 className="text-lg font-medium tracking-tight tabular-nums sm:text-xl">#{shipment.id}</h1>
-          <Button variant="ghost" size="icon-sm" aria-label="Copy shipment ID">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            aria-label="Copy shipment ID"
+            onClick={() => {
+              void navigator.clipboard.writeText(shipment.id).then(
+                () => toast.success("Shipment ID copied"),
+                () => toast.info(`Shipment ID: ${shipment.id}`),
+              );
+            }}
+          >
             <Copy />
           </Button>
         </div>
@@ -114,7 +128,19 @@ function ShipmentOverview({ shipment }: { shipment: Shipment }) {
             <div className="text-sm leading-none font-medium">{shipment.customer.name}</div>
             <div className="text-muted-foreground flex items-center gap-2">
               <span className="text-xs leading-none tracking-tight tabular-nums">{shipment.customer.id}</span>{" "}
-              <Copy className="size-3" />
+              <Button
+                variant="ghost"
+                size="icon-xs"
+                aria-label="Copy customer ID"
+                onClick={() => {
+                  void navigator.clipboard.writeText(shipment.customer.id).then(
+                    () => toast.success("Customer ID copied"),
+                    () => toast.info(shipment.customer.id),
+                  );
+                }}
+              >
+                <Copy />
+              </Button>
             </div>
           </div>
         </div>
@@ -134,7 +160,15 @@ function ShipmentOverview({ shipment }: { shipment: Shipment }) {
         <div className="flex items-start justify-between gap-4">
           <h2 className="font-medium">Cargo details</h2>
 
-          <Button variant="outline" size="sm">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() =>
+              toast.info("Demo support", {
+                description: `Contact operations@noreva.example for ${shipment.id}. No call is placed in this fictional showcase.`,
+              })
+            }
+          >
             <ContactIcon data-icon="inline-start" />
             {contactLabel}
           </Button>
@@ -175,7 +209,7 @@ function ShipmentOverview({ shipment }: { shipment: Shipment }) {
       <Alert className="border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-50">
         <AlertTriangleIcon />
         <AlertTitle>{shipment.handling.label}</AlertTitle>
-        <AlertDescription className="space-y-2">
+        <AlertDescription className="flex flex-col gap-2">
           <div className="border-amber-900 leading-none text-amber-900 dark:border-amber-50 dark:text-amber-50">
             {shipment.handling.note}
           </div>
@@ -203,7 +237,7 @@ function ShipmentOverview({ shipment }: { shipment: Shipment }) {
 export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
   if (!shipment) {
     return (
-      <div className="grid h-full min-h-0 grid-rows-[320px_1fr] overflow-hidden lg:grid-rows-[420px_1fr]">
+      <div className="grid h-full min-h-0 grid-rows-[minmax(180px,36dvh)_1fr] overflow-hidden lg:grid-rows-[minmax(240px,46dvh)_1fr]">
         <div className="min-h-0 overflow-hidden">
           <ShipmentRouteMap shipment={null} />
         </div>
@@ -215,7 +249,7 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
   }
 
   return (
-    <div className="grid h-full min-h-0 grid-rows-[320px_1fr] overflow-hidden lg:grid-rows-[420px_1fr]">
+    <div className="grid h-full min-h-0 grid-rows-[minmax(180px,36dvh)_1fr] overflow-hidden lg:grid-rows-[minmax(240px,46dvh)_1fr]">
       <div className="min-h-0 overflow-hidden">
         <ShipmentRouteMap shipment={shipment} />
       </div>
@@ -245,25 +279,17 @@ export function ShipmentDetails({ shipment }: ShipmentDetailsProps) {
             <TabsContent className="min-h-0 overflow-auto p-4" value="overview">
               <ShipmentOverview shipment={shipment} />
             </TabsContent>
-            <TabsContent className="p-4" value="route">
-              <div className="text-muted-foreground grid h-full place-items-center rounded-md border border-dashed text-sm">
-                Route view coming soon.
-              </div>
+            <TabsContent className="min-h-0 overflow-auto p-4" value="route">
+              <ShipmentPanel shipment={shipment} view="route" />
             </TabsContent>
-            <TabsContent className="p-4" value="cargo">
-              <div className="text-muted-foreground grid h-full place-items-center rounded-md border border-dashed text-sm">
-                Cargo view coming soon.
-              </div>
+            <TabsContent className="min-h-0 overflow-auto p-4" value="cargo">
+              <ShipmentPanel shipment={shipment} view="cargo" />
             </TabsContent>
-            <TabsContent className="p-4" value="documents">
-              <div className="text-muted-foreground grid h-full place-items-center rounded-md border border-dashed text-sm">
-                Documents view coming soon.
-              </div>
+            <TabsContent className="min-h-0 overflow-auto p-4" value="documents">
+              <ShipmentPanel shipment={shipment} view="documents" />
             </TabsContent>
-            <TabsContent className="p-4" value="activity">
-              <div className="text-muted-foreground grid h-full place-items-center rounded-md border border-dashed text-sm">
-                Activity view coming soon.
-              </div>
+            <TabsContent className="min-h-0 overflow-auto p-4" value="activity">
+              <ShipmentPanel shipment={shipment} view="activity" />
             </TabsContent>
           </Tabs>
         </div>

@@ -51,7 +51,7 @@ export const infrastructureGroups: InfrastructureGroup[] = [
   },
   {
     name: "Analytics",
-    organization: "Aiy Cap",
+    organization: "NOREVA Cloud",
     rows: [
       {
         domain: "next-shadcn-admin-dashboard.vercel.app/analytics",

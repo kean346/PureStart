@@ -8,9 +8,9 @@ import { ProjectEnvironments } from "./_components/project-environments";
 import "@/styles/flag-icons/flags.css";
 
 export const metadata: Metadata = {
-  title: "Open Source Infrastructure Dashboard with shadcn/ui",
+  title: "NOREVA Infrastructure | Demo workspace",
   description:
-    "Explore an open source infrastructure dashboard with environments, server health, uptime, resource usage, and deployment status.",
+    "Explore the NOREVA demo infrastructure dashboard with environments, server health, uptime, resource usage, and deployment status.",
   alternates: {
     canonical: "/dashboard/infrastructure",
   },

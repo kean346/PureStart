@@ -11,9 +11,9 @@ import { patients } from "./_components/data";
 import { PatientMonitoring } from "./_components/patient-monitoring";
 
 export const metadata: Metadata = {
-  title: "Open Source Patient Monitoring Dashboard with shadcn/ui",
+  title: "NOREVA Patient Monitoring | Demo workspace",
   description:
-    "Explore an open source patient monitoring dashboard with live vital signs, ECG waveforms, patient trends, alarms, and device status.",
+    "Explore the NOREVA demo patient monitoring dashboard with live vital signs, ECG waveforms, patient trends, alarms, and device status.",
   alternates: {
     canonical: "/dashboard/patient-monitoring",
   },
@@ -28,7 +28,7 @@ export default function Page() {
       data-content-padding="false"
     >
       <div className="grid min-h-10 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-2 px-2 py-2 text-sm lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:py-0">
-        <div className="truncate lg:overflow-visible">CENTRAL PATIENT MONITORING</div>
+        <div className="truncate lg:overflow-visible">NOREVA · SIMULATED PATIENT MONITORING</div>
         <div className="whitespace-nowrap">{patients.length} Patients</div>
         <div className="text-muted-foreground col-span-2 flex items-center justify-between gap-5 lg:col-span-1 lg:justify-end">
           <span className="whitespace-nowrap tabular-nums">

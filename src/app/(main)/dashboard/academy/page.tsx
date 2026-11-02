@@ -10,9 +10,9 @@ import { PerformanceHighlights } from "./_components/performance-highlights";
 import { UpcomingEvents } from "./_components/upcoming-events";
 
 export const metadata: Metadata = {
-  title: "Open Source Education Dashboard with shadcn/ui",
+  title: "NOREVA Academy | Demo workspace",
   description:
-    "Explore an open source education dashboard with class schedules, assignments, performance insights, and upcoming events.",
+    "Explore the NOREVA demo education dashboard with class schedules, assignments, performance insights, and upcoming events.",
   alternates: {
     canonical: "/dashboard/academy",
   },

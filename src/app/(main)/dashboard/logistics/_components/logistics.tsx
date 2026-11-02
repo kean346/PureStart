@@ -25,7 +25,7 @@ export function Logistics() {
     <>
       <div
         data-content-padding="false"
-        className="grid h-[calc(100dvh-var(--dashboard-header-height))] overflow-hidden lg:grid-cols-[400px_minmax(0,1fr)] lg:divide-x"
+        className="noreva-logistics grid h-[calc(100dvh-var(--dashboard-header-height))] overflow-hidden lg:grid-cols-[340px_minmax(0,1fr)] xl:grid-cols-[400px_minmax(0,1fr)] lg:divide-x"
       >
         <div className="h-full overflow-hidden">
           <ShipmentList

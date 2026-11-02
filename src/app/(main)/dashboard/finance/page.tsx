@@ -15,9 +15,9 @@ import { UpcomingTransactions } from "./_components/upcoming-transactions";
 import { Wallet } from "./_components/wallet";
 
 export const metadata: Metadata = {
-  title: "Open Source Finance Dashboard with shadcn/ui",
+  title: "NOREVA Finance | Demo workspace",
   description:
-    "Explore an open source personal finance dashboard with net worth, spending, income sources, account allocation, transactions, and wallets.",
+    "Explore the NOREVA demo personal finance dashboard with net worth, spending, income sources, account allocation, transactions, and wallets.",
   alternates: {
     canonical: "/dashboard/finance",
   },
@@ -29,7 +29,7 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-4">
       <div className="space-y-1">
-        <h1 className="text-3xl tracking-tight">Personal Finances</h1>
+        <h1 className="text-3xl tracking-tight">NOREVA Finance</h1>
         <p className="text-muted-foreground text-sm">{formattedDate}</p>
       </div>
 

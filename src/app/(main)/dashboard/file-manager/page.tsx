@@ -13,9 +13,9 @@ import { FileManagerToolbar } from "./_components/file-manager-toolbar";
 import { FoldersSection } from "./_components/folders-section";
 
 export const metadata: Metadata = {
-  title: "Open Source File Manager with shadcn/ui",
+  title: "NOREVA File Manager | Demo workspace",
   description:
-    "Explore an open source file manager for browsing, organizing, uploading, and viewing files and folders.",
+    "Explore the NOREVA demo file manager for browsing, organizing, uploading, and viewing files and folders.",
   alternates: {
     canonical: "/dashboard/file-manager",
   },
@@ -33,7 +33,7 @@ export default async function Page({ searchParams }: PageProps) {
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex flex-col gap-1">
-          <h1 className="text-3xl leading-none tracking-tight">My files</h1>
+          <h1 className="text-3xl leading-none tracking-tight">Workspace files</h1>
           <p className="text-muted-foreground text-sm">Organize, share, and find workspace files.</p>
         </div>
         <div className="flex items-center gap-2">

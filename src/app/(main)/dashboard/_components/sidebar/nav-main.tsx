@@ -92,7 +92,10 @@ export function NavMain({ items }: NavMainProps) {
     }
 
     const [pathname, query] = item.url.split("?");
-    return path === pathname && activeView === (new URLSearchParams(query).get("view") ?? "overview");
+    return (
+      path === pathname &&
+      (pathname !== "/dashboard/analytics" || activeView === (new URLSearchParams(query).get("view") ?? "overview"))
+    );
   };
 
   const isSubItemActive = (url: string) => {

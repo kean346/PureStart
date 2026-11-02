@@ -304,27 +304,48 @@ html:has([data-landing-page]) {
   }
 }
 
-/* NOREVA's restrained accent uses Tailwind's named palette and the existing tokens. */
+/* Charcoal foundation: neutral surfaces, clear contrast, and quiet chart tones. */
 :root,
 html[data-theme-preset="default"] {
   --font-geist: var(--font-geist-sans);
-  --primary: var(--color-violet-700);
-  --primary-foreground: var(--color-white);
-  --ring: var(--color-violet-500);
-  --chart-1: var(--color-violet-500);
-  --chart-2: var(--color-violet-300);
-  --chart-3: var(--color-violet-600);
+  --primary: var(--color-zinc-800);
+  --primary-foreground: var(--color-zinc-50);
+  --ring: var(--color-zinc-500);
+  --chart-1: var(--color-zinc-500);
+  --chart-2: var(--color-zinc-300);
+  --chart-3: var(--color-zinc-700);
   --chart-4: var(--color-slate-400);
   --chart-5: var(--color-slate-500);
   --sidebar-primary: var(--primary);
 }
-.dark,
 html.dark[data-theme-preset="default"] {
-  --primary: var(--color-violet-400);
-  --primary-foreground: var(--color-violet-950);
-  --chart-1: var(--color-violet-400);
-  --chart-2: var(--color-violet-300);
-  --chart-3: var(--color-violet-400);
+  --background: var(--color-zinc-950);
+  --foreground: var(--color-zinc-100);
+  --card: var(--color-zinc-900);
+  --card-foreground: var(--color-zinc-100);
+  --popover: var(--color-zinc-900);
+  --popover-foreground: var(--color-zinc-100);
+  --sidebar: var(--color-zinc-950);
+  --sidebar-foreground: var(--color-zinc-200);
+  --sidebar-accent: var(--color-zinc-800);
+  --sidebar-accent-foreground: var(--color-zinc-100);
+  --border: var(--color-zinc-700);
+  --sidebar-border: var(--color-zinc-800);
+  --input: var(--color-zinc-700);
+  --muted: var(--color-zinc-800);
+  --muted-foreground: var(--color-zinc-400);
+  --accent: var(--color-zinc-700);
+  --accent-foreground: var(--color-zinc-100);
+  --secondary: var(--color-zinc-700);
+  --secondary-foreground: var(--color-zinc-100);
+  --primary: var(--color-zinc-200);
+  --primary-foreground: var(--color-zinc-950);
+  --chart-1: var(--color-zinc-300);
+  --chart-2: var(--color-zinc-500);
+  --chart-3: var(--color-zinc-200);
+}
+.noreva-logistics {
+  font-size: 0.875rem;
 }
 
 @keyframes noreva-reveal {
@@ -429,6 +450,65 @@ html.dark[data-theme-preset="default"] {
 }
 @media (prefers-reduced-motion: reduce) {
   .noreva-visitor-bar {
+    animation: none;
+  }
+}
+
+/* A restrained entrance on every dashboard route, with no layout movement. */
+.noreva-page-enter {
+  animation: noreva-reveal 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.noreva-page-enter > div:not(.noreva-dashboard, .noreva-logistics) > * {
+  animation: noreva-reveal 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.noreva-page-enter > div:not(.noreva-dashboard, .noreva-logistics) > :nth-child(2) {
+  animation-delay: 75ms;
+}
+.noreva-page-enter > div:not(.noreva-dashboard, .noreva-logistics) > :nth-child(3) {
+  animation-delay: 150ms;
+}
+.noreva-page-enter > div:not(.noreva-dashboard, .noreva-logistics) > :nth-child(n + 4) {
+  animation-delay: 225ms;
+}
+.noreva-logistics button[aria-pressed] {
+  animation: noreva-reveal 400ms ease-out both;
+}
+.noreva-logistics button[aria-pressed]:nth-child(2) {
+  animation-delay: 60ms;
+}
+.noreva-logistics button[aria-pressed]:nth-child(3) {
+  animation-delay: 120ms;
+}
+.noreva-logistics button[aria-pressed]:nth-child(n + 4) {
+  animation-delay: 180ms;
+}
+
+@keyframes noreva-theme-reveal {
+  from {
+    clip-path: circle(0px at var(--theme-origin-x) var(--theme-origin-y));
+  }
+  to {
+    clip-path: circle(var(--theme-reveal-radius) at var(--theme-origin-x) var(--theme-origin-y));
+  }
+}
+html[data-theme-transition]::view-transition-group(root) {
+  animation-duration: 700ms;
+}
+html[data-theme-transition]::view-transition-old(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html[data-theme-transition]::view-transition-new(root) {
+  animation: noreva-theme-reveal 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  mix-blend-mode: normal;
+}
+@media (prefers-reduced-motion: reduce) {
+  .noreva-page-enter,
+  .noreva-page-enter > div:not(.noreva-dashboard, .noreva-logistics) > *,
+  .noreva-logistics button[aria-pressed] {
+    animation: none;
+  }
+  html[data-theme-transition]::view-transition-new(root) {
     animation: none;
   }
 }

@@ -9,6 +9,7 @@ import {
 } from "@/lib/preferences/preferences-config";
 import { persistPreference } from "@/lib/preferences/preferences-storage";
 import type { ResolvedThemeMode } from "@/lib/preferences/theme";
+import { transitionTheme } from "@/lib/preferences/theme-transition";
 
 export type PreferencesState = {
   values: PreferenceValueMap;
@@ -30,17 +31,16 @@ export const createPreferencesStore = (initialValues: Partial<PreferenceValueMap
     isSynced: false,
 
     setPreference: (key, value) => {
-      const resolvedThemeMode = applyPreference(key, value);
-
-      set((state) => ({
-        values: {
-          ...state.values,
-          [key]: value,
-        } as PreferenceValueMap,
-        ...(resolvedThemeMode ? { resolvedThemeMode } : {}),
-      }));
-
-      void persistPreference(key, value);
+      const update = () => {
+        const resolvedThemeMode = applyPreference(key, value);
+        set((state) => ({
+          values: { ...state.values, [key]: value } as PreferenceValueMap,
+          ...(resolvedThemeMode ? { resolvedThemeMode } : {}),
+        }));
+        void persistPreference(key, value);
+      };
+      if (key === "theme_mode" || key === "theme_preset") transitionTheme(update);
+      else update();
     },
 
     resetPreferences: () => {

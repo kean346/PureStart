@@ -45,8 +45,14 @@ Optionally set `NEXT_PUBLIC_SITE_URL` to the public origin, including `https://`
 
 ## Review artifacts
 
-See `artifacts/noreva-desktop.png`, `artifacts/noreva-mobile.png`, `artifacts/noreva-dark.png`, `artifacts/noreva-audience.png`, and `artifacts/noreva-entrance.mp4`. Browser checks cover filters, tabs, campaign switching, export, notifications, About, dark mode, sidebar collapse, mobile navigation, and reduced motion. The original unrelated template routes remain in source, outside NOREVA's curated navigation.
+See `artifacts/noreva-desktop.png`, `artifacts/noreva-mobile.png`, `artifacts/noreva-dark.png`, `artifacts/noreva-audience.png`, and `artifacts/noreva-entrance.mp4`. Browser checks cover filters, tabs, campaign switching, export, notifications, About, dark mode, sidebar collapse, mobile navigation, and reduced motion. All eleven original dashboard modules are available in the sidebar with NOREVA titles and a charcoal-black default theme. Existing finance, commerce, academy, infrastructure, file manager, productivity, CRM, and patient monitoring layouts are portfolio demo modules, not connected backend services. Logistics includes working status/search/transport filters, route and cargo details, activity milestones, and a downloadable demo manifest. The local world atlas uses Natural Earth public-domain map data, with the world-atlas ISC notice in public/licenses/World-Atlas-ISC.txt.
 
 ## Licenses
 
 The original MIT copyright notice remains in [LICENSE](LICENSE); a distribution copy is in `public/licenses/Studio-Admin-MIT.txt`. The existing Geist font files are licensed under the SIL Open Font License, retained in `public/licenses/Geist-OFL.txt`. Recharts is MIT-licensed. No additional application libraries, stock photography, paid features, or proprietary media were added. The monogram and social preview artwork are original typography and geometry.
+
+### Charcoal workspace update
+
+All eleven dashboard modules now appear under Dashboards. The shared shell uses NOREVA Charcoal with charcoal-black surfaces by default; light and system modes remain available. Every dashboard route has a brief staggered entrance. Changing theme mode or preset uses a 700ms screen-covering circular reveal from the control through the browser View Transition API, with instant switching for reduced motion or unsupported browsers.
+
+Logistics matches the original shipment-list/map/detail composition and uses a local atlas, real status/search/transport filtering, functional detail tabs, clipboard actions, and downloadable fictional manifests. Desktop and mobile review images are in `artifacts/noreva-logistics-*.png`.

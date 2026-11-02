@@ -25,7 +25,7 @@ type ProjectedRoutePoint = RoutePoint & {
   point: [number, number] | null;
 };
 
-const WORLD_ATLAS_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+const WORLD_ATLAS_URL = "/maps/countries-110m.json";
 const WIDTH = 1000;
 const HEIGHT = 520;
 const SNAPSHOT_PADDING = 72;
@@ -129,6 +129,7 @@ function buildMapGeometry(shipment: Shipment | null) {
 }
 
 export function ShipmentRouteMap({ shipment }: ShipmentRouteMapProps) {
+  const [failed, setFailed] = useState(false);
   const [borders, setBorders] = useState<GeoJSON.MultiLineString | null>(null);
   const [land, setLand] = useState<GeoJSON.FeatureCollection | null>(null);
 
@@ -160,6 +161,7 @@ export function ShipmentRouteMap({ shipment }: ShipmentRouteMapProps) {
         }
       } catch (error) {
         console.error(error);
+        if (!cancelled) setFailed(true);
       }
     }
 
@@ -173,28 +175,37 @@ export function ShipmentRouteMap({ shipment }: ShipmentRouteMapProps) {
   const { path, routePath, routePoints } = buildMapGeometry(shipment);
 
   return (
-    <div className="size-full min-h-0 overflow-hidden bg-[#d4dadc] dark:bg-[#2C353C]">
+    <div className="relative size-full min-h-0 overflow-hidden bg-muted">
+      <span className="bg-background/85 text-muted-foreground absolute top-3 left-3 rounded-md border px-2 py-1 text-[10px] tracking-wide uppercase">
+        NOREVA Logistics · Demo route
+      </span>
+      {failed && (
+        <p role="status" className="absolute bottom-3 left-3 text-xs">
+          Basemap unavailable. Route coordinates remain visible.
+        </p>
+      )}
       <svg
-        aria-label="Southeast Asia shipment region map"
-        className="block size-full bg-[#d4dadc] dark:bg-[#2C353C]"
+        aria-label={
+          shipment
+            ? `Shipment route from ${shipment.origin.country} to ${shipment.destination.country}`
+            : "Shipment region map"
+        }
+        className="block size-full bg-muted"
         role="img"
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         preserveAspectRatio="xMidYMid meet"
       >
-        <rect height={HEIGHT} width={WIDTH} className="fill-[#d4dadc] dark:fill-[#2C353C]" />
+        <rect height={HEIGHT} width={WIDTH} className="fill-muted" />
         {land && (
           <path
             d={path(land as GeoPermissibleObjects) ?? undefined}
-            className="fill-[#fafaf8] dark:fill-[#0e0e0e]"
-            stroke="#f0dddd"
+            className="fill-background"
+            stroke="var(--border)"
             strokeWidth={0.8}
           />
         )}
         {borders && (
-          <path
-            d={path(borders as GeoPermissibleObjects) ?? undefined}
-            className="fill-none stroke-[#ebd6d8] dark:stroke-[#2C353C]"
-          />
+          <path d={path(borders as GeoPermissibleObjects) ?? undefined} className="fill-none stroke-border" />
         )}
         {routePath && (
           <path

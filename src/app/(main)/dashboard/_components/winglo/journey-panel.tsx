@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { usePathname, useRouter } from "next/navigation";
 
@@ -11,10 +11,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 
 import { type Journey, stageReady, stages } from "./journey";
+import { Modal } from "./shared";
 import { hydrateDemo, useDemo } from "./store";
 
 export function JourneyPanel() {
   const { data, journey: j, ready } = useDemo();
+  const [reminderOpen, setReminderOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   useEffect(() => {
@@ -26,6 +28,14 @@ export function JourneyPanel() {
   if (!ready || !data || !j?.active) return null;
   const store = useDemo.getState();
   const quote = data.quotes.find((q) => q.id === j.quoteId);
+  const booking = data.bookings.find((b) => b.id === j.bookingId);
+  const customer = data.customers.find((c) => c.id === booking?.customerId);
+  const reminder = (
+    data.settings.templates["Booking reminder"] ?? "Hi {name}, a reminder of your {service} appointment on {date}."
+  )
+    .replaceAll("{name}", customer?.name ?? "Demo customer")
+    .replaceAll("{service}", data.settings.services.find((s) => s.id === booking?.serviceId)?.name ?? "cleaning")
+    .replaceAll("{date}", booking?.start.replace("T", " at ") ?? "the scheduled date");
   function focus(current: Journey) {
     const route = current.completed ? "/dashboard/demo" : stages[current.step].route;
     router.push(route);
@@ -111,6 +121,33 @@ export function JourneyPanel() {
                 <Button onClick={() => store.quoteStatus(quote.id, "Accepted (Simulated)")}>
                   Simulate Customer Acceptance
                 </Button>
+              )}
+            </>
+          )}
+          {j.step === 6 && !j.completed && booking && (
+            <>
+              <Button
+                onClick={() => {
+                  setReminderOpen(true);
+                  store.previewReminder(booking.id);
+                }}
+              >
+                {j.reminderPreviewed ? "View Customer Reminder Again" : "Preview Customer Reminder"}
+              </Button>
+              {j.reminderPreviewed && (
+                <p className="text-sm" role="status">
+                  Reminder previewed. Select Next Step to complete the cleaning job.
+                </p>
+              )}
+              {reminderOpen && (
+                <Modal
+                  title="Customer Reminder Preview"
+                  description="Simulation Only · No real message is sent."
+                  onClose={() => setReminderOpen(false)}
+                >
+                  <blockquote className="bg-muted rounded-lg p-4 text-sm">{reminder}</blockquote>
+                  <Button onClick={() => setReminderOpen(false)}>Done — Continue Demo</Button>
+                </Modal>
               )}
             </>
           )}

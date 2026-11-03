@@ -60,7 +60,7 @@ export const stages = [
   {
     title: "Preview the customer reminder",
     route: "/dashboard/demo",
-    instruction: "Preview the reminder for this exact booking. This sends nothing.",
+    instruction: "Click Preview Customer Reminder to see the message, then select Next Step. No real message is sent.",
   },
   {
     title: "Complete the cleaning job",

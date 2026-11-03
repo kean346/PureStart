@@ -2,14 +2,16 @@
 import { useEffect, useState } from "react";
 
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
-import { ArrowRight, CalendarDays, FileText, MessageCircle, Plus, Sparkles, X } from "lucide-react";
+import { CalendarDays, Compass, FileText, MessageCircle, Plus, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
+import { DemoActivity } from "./activity";
 import { BookingCalendar } from "./booking-calendar";
 import { EnquiryForm } from "./enquiry-form";
 import {
@@ -28,7 +30,7 @@ import { Overview } from "./overview";
 import { BookingEditor, printQuote, QuoteEditor } from "./record-editors";
 import { AutomationPreview, SettingsPage } from "./settings";
 import { Choice, EmptyRecords, Modal, Panel, Status, TextField } from "./shared";
-import { useDemo, useDemoData } from "./store";
+import { hydrateDemo, useDemo, useDemoData } from "./store";
 
 type Section = "Overview" | "Enquiries" | "Quotations" | "Bookings" | "Customers" | "Settings";
 type Editor =
@@ -39,29 +41,60 @@ type Editor =
   | { kind: "customer"; value: Customer }
   | { kind: "automation" };
 export function Workspace({ section = "Overview", publicForm = false }: { section?: Section; publicForm?: boolean }) {
-  const { data: d, ready, update, init, storageError } = useDemo();
+  const { data: d, ready, update, storageError } = useDemo();
   const [editor, setEditor] = useState<Editor | null>(null);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("All statuses");
   const [appointmentRange, setAppointmentRange] = useState("All appointments");
   const [complete, setComplete] = useState<string | null>(null);
-  const [guide, setGuide] = useState<number | null>(null);
-  const [guideEnquiry, setGuideEnquiry] = useState<string>();
-  const [guideQuote, setGuideQuote] = useState<string>();
-  const [guideBooking, setGuideBooking] = useState<string>();
+  const router = useRouter();
+  const pathname = usePathname();
+  const journey = useDemo((s) => s.journey);
+  const request = useDemo((s) => s.editorRequest);
   useEffect(() => {
-    let active = true;
-    void Promise.resolve(useDemo.persist.rehydrate())
-      .then(() => {
-        if (active) init();
-      })
-      .catch(() => {
-        if (active) init();
-      });
-    return () => {
-      active = false;
-    };
-  }, [init]);
+    void hydrateDemo();
+  }, []);
+  useEffect(() => {
+    if (!ready || !d || !request || request.route !== pathname) return;
+    setQuery("");
+    setFilter("All statuses");
+    setAppointmentRange("All appointments");
+    const { kind, recordId } = request;
+    if (kind === "enquiry") {
+      const value = d.enquiries.find((e) => e.id === recordId);
+      if (value) setEditor({ kind, value });
+    }
+    if (kind === "customer") {
+      const value = d.customers.find((c) => c.id === recordId);
+      if (value) setEditor({ kind, value });
+    }
+    if (kind === "quote") {
+      const value = d.quotes.find((q) => q.id === recordId);
+      const enquiry = d.enquiries.find((e) => e.id === recordId);
+      if (value || enquiry) setEditor({ kind, value, enquiry });
+    }
+    if (kind === "booking") {
+      const value = d.bookings.find((b) => b.id === recordId);
+      const quote = d.quotes.find((q) => q.id === recordId);
+      if (value || quote) setEditor({ kind, value, quote });
+    }
+    useDemo.getState().clearEditorRequest();
+  }, [ready, d, request, pathname]);
+  const highlightedId = (
+    {
+      Enquiries: journey?.enquiryId,
+      Quotations: journey?.quoteId,
+      Bookings: journey?.bookingId,
+      Customers: journey?.customerId,
+    } as Partial<Record<Section, string | undefined>>
+  )[section];
+  useEffect(() => {
+    if (!ready || !journey?.active || !highlightedId) return;
+    const frame = requestAnimationFrame(() =>
+      document.getElementById(highlightedId)?.scrollIntoView({ block: "nearest" }),
+    );
+    return () => cancelAnimationFrame(frame);
+  }, [ready, journey?.active, highlightedId]);
   if (!ready || !d)
     return (
       <div className="flex flex-col gap-4" role="status" aria-label="Loading Winglo workspace">
@@ -79,7 +112,10 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
   const editEnquiry = (value?: Enquiry) => setEditor({ kind: "enquiry", value });
   const editQuote = (value?: Quote) => setEditor({ kind: "quote", value });
   const editBooking = (value?: Booking) => setEditor({ kind: "booking", value });
-  const createFrom = (enquiry: Enquiry) => setEditor({ kind: "quote", enquiry });
+  const createFrom = (enquiry: Enquiry) => {
+    const linked = d.quotes.find((q) => q.id === journey?.quoteId && q.enquiryId === enquiry.id);
+    setEditor({ kind: "quote", enquiry, value: linked });
+  };
   const convert = (quote: Quote) => {
     const existing = d.bookings.find((b) => b.quoteId === quote.id);
     if (existing) {
@@ -89,11 +125,7 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
     setEditor({ kind: "booking", quote });
   };
   const setQuoteStatus = (q: Quote, status: Quote["status"]) => {
-    update((d) => ({
-      ...d,
-      quotes: d.quotes.map((v) => (v.id === q.id ? { ...v, status } : v)),
-      enquiries: d.enquiries.map((e) => (e.id === q.enquiryId ? { ...e, status: "Quote Sent" } : e)),
-    }));
+    useDemo.getState().quoteStatus(q.id, status);
     toast.success(`${status} · No messages sent`);
   };
   const inRange = (b: Booking) =>
@@ -147,11 +179,6 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
       ).length;
     return d.customers.filter((c) => matches(`${c.name} ${c.phone} ${c.email} ${c.location}`)).length;
   };
-  const guideDescription: Record<number, string> = {
-    1: "Select a service and answer the actual simulator questions. Use fictional details to prefill a safe example.",
-    3: "Open the saved quotation, review each price and save it to continue.",
-    6: "Choose the date, duration, and available cleaner in the real booking form.",
-  };
   function editorTitle() {
     if (!editor) return "";
     if (editor.kind === "enquiry") return editor.value ? "Enquiry details" : "New cleaning enquiry";
@@ -163,54 +190,9 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
       automation: "Automation preview",
     }[editor.kind];
   }
-  const guidedE = d.enquiries.find((e) => e.id === guideEnquiry);
-  const guidedQ = d.quotes.find((q) => q.id === guideQuote);
-  const guidedB = d.bookings.find((b) => b.id === guideBooking);
-  const guideLabels = [
-    "Meet your fictional customer",
-    "Collect the cleaning details",
-    "A new enquiry is ready",
-    "Review the proposed price",
-    "Approve the sample quotation",
-    "Simulate customer acceptance",
-    "Schedule the cleaning job",
-    "See it on the calendar",
-    "Open the customer’s history",
-    "Preview the booking reminder",
-    "Demo complete",
-  ];
-  function nextGuide() {
-    if (guide === 0) {
-      setGuide(1);
-      setEditor({ kind: "conversation" });
-    } else if (guide === 1) setEditor({ kind: "conversation" });
-    else if (guide === 2 && guidedE) setEditor({ kind: "quote", enquiry: guidedE });
-    else if (guide === 3 && guidedQ) {
-      setEditor({ kind: "quote", value: guidedQ });
-    } else if (guide === 4 && guidedQ) {
-      setQuoteStatus(guidedQ, "Sent (Simulated)");
-      setGuide(5);
-    } else if (guide === 5 && guidedQ) {
-      setQuoteStatus(guidedQ, "Accepted (Simulated)");
-      setGuide(6);
-    } else if (guide === 6 && guidedQ) convert(guidedQ);
-    else if (guide === 7) setGuide(8);
-    else if (guide === 8 && guidedE) {
-      const selected = customer(guidedE.customerId);
-      if (selected) setEditor({ kind: "customer", value: selected });
-      setGuide(9);
-    } else if (guide === 9) {
-      setEditor({ kind: "automation" });
-      setGuide(10);
-    } else if (guide === 10) setGuide(null);
-  }
   const doneEnquiry = (eid: string) => {
     setEditor(null);
     setComplete(eid);
-    if (guide !== null) {
-      setGuideEnquiry(eid);
-      setGuide(2);
-    }
     toast.success("Thank you! Your enquiry is saved and ready for a sample quotation.");
   };
   if (publicForm)
@@ -260,35 +242,6 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
           Browser storage is unavailable. Changes may not survive a refresh.
         </p>
       )}
-      {guide !== null && (
-        <Panel title={`Guided demo · ${guide + 1} / ${guideLabels.length}`} description={guideLabels[guide]}>
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-muted-foreground max-w-xl text-sm">
-              {guideDescription[guide] ??
-                "Use Next Step to continue the connected enquiry → quotation → booking workflow. Nothing is sent externally."}
-            </p>
-            <div className="flex gap-2">
-              <Button onClick={nextGuide}>
-                {guide === 10 ? "Finish demo" : "Next Step"}
-                <ArrowRight data-icon="inline-end" />
-              </Button>
-              <Button variant="ghost" aria-label="Exit walkthrough" onClick={() => setGuide(null)}>
-                <X />
-              </Button>
-            </div>
-          </div>
-          {guide === 7 && (
-            <div className="mt-4">
-              <BookingCalendar onEdit={editBooking} />
-              {guidedB && (
-                <p className="mt-3 text-sm">
-                  Your new booking: {guidedB.start.replace("T", " at ")} · {customer(guidedB.customerId)?.name}
-                </p>
-              )}
-            </div>
-          )}
-        </Panel>
-      )}
       {section === "Overview" && (
         <>
           <div className="flex flex-wrap gap-2">
@@ -307,17 +260,31 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
             <Button
               variant="outline"
               onClick={() => {
-                setGuide(0);
-                setGuideEnquiry(undefined);
-                setGuideQuote(undefined);
-                setGuideBooking(undefined);
+                useDemo.getState().startJourney();
+                router.push("/dashboard/demo");
               }}
             >
               <Sparkles data-icon="inline-start" />
-              Start Demo
+              Start Interactive Demo
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                if (journey?.active) useDemo.getState().patchJourney({ paused: true });
+                toast.info("Explore all six management sections freely. Your saved data stays available.");
+              }}
+            >
+              <Compass data-icon="inline-start" />
+              Explore Dashboard
             </Button>
           </div>
-          <Overview onEnquiry={editEnquiry} onQuote={editQuote} onBooking={editBooking} />
+          <div id="winglo-overview">
+            <Overview onEnquiry={editEnquiry} onQuote={editQuote} onBooking={editBooking} />
+          </div>
+          <Panel title="Completed cleaning jobs" description="Completed bookings across all dates">
+            <strong className="text-2xl">{d.bookings.filter((b) => b.status === "Completed").length}</strong>
+          </Panel>
+          <DemoActivity />
         </>
       )}
       {section === "Settings" && <SettingsPage />}
@@ -397,7 +364,12 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
                       ),
                     )
                     .map((e) => (
-                      <TableRow key={e.id}>
+                      <TableRow
+                        key={e.id}
+                        id={e.id}
+                        data-tour-record={journey?.active && journey.enquiryId === e.id}
+                        className={journey?.active && journey.enquiryId === e.id ? "bg-accent" : undefined}
+                      >
                         <TableCell className="font-medium">{customer(e.customerId)?.name}</TableCell>
                         <TableCell>{customer(e.customerId)?.phone}</TableCell>
                         <TableCell>
@@ -426,7 +398,12 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
                   d.quotes
                     .filter((q) => matches(`${customer(q.customerId)?.name} ${service(q.serviceId)} ${q.id}`, q.status))
                     .map((q) => (
-                      <TableRow key={q.id}>
+                      <TableRow
+                        key={q.id}
+                        id={q.id}
+                        data-tour-record={journey?.active && journey.quoteId === q.id}
+                        className={journey?.active && journey.quoteId === q.id ? "bg-accent" : undefined}
+                      >
                         <TableCell className="font-medium">
                           {customer(q.customerId)?.name}
                           <span className="text-muted-foreground block text-xs">{q.id}</span>
@@ -473,7 +450,12 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
                       (b) => inRange(b) && matches(`${customer(b.customerId)?.name} ${service(b.serviceId)}`, b.status),
                     )
                     .map((b) => (
-                      <TableRow key={b.id}>
+                      <TableRow
+                        key={b.id}
+                        id={b.id}
+                        data-tour-record={journey?.active && journey.bookingId === b.id}
+                        className={journey?.active && journey.bookingId === b.id ? "bg-accent" : undefined}
+                      >
                         <TableCell className="font-medium">{customer(b.customerId)?.name}</TableCell>
                         <TableCell>{service(b.serviceId)}</TableCell>
                         <TableCell>
@@ -495,7 +477,7 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
                   d.customers
                     .filter((c) => matches(`${c.name} ${c.phone} ${c.email} ${c.location}`))
                     .map((c) => (
-                      <TableRow key={c.id}>
+                      <TableRow key={c.id} id={c.id}>
                         <TableCell className="font-medium">{c.name}</TableCell>
                         <TableCell>
                           {c.phone}
@@ -602,12 +584,8 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
             <QuoteEditor
               initial={editor.value}
               enquiry={editor.enquiry}
-              onDone={(qid) => {
+              onDone={() => {
                 setEditor(null);
-                if (guide !== null) {
-                  setGuideQuote(qid);
-                  setGuide(guide === 3 ? 4 : 3);
-                }
               }}
             />
           )}
@@ -616,12 +594,8 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
               initial={editor.value}
               quote={editor.quote}
               customerId={editor.customerId}
-              onDone={(bid) => {
+              onDone={() => {
                 setEditor(null);
-                if (guide !== null) {
-                  setGuideBooking(bid);
-                  setGuide(7);
-                }
               }}
             />
           )}
@@ -633,7 +607,7 @@ export function Workspace({ section = "Overview", publicForm = false }: { sectio
               onRepeat={() => setEditor({ kind: "booking", customerId: editor.value.id })}
             />
           )}
-          {editor.kind === "automation" && <AutomationPreview customer={guidedE?.customerId} />}
+          {editor.kind === "automation" && <AutomationPreview />}
         </Modal>
       )}
       <footer className="text-muted-foreground flex flex-wrap justify-between gap-2 border-t pt-4 text-xs">
@@ -684,6 +658,7 @@ function CustomerProfile({
         .map((q) => (
           <Button
             key={q.id}
+            id={q.id}
             variant="outline"
             className="h-auto justify-between py-3 whitespace-normal"
             onClick={() => onQuote(q)}
@@ -698,6 +673,7 @@ function CustomerProfile({
         .map((b) => (
           <Button
             key={b.id}
+            id={b.id}
             variant="outline"
             className="h-auto justify-between py-3 whitespace-normal"
             onClick={() => onBooking(b)}

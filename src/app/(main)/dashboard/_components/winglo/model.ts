@@ -58,6 +58,7 @@ export const quoteStatuses = [
 export const bookingStatuses = ["Pending", "Confirmed", "In Progress", "Completed", "Cancelled"] as const;
 export type Customer = { id: string; name: string; phone: string; email: string; location: string; notes: string };
 export type Enquiry = {
+  scenarioId?: string;
   id: string;
   customerId: string;
   serviceId: string;

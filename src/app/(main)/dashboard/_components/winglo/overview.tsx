@@ -33,10 +33,10 @@ export function Overview({
   const month = today.slice(0, 7);
   const kpis = [
     {
-      label: "New Enquiries",
-      value: d.enquiries.filter((e) => e.status === "New").length,
+      label: "Total Enquiries",
+      value: d.enquiries.length,
       icon: ClipboardList,
-      caption: "Ready for a personal response",
+      caption: "All enquiries · Every workflow status",
     },
     {
       label: "Quotations Awaiting Approval",
@@ -51,7 +51,7 @@ export function Overview({
       caption: "Cleaning jobs on the calendar",
     },
     {
-      label: "Revenue This Month",
+      label: "Completed-job Revenue This Month",
       value: money(
         d.bookings
           .filter((b) => b.status === "Completed" && b.start.startsWith(month))

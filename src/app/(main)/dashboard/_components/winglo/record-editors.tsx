@@ -32,7 +32,7 @@ export function QuoteEditor({
   onDone: (id: string) => void;
 }) {
   const data = useDemoData();
-  const update = useDemo((s) => s.update);
+  const saveQuote = useDemo((s) => s.saveQuote);
   const source = enquiry ?? data.enquiries[0];
   const make = (e: Enquiry): Quote => ({
     id: id("Q"),
@@ -42,7 +42,7 @@ export function QuoteEditor({
     ...estimate(e, data.settings),
     notes: "Sample estimate only. Subject to owner review; not approved Winglo pricing.",
     date: localDate(),
-    status: "Draft",
+    status: "Awaiting Approval",
   });
   const [quote, setQuote] = useState<Quote>(
     initial ??
@@ -74,17 +74,13 @@ export function QuoteEditor({
           toast.error("Create an enquiry or customer first.");
           return;
         }
-        update((d) => ({
-          ...d,
-          quotes: initial ? d.quotes.map((q) => (q.id === quote.id ? quote : q)) : [quote, ...d.quotes],
-          enquiries: d.enquiries.map((e) =>
-            e.id === quote.enquiryId && ["Sent (Simulated)", "Accepted (Simulated)"].includes(quote.status)
-              ? { ...e, status: "Quote Sent" }
-              : e,
-          ),
-        }));
-        toast.success("Sample quotation saved");
-        onDone(quote.id);
+        try {
+          const savedId = saveQuote(quote);
+          toast.success("Sample quotation saved");
+          onDone(savedId);
+        } catch (error) {
+          toast.error(error instanceof Error ? error.message : "Unable to save quotation.");
+        }
       }}
     >
       <p className="text-muted-foreground text-sm">
@@ -230,9 +226,13 @@ export function BookingEditor({
           toast.error("Create a customer through an enquiry first.");
           return;
         }
-        book(value);
-        toast.success("Booking saved · No confirmation sent");
-        onDone(value.id);
+        try {
+          const savedId = book(value);
+          toast.success("Booking saved · No confirmation sent");
+          onDone(savedId);
+        } catch (error) {
+          toast.error(error instanceof Error ? error.message : "Unable to save booking.");
+        }
       }}
     >
       <FieldGroup>

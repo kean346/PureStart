@@ -12,18 +12,20 @@ import { useDemo, useDemoData } from "./store";
 export function AutomationPreview({
   initial = "Booking reminder",
   customer: selectedCustomer,
+  bookingId,
 }: {
   initial?: string;
   customer?: string;
+  bookingId?: string;
 }) {
   const d = useDemoData();
   const [kind, setKind] = useState(initial);
   const [customerId, setCustomer] = useState(selectedCustomer ?? d.customers[0]?.id ?? "");
   const [simulated, setSimulated] = useState(false);
   const customer = d.customers.find((c) => c.id === customerId);
-  const booking = d.bookings
-    .filter((b) => b.customerId === customerId)
-    .sort((a, b) => b.start.localeCompare(a.start))[0];
+  const booking =
+    d.bookings.find((b) => b.id === bookingId) ??
+    d.bookings.filter((b) => b.customerId === customerId).sort((a, b) => b.start.localeCompare(a.start))[0];
   const service = d.settings.services.find((s) => s.id === booking?.serviceId);
   const text = (d.settings.templates[kind] ?? "")
     .replaceAll("{name}", customer?.name ?? "Demo customer")
@@ -32,28 +34,33 @@ export function AutomationPreview({
   return (
     <div className="flex flex-col gap-4">
       <p className="text-muted-foreground text-sm">Simulation Only · No WhatsApp, email, or SMS connection.</p>
-      <Choice
-        label="Template"
-        value={kind}
-        options={Object.keys(d.settings.templates)}
-        onChange={(v) => {
-          setKind(v);
-          setSimulated(false);
-        }}
-      />
-      <Choice
-        label="Customer for preview"
-        value={customerId}
-        options={d.customers}
-        onChange={(v) => {
-          setCustomer(v);
-          setSimulated(false);
-        }}
-      />
+      {!bookingId && (
+        <>
+          <Choice
+            label="Template"
+            value={kind}
+            options={Object.keys(d.settings.templates)}
+            onChange={(v) => {
+              setKind(v);
+              setSimulated(false);
+            }}
+          />
+          <Choice
+            label="Customer for preview"
+            value={customerId}
+            options={d.customers}
+            onChange={(v) => {
+              setCustomer(v);
+              setSimulated(false);
+            }}
+          />
+        </>
+      )}
       <blockquote className="bg-muted rounded-xl p-5 text-sm leading-relaxed">{text}</blockquote>
       <Button
         onClick={() => {
           setSimulated(true);
+          if (kind === "Booking reminder" && booking) useDemo.getState().previewReminder(booking.id);
           toast.success("Preview simulated locally. No message sent.");
         }}
       >

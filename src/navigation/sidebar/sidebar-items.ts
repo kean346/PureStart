@@ -1,4 +1,13 @@
-import { CalendarDays, FileText, LayoutDashboard, type LucideIcon, MessageCircle, Settings, Users } from "lucide-react";
+import {
+  CalendarDays,
+  FileText,
+  LayoutDashboard,
+  type LucideIcon,
+  MessageCircle,
+  Settings,
+  Sparkles,
+  Users,
+} from "lucide-react";
 
 export type NavBadge = "new" | "updated" | "soon";
 
@@ -44,6 +53,7 @@ export const sidebarItems: NavGroup[] = [
     label: "Winglo workspace",
     items: [
       { id: "default", title: "Overview", url: "/dashboard/default", icon: LayoutDashboard },
+      { id: "demo", title: "Interactive Demo", url: "/dashboard/demo", icon: Sparkles },
       { id: "enquiries", title: "Enquiries", url: "/dashboard/enquiries", icon: MessageCircle },
       { id: "quotations", title: "Quotations", url: "/dashboard/quotations", icon: FileText },
       { id: "bookings", title: "Bookings", url: "/dashboard/bookings", icon: CalendarDays },

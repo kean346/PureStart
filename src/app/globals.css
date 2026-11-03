@@ -640,3 +640,25 @@ html.dark[data-theme-preset="default"] {
     transition-duration: 0.01ms !important;
   }
 }
+
+@keyframes winglo-message-enter {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.winglo-message {
+  animation: winglo-message-enter 180ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .winglo-message {
+    animation: none;
+  }
+}
+html[data-motion-preference="reduced"] .winglo-message {
+  animation: none;
+}

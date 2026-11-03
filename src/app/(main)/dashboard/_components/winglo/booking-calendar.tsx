@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useCalendarController } from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/react/daygrid";
@@ -12,10 +12,15 @@ import { Button } from "@/components/ui/button";
 
 import type { Booking } from "./model";
 import { Choice } from "./shared";
-import { useDemoData } from "./store";
+import { useDemo, useDemoData } from "./store";
 export function BookingCalendar({ onEdit }: { onEdit: (b: Booking) => void }) {
   const d = useDemoData();
   const controller = useCalendarController();
+  const journey = useDemo((s) => s.journey);
+  const focusedStart = journey?.active ? d.bookings.find((b) => b.id === journey.bookingId)?.start : undefined;
+  useEffect(() => {
+    if (focusedStart) controller.gotoDate(focusedStart);
+  }, [controller, focusedStart]);
   const [title, setTitle] = useState("");
   const [view, setView] = useState("dayGridMonth");
   return (

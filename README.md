@@ -11,13 +11,20 @@ npm ci
 npm run dev
 ```
 
-The application root redirects to `/dashboard/default`. The sidebar exposes Overview, Enquiries, Quotations, Bookings, Customers and Settings. `/enquire` is a separate customer-facing demo form.
+The application root redirects to `/dashboard/default`. The sidebar retains the six management sections — Overview, Enquiries, Quotations, Bookings, Customers and Settings — and adds Interactive Demo at `/dashboard/demo`. `/enquire` is a separate customer-facing demo form.
 
-Choose **Start Demo** on Overview to follow the actual simulator → enquiry → quotation review → simulated acceptance → booking → calendar → customer history → reminder preview workflow. Each stage uses the same records as the six management screens. The walkthrough can be exited at any point; saved records remain.
+Overview provides two entry points using the existing button styles:
+
+- **Start Interactive Demo** opens `/dashboard/demo` and starts or resumes the guided customer journey.
+- **Explore Dashboard** keeps ordinary management tools available without starting guidance. An already-active tour is paused, with its progress retained.
+
+The demo has a customer messaging panel and live business preview, with Customer View / Business View tabs on mobile. The persistent progress panel survives route changes, refreshes, pausing and minimising. It routes to the correct linked enquiry, quotation, booking or customer; required actions gate progression. The journey ends with a reminder preview, completed job and linked-record summary. Messages are simulated locally.
+
+**Restart Demo / Restart conversation** starts a fresh isolated scenario without deleting any records. Repeated submission within a scenario creates just one enquiry; duplicate quote and booking conversion is guarded. **Reset Demo Data** remains the separate destructive action with confirmation.
 
 ## Demo behaviour
 
-- A Zustand store persists linked customers, enquiries, quotes, bookings and settings under `winglo-demo-v1` in localStorage. A hydration gate avoids server/client mismatches. Storage failures display a warning. Settings includes a confirmed reset action.
+- A Zustand store persists linked customers, enquiries, quotes, bookings, settings, activity and journey state under `winglo-demo-v1` in localStorage, using schema version 1. Existing version-0 business data is migrated without replacement. A hydration gate avoids server/client mismatches. Storage failures display a warning. Settings includes a confirmed reset action.
 - Five central service-specific question sets power both the simulator and customer form. Customers are matched by normalised contact number or email where possible. Photo attachments are previews only (three images up to 5 MB each); they are never uploaded or retained.
 - Central sample pricing: base + size adjustment + extras package + travel − discount, floored at zero, then configurable VAT. VAT starts at 0%; no Winglo VAT registration or real price approval is assumed. Settings affect new estimates; saved quotes retain their reviewed values.
 - Quote status, owner approval, send and customer acceptance are simulations. Accepted quotes convert once into linked bookings. Print / PDF opens a printable quotation; choose **Save as PDF** in the browser print dialog. No PDF service or additional dependency is used.
@@ -28,9 +35,13 @@ Choose **Start Demo** on Overview to follow the actual simulator → enquiry →
 
 ## Architecture
 
-Feature code lives in `src/app/(main)/dashboard/_components/winglo/`. `model.ts` owns domain types, seed data, question sets, pricing and overlap calculations. `store.ts` is the single persistence/mutation boundary. Forms, editors, overview, booking calendar and settings compose the existing shared primitives. Route pages remain small server components.
+Feature code lives in `src/app/(main)/dashboard/_components/winglo/`. `model.ts` owns domain types, seed data, question sets, pricing and overlap calculations. `store.ts` is the single persistence/mutation boundary. `journey.ts` owns conversation validation, eight stage gates, safe sample responses and activity derivation. The shared layout mounts `JourneyPanel`; only modal visibility and unsaved ordinary forms remain page-local. Forms, editors, overview, booking calendar and settings compose the existing shared primitives. Route pages remain small server components.
 
-A future database/API adapter should replace the local persistence boundary and add authentication, authorisation, validation, shared record IDs, concurrency handling and server-side scheduling checks. Messaging, PDF delivery, real customer consent, pricing approval and payment/accounting integrations are separate production work. No secret values belong in browser storage.
+This demonstration intentionally remains browser-local. No database, authentication, credentials, messaging provider or paid integration is required. Sharing records between devices or delivering real messages is outside this demo’s scope.
+
+Overview counts **Total Enquiries** regardless of workflow status. New estimates default to Awaiting Approval; sent and accepted changes preserve a Converted enquiry. **Completed-job Revenue This Month** counts only completed bookings by appointment month. Confirmed bookings contribute no completed revenue. The separate completed-job count includes all dates. All values derive from the same records.
+
+**Demo Activity** records actual enquiry creation, quotation generation/send/acceptance, booking creation/confirmation/completion and reminder previews. Initial seed records do not create fabricated activity events.
 
 ## Validation
 
@@ -49,7 +60,7 @@ BASE_URL=http://127.0.0.1:3000 PLAYWRIGHT_MODULE=/path/to/playwright node tests/
 BASE_URL=http://127.0.0.1:3000 PLAYWRIGHT_MODULE=/path/to/playwright node tests/browser/winglo-actions.cjs
 ```
 
-The workflow test covers the guided flow, all six sections, dynamic service forms, deduplication, completed jobs, refresh persistence, reset, theme switching and mobile navigation/width. The actions test covers editable pricing/VAT/staff, quotation prefilling, printable output, week calendar view, cleaner conflicts and enquiry status filters. Review images are `artifacts/winglo-desktop.png`, `artifacts/winglo-dark.png` and `artifacts/winglo-mobile.png`.
+The workflow test covers both entry points, existing-data migration, all eight guided stages, route/refresh persistence, required-action gates, answer editing, all five service question sets, record linkage, duplicate guards, reminder previews, completed-job KPIs/history, pause/minimise/resume, isolated restart, reset, theme switching and mobile tabs/navigation/width. The actions test covers editable pricing/VAT/staff, quotation prefilling, printable output, week calendar view, cleaner conflicts and enquiry status filters. Updated demo images are `artifacts/winglo-interactive-desktop.png`, `artifacts/winglo-interactive-dark.png` and `artifacts/winglo-interactive-mobile.png`. Earlier overview images are retained.
 
 The inherited regional/motion browser scripts target the previous NOREVA screens and are historical verification artifacts, not Winglo acceptance tests. Existing repository-wide formatting issues in the world map JSON and regional data test are outside this feature.
 

@@ -26,7 +26,6 @@ export function JourneyPanel() {
   if (!ready || !data || !j?.active) return null;
   const store = useDemo.getState();
   const quote = data.quotes.find((q) => q.id === j.quoteId);
-  const customer = data.customers.find((c) => c.id === quote?.customerId);
   function focus(current: Journey) {
     const route = current.completed ? "/dashboard/demo" : stages[current.step].route;
     router.push(route);
@@ -104,62 +103,16 @@ export function JourneyPanel() {
             </div>
           </div>
           {j.step === 4 && !j.completed && quote && (
-            <div className="bg-muted flex flex-col gap-3 rounded-lg p-3">
-              <p className="text-sm font-medium">
-                Quotation for {customer?.name} · {quote.id}
-              </p>
-              <p className="text-muted-foreground text-xs">Current status: {quote.status}</p>
+            <>
               {["Draft", "Awaiting Approval"].includes(quote.status) && (
-                <>
-                  <p className="text-sm">1. Approve the sample quotation below. Sending is simulated.</p>
-                  <Button
-                    onClick={() => {
-                      store.quoteStatus(quote.id, "Sent (Simulated)");
-                      toast.success("Quotation approved · Sending simulated. Now simulate customer acceptance.");
-                    }}
-                  >
-                    Approve quotation & simulate sending
-                  </Button>
-                </>
+                <Button onClick={() => store.quoteStatus(quote.id, "Sent (Simulated)")}>Approve Quotation</Button>
               )}
               {quote.status === "Sent (Simulated)" && (
-                <>
-                  <p className="text-sm">2. The quotation is approved. Now simulate the customer accepting it.</p>
-                  <Button
-                    onClick={() => {
-                      store.quoteStatus(quote.id, "Accepted (Simulated)");
-                      toast.success("Customer acceptance simulated. Select Next Step to create the booking.");
-                    }}
-                  >
-                    Simulate customer accepting quotation
-                  </Button>
-                </>
+                <Button onClick={() => store.quoteStatus(quote.id, "Accepted (Simulated)")}>
+                  Simulate Customer Acceptance
+                </Button>
               )}
-              {quote.status === "Accepted (Simulated)" && (
-                <p className="text-sm" role="status">
-                  ✓ Quotation accepted. Select Next Step below to schedule the cleaning.
-                </p>
-              )}
-              {["Rejected", "Expired"].includes(quote.status) && (
-                <>
-                  <p className="text-sm">This quotation needs another review before approval.</p>
-                  <Button variant="outline" onClick={() => store.quoteStatus(quote.id, "Awaiting Approval")}>
-                    Return quotation to review
-                  </Button>
-                </>
-              )}
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => {
-                  router.push("/dashboard/quotations");
-                  store.requestEditor({ kind: "quote", recordId: quote.id, route: "/dashboard/quotations" });
-                }}
-              >
-                View or edit quotation prices
-              </Button>
-              <p className="text-muted-foreground text-xs">Simulation Only · No real messages sent.</p>
-            </div>
+            </>
           )}
           <Progress value={j.completed ? 100 : (j.completedSteps.length / 8) * 100} />
           <p className="text-muted-foreground text-xs">

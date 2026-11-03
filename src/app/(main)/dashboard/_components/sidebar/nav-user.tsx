@@ -37,12 +37,12 @@ export function NavUser({
           </DropdownMenuTrigger>
           <DropdownMenuContent side={isMobile ? "bottom" : "right"} align="end" className="w-64">
             <DropdownMenuGroup>
-              <DropdownMenuLabel>Demo workspace · NOREVA Insights</DropdownMenuLabel>
+              <DropdownMenuLabel>Winglo · Demo workspace</DropdownMenuLabel>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <p className="text-muted-foreground px-2 py-2 text-xs leading-relaxed">
-              Avery Sloan is a fictional growth lead. This showcase has no authentication, billing, or private customer
-              data.
+              This is a fictional cleaning business workspace. No authentication, billing, or external messaging is
+              connected.
             </p>
           </DropdownMenuContent>
         </DropdownMenu>

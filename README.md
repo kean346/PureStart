@@ -1,62 +1,58 @@
-# NOREVA Insights
+# Winglo Cleaning Services — interactive demo
 
-A fictional analytics and intelligence platform, designed and built by paceIT on the open-source Studio Admin Analytics dashboard. This is a portfolio concept, not a real company or a representation of business results.
+A browser-local cleaning business demo customised from the existing Studio Admin / NOREVA dashboard. The original layout, UI primitives, calendar styling, typography, theme switcher and motion system are retained. No backend or messaging provider is connected.
 
-NOREVA builds on the Studio Admin component and Recharts foundation with a charcoal workspace, its own navigation and headings, a revised business overview, Southern African demo routes and records, rand-denominated amounts, functional analytics views, CSV export, and coordinated motion across the application. No backend, account, or database is required.
+## Develop
 
-## Run locally
+Use Node 24 (validated with 24.19.0) and npm:
 
-Use Node 24 (validated with 24.19.0) and npm.
-
-```bash
+```sh
 npm ci
 npm run dev
 ```
 
-Open the application root; it redirects to `/dashboard/default` (Home). Both `localhost` and `127.0.0.1` are supported in development. All fonts are locally bundled through the existing Geist package; no Google Fonts network access is needed.
+The application root redirects to `/dashboard/default`. The sidebar exposes Overview, Enquiries, Quotations, Bookings, Customers and Settings. `/enquire` is a separate customer-facing demo form.
 
-```bash
-npm test            # 19 data and numeric-formatting tests
-npx tsc --noEmit    # Type check
-npm run build      # Production build
-npm start          # Production server
+Choose **Start Demo** on Overview to follow the actual simulator → enquiry → quotation review → simulated acceptance → booking → calendar → customer history → reminder preview workflow. Each stage uses the same records as the six management screens. The walkthrough can be exited at any point; saved records remain.
+
+## Demo behaviour
+
+- A Zustand store persists linked customers, enquiries, quotes, bookings and settings under `winglo-demo-v1` in localStorage. A hydration gate avoids server/client mismatches. Storage failures display a warning. Settings includes a confirmed reset action.
+- Five central service-specific question sets power both the simulator and customer form. Customers are matched by normalised contact number or email where possible. Photo attachments are previews only (three images up to 5 MB each); they are never uploaded or retained.
+- Central sample pricing: base + size adjustment + extras package + travel − discount, floored at zero, then configurable VAT. VAT starts at 0%; no Winglo VAT registration or real price approval is assumed. Settings affect new estimates; saved quotes retain their reviewed values.
+- Quote status, owner approval, send and customer acceptance are simulations. Accepted quotes convert once into linked bookings. Print / PDF opens a printable quotation; choose **Save as PDF** in the browser print dialog. No PDF service or additional dependency is used.
+- Bookings support month/week calendar views, editing, rescheduling, cleaner assignment, duration, job value and status. Overlapping non-cancelled assignments to the same cleaner are rejected; adjacent jobs are allowed. Completed jobs update customer history and the revenue chart/KPI.
+- Dates are relative to initial demo creation/reset. Times use the browser's local timezone. All seed identities and contacts are fictional. Revenue means the value of completed demo jobs, not verified payments or accounting revenue.
+- All six editable automation templates support `{name}`, `{service}` and `{date}`. Previews and simulations send nothing. There are no application calls to WhatsApp, email, SMS or paid services.
+- Customer submissions from another browser/device do **not** reach an owner elsewhere. This is local storage, not shared business infrastructure.
+
+## Architecture
+
+Feature code lives in `src/app/(main)/dashboard/_components/winglo/`. `model.ts` owns domain types, seed data, question sets, pricing and overlap calculations. `store.ts` is the single persistence/mutation boundary. Forms, editors, overview, booking calendar and settings compose the existing shared primitives. Route pages remain small server components.
+
+A future database/API adapter should replace the local persistence boundary and add authentication, authorisation, validation, shared record IDs, concurrency handling and server-side scheduling checks. Messaging, PDF delivery, real customer consent, pricing approval and payment/accounting integrations are separate production work. No secret values belong in browser storage.
+
+## Validation
+
+```sh
+npm test
+npx tsc --noEmit
+npm run build
+npm run lint
+npm run check
 ```
 
-## Demo behavior
+Run Next.js once before a standalone type check on a fresh checkout so its image and route declarations are generated. Browser tests use an available Playwright installation and Chromium, without adding application dependencies:
 
-- The fixed dataset ends November 1, 2026 (UTC). Choose 7, 28, or 84 days; every range uses the same daily records and an equally sized preceding comparison period.
-- Default totals: 184,290 visitors, 236,840 sessions, 492,680 pageviews, 160,578 engaged sessions, 15,158 activations, and 38,420 active product users. Displayed rates round to 67.8% engagement and 6.4% conversion.
-- Both rates use sessions as the denominator. A conversion is a workspace activation. Active users are a subset of visitors. Synthetic visitor cohorts are disjoint between days, so their daily counts reconcile with the range total.
-- Device sessions, first-touch visitor sources, regional visitors, and pageviews each reconcile to their own parent total using largest-remainder allocation. Campaigns partition paid-search visitors; referrers partition referral visitors. Displayed percentages and abbreviated chart labels are rounded; CSV exports retain exact counts.
-- Realtime visitors, customer activity, and notifications are clearly labeled fixed snapshots, independent of the selected historical range. Their people and `.example` addresses are fictional.
-- All five analytics tabs work. Exports download real CSV files. Sharing copies the current URL with its view and date range. Notifications mark themselves read locally; no messages are sent. Account and About controls describe the demo without pretending to provide authentication or billing.
+```sh
+BASE_URL=http://127.0.0.1:3000 PLAYWRIGHT_MODULE=/path/to/playwright node tests/browser/winglo-workflow.cjs
+BASE_URL=http://127.0.0.1:3000 PLAYWRIGHT_MODULE=/path/to/playwright node tests/browser/winglo-actions.cjs
+```
 
-## Motion and accessibility
+The workflow test covers the guided flow, all six sections, dynamic service forms, deduplication, completed jobs, refresh persistence, reset, theme switching and mobile navigation/width. The actions test covers editable pricing/VAT/staff, quotation prefilling, printable output, week calendar view, cleaner conflicts and enquiry status filters. Review images are `artifacts/winglo-desktop.png`, `artifacts/winglo-dark.png` and `artifacts/winglo-mobile.png`.
 
-The shared motion controller animates meaningful page elements on every route visit and newly opened panels, without forced component remounts. It defers offscreen reveals, bounds table work, preserves exact counter values, and retains native Recharts and Radix interactions. The global theme switch uses a circular reveal with a CSS fallback. The default follows the device reduced-motion setting. Appearance settings → Animation offers Follow device, Full animation, and Reduced animation; the saved Full animation choice enables counting, chart drawing, and the screen reveal even when the device requests reduced motion.
+The inherited regional/motion browser scripts target the previous NOREVA screens and are historical verification artifacts, not Winglo acceptance tests. Existing repository-wide formatting issues in the world map JSON and regional data test are outside this feature.
 
-See [the motion architecture and verification report](docs/MOTION.md) for implementation details, tested routes, browser checks, and the charcoal/Slate palette refinements. Existing UI component source and licenses are preserved.
+## Licences
 
-## Deploy to Vercel
-
-Import `kean346/dashboard-2-` into Vercel with the Next.js framework preset, repository root as the project root, Node 24, install command `npm ci`, and build command `npm run build`. No secrets or database are required. This uses the normal Vercel Next.js workflow; the inherited Cloudflare `deploy` script is not needed.
-
-Optionally set `NEXT_PUBLIC_SITE_URL` to the public origin, including `https://`, for canonical metadata. Otherwise the Vercel production-domain variable is used, with `https://noreva.example` as the local fallback. Deploying a preview or production site is a separate action; this task does not publish one.
-
-## Review artifacts
-
-See `artifacts/noreva-desktop.png`, `artifacts/noreva-mobile.png`, `artifacts/noreva-dark.png`, `artifacts/noreva-audience.png`, and `artifacts/noreva-entrance.mp4`. Browser checks cover filters, tabs, campaign switching, export, notifications, About, dark mode, sidebar collapse, mobile navigation, and reduced motion. The ten selected dashboard modules are available in the sidebar with NOREVA titles and a charcoal-black default theme. Existing finance, commerce, academy, infrastructure, file manager, productivity, and CRM layouts are portfolio demo modules, not connected backend services. Logistics includes working status/search/transport filters, route and cargo details, activity milestones, and a downloadable demo manifest. The local world atlas uses Natural Earth public-domain map data, with the world-atlas ISC notice in public/licenses/World-Atlas-ISC.txt.
-
-## Licenses
-
-The original MIT copyright notice remains in [LICENSE](LICENSE); a distribution copy is in `public/licenses/Studio-Admin-MIT.txt`. The existing Geist font files are licensed under the SIL Open Font License, retained in `public/licenses/Geist-OFL.txt`. Recharts is MIT-licensed. No additional application libraries, stock photography, paid features, or proprietary media were added. The monogram and social preview artwork are original typography and geometry.
-
-### Regional workspace and motion update
-
-The ten dashboard modules use original workspace labels, including Business pulse, Client relationships, Money overview, Shipment desk, and Cloud operations. The Home header and KPI proportions have changed while retaining Customer Activity and the customer table. Monetary demo values use ZAR (R), including finance, commerce, products, invoices, CRM, and legacy dashboards. These are fictional rand amounts, not live currency conversions.
-
-Shipment routes now connect Southern African airports, ports, and road hubs, with matching country codes and map coordinates. Regional audience breakdowns, fictional client companies, infrastructure locations, invoice addresses, and learning labels provide further customisation. Patient Monitoring remains removed.
-
-Counters and chart drawing replay on route visits. Home and CRM KPI components count explicitly from zero; the shared controller also handles counters, charts, cards, rows, and panels elsewhere. It tracks individual chart elements so areas mounted after lines still animate. The theme reveal expands across the viewport over 1.1 seconds. Choose **Appearance settings → Animation → Full animation** to enable the sequence when your device requests reduced motion.
-
-Current review images are `artifacts/noreva-regional-home.png`, `noreva-regional-crm.png`, `noreva-regional-logistics.png`, and `noreva-regional-mobile.png`. The screen recording is `artifacts/noreva-regional-motion.mp4`. The targeted `tests/browser/regional-workspace.cjs` check samples actual intermediate counter values and chart clipping, then verifies theme reveal, mobile width, regional routes, and motion preference persistence. See `docs/MOTION.md` for validation scope.
+The original MIT notice remains in [LICENSE](LICENSE), with a distribution copy at `public/licenses/Studio-Admin-MIT.txt`. Bundled Geist fonts retain their SIL Open Font License at `public/licenses/Geist-OFL.txt`. The existing map data and licensing notices are retained. No original Dashboard 2 repository or deployment is changed by this work.

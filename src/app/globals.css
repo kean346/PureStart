@@ -614,3 +614,29 @@ html[data-motion-preference="full"]
   ) {
   animation-duration: 200ms !important;
 }
+
+/* Winglo accents retain the template's neutral surfaces and theme architecture. */
+:root:not([data-theme-preset]),
+:root[data-theme-preset="default"] {
+  --primary: var(--color-teal-700);
+  --primary-foreground: var(--color-white);
+  --ring: var(--color-teal-600);
+  --chart-1: var(--color-teal-600);
+  --chart-2: var(--color-emerald-400);
+  --sidebar-primary: var(--color-teal-700);
+}
+html.dark:not([data-theme-preset]),
+html.dark[data-theme-preset="default"] {
+  --primary: var(--color-teal-300);
+  --primary-foreground: var(--color-teal-950);
+  --ring: var(--color-teal-400);
+  --chart-1: var(--color-teal-300);
+  --chart-2: var(--color-emerald-500);
+  --sidebar-primary: var(--color-teal-300);
+}
+@media (prefers-reduced-motion: reduce) {
+  .recharts-wrapper * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

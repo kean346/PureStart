@@ -47,7 +47,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <AppLogo className="text-primary" />
                 <span className="flex flex-col gap-0.5">
                   <span className="text-base font-semibold tracking-[0.16em]">{APP_CONFIG.name}</span>
-                  <span className="text-muted-foreground text-[10px] font-normal">Analytics & Intelligence</span>
+                  <span className="text-muted-foreground text-[10px] font-normal">Cleaning Services</span>
                 </span>
               </Link>
             </SidebarMenuButton>

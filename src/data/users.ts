@@ -1,19 +1,19 @@
 export const users = [
   {
     id: "1",
-    name: "Avery Sloan",
-    username: "avery.sloan",
-    email: "avery@noreva.example",
+    name: "Winglo Owner",
+    username: "winglo.owner",
+    email: "owner@winglo.example",
     avatar: "",
-    role: "Growth lead",
+    role: "Demo owner",
   },
   {
     id: "2",
-    name: "Ellis Marlow",
-    username: "ellis.marlow",
-    email: "ellis@noreva.example",
+    name: "Winglo Team",
+    username: "winglo.team",
+    email: "team@winglo.example",
     avatar: "",
-    role: "Data analyst",
+    role: "Demo team",
   },
 ];
 export const rootUser = users[0];

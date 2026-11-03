@@ -3,11 +3,11 @@ export function SupportCard() {
   return (
     <Card size="sm" className="group-data-[collapsible=icon]:hidden">
       <CardHeader>
-        <CardTitle className="text-sm">Clarity starts here.</CardTitle>
+        <CardTitle className="text-sm">A little care. A lot of shine.</CardTitle>
         <CardDescription>
-          Analytics & Intelligence
+          Winglo Cleaning Services
           <br />
-          Fictional concept · Built by <span className="text-foreground">paceIT</span>
+          Demo Data · Simulation Only · <span className="text-foreground">Local browser storage</span>
         </CardDescription>
       </CardHeader>
     </Card>

@@ -1,19 +1,4 @@
-import {
-  Banknote,
-  ChartBar,
-  CheckSquare,
-  FolderOpen,
-  Gauge,
-  GraduationCap,
-  HeartPulse,
-  LayoutDashboard,
-  ListTodo,
-  type LucideIcon,
-  Server,
-  ShoppingBag,
-  Truck,
-  Users,
-} from "lucide-react";
+import { CalendarDays, FileText, LayoutDashboard, type LucideIcon, MessageCircle, Settings, Users } from "lucide-react";
 
 export type NavBadge = "new" | "updated" | "soon";
 
@@ -56,33 +41,14 @@ export interface NavGroup {
 export const sidebarItems: NavGroup[] = [
   {
     id: 1,
-    label: "NOREVA workspace",
+    label: "Winglo workspace",
     items: [
-      { id: "default", title: "Business pulse", url: "/dashboard/default", icon: LayoutDashboard },
-      { id: "crm", title: "Client relationships", url: "/dashboard/crm", icon: ChartBar },
-      { id: "finance", title: "Money overview", url: "/dashboard/finance", icon: Banknote },
-      { id: "analytics", title: "Audience insights", url: "/dashboard/analytics", icon: Gauge },
-      { id: "productivity", title: "Team rhythm", url: "/dashboard/productivity", icon: ListTodo },
-      { id: "ecommerce", title: "Commerce desk", url: "/dashboard/ecommerce", icon: ShoppingBag },
-      { id: "academy", title: "Learning hub", url: "/dashboard/academy", icon: GraduationCap },
-      { id: "logistics", title: "Shipment desk", url: "/dashboard/logistics", icon: Truck },
-      { id: "infrastructure", title: "Cloud operations", url: "/dashboard/infrastructure", icon: Server },
-      { id: "file-manager", title: "Workspace library", url: "/dashboard/file-manager", icon: FolderOpen },
-    ],
-  },
-  {
-    id: 2,
-    label: "Growth intelligence",
-    items: [
-      { id: "audience", title: "People & regions", url: "/dashboard/analytics?view=audience", icon: Users },
-      { id: "acquisition", title: "Discovery channels", url: "/dashboard/analytics?view=acquisition", icon: ChartBar },
-      { id: "engagement", title: "Visitor journeys", url: "/dashboard/analytics?view=engagement", icon: HeartPulse },
-      {
-        id: "conversions",
-        title: "Activation funnel",
-        url: "/dashboard/analytics?view=conversions",
-        icon: CheckSquare,
-      },
+      { id: "default", title: "Overview", url: "/dashboard/default", icon: LayoutDashboard },
+      { id: "enquiries", title: "Enquiries", url: "/dashboard/enquiries", icon: MessageCircle },
+      { id: "quotations", title: "Quotations", url: "/dashboard/quotations", icon: FileText },
+      { id: "bookings", title: "Bookings", url: "/dashboard/bookings", icon: CalendarDays },
+      { id: "customers", title: "Customers", url: "/dashboard/customers", icon: Users },
+      { id: "settings", title: "Settings", url: "/dashboard/settings", icon: Settings },
     ],
   },
 ];

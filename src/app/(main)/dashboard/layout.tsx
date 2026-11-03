@@ -60,9 +60,7 @@ export default async function Layout({ children }: Readonly<{ children: ReactNod
                 className="mx-2 data-[orientation=vertical]:h-4 data-[orientation=vertical]:self-center"
               />
               <SearchDialog />
-              <span className="text-muted-foreground ml-3 hidden text-xs lg:inline">
-                NOREVA · Southern Africa · ZAR
-              </span>
+              <span className="text-muted-foreground ml-3 hidden text-xs lg:inline">Winglo · Demo Data · ZAR</span>
             </div>
             <div className="flex items-center gap-2">
               <LayoutControls />

@@ -1,17 +1,16 @@
 import packageJson from "../../package.json";
 export const APP_CONFIG = {
-  name: "NOREVA",
+  name: "WINGLO",
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "https://noreva.example"),
-  repository: "https://github.com/kean346/dashboard-2-",
+      : "https://winglo.example"),
+  repository: "https://github.com/kean346/winglodashboard",
   version: packageJson.version,
-  copyright: "Fictional concept · Built by paceIT",
+  copyright: "Cleaning services · Demo workspace",
   meta: {
-    title: "NOREVA Insights | Analytics & Intelligence",
-    description:
-      "A fictional analytics and intelligence platform. A portfolio concept by paceIT, built on the MIT-licensed Studio Admin foundation.",
+    title: "Winglo | Cleaning Services Management",
+    description: "An interactive cleaning services demo. Sample data and estimates; no real messages sent.",
   },
 };

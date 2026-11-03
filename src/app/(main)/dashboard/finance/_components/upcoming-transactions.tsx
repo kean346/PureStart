@@ -39,7 +39,7 @@ export function UpcomingTransactions() {
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <h2 className="flex items-baseline text-3xl leading-none tracking-tight">
-              <span className="font-normal">$1,245</span>
+              <span className="font-normal">R 1,245</span>
               <span className="text-muted-foreground text-xl">.00</span>
             </h2>
             <p className="text-muted-foreground text-sm leading-none">
@@ -49,7 +49,7 @@ export function UpcomingTransactions() {
           <div className="border-border bg-muted/70 flex w-max items-center gap-2 rounded-md border px-2 py-1.5 text-sm">
             <Zap className="fill-primary text-primary size-4" />
             <span className="text-muted-foreground">
-              Autopay will process <span className="text-foreground font-medium">$145.00</span> today
+              Autopay will process <span className="text-foreground font-medium">R 145.00</span> today
             </span>
           </div>
         </div>

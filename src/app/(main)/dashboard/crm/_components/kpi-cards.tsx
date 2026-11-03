@@ -1,5 +1,8 @@
+"use client";
+
 import { ArrowUpRight, TrendingDown, TrendingUp } from "lucide-react";
 
+import { AnimatedValue } from "@/components/motion/animated-value";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardAction, CardContent, CardDescription, CardHeader } from "@/components/ui/card";
 
@@ -16,14 +19,16 @@ export function KpiCards() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Card>
           <CardHeader>
-            <CardDescription>Lead Pipeline Value</CardDescription>
+            <CardDescription>Lead Regional pipeline</CardDescription>
             <CardAction>
               <ArrowUpRight className="size-4" />
             </CardAction>
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="flex items-center gap-3">
-              <span className="text-3xl leading-none tracking-tight">$284,500</span>
+              <span className="text-3xl leading-none tracking-tight">
+                <AnimatedValue text="R 2,845,000" />
+              </span>
 
               <Badge
                 variant="outline"
@@ -34,7 +39,7 @@ export function KpiCards() {
               </Badge>
             </div>
             <p className="text-sm">
-              <span className="text-foreground font-medium">$254,200</span>{" "}
+              <span className="text-foreground font-medium">R 2,542,000</span>{" "}
               <span className="text-muted-foreground">last month</span>
             </p>
           </CardContent>
@@ -49,7 +54,9 @@ export function KpiCards() {
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="flex items-center gap-3">
-              <span className="text-3xl leading-none tracking-tight">28.4%</span>
+              <span className="text-3xl leading-none tracking-tight">
+                <AnimatedValue text="28.4%" />
+              </span>
 
               <Badge variant="outline" className="border-destructive/20 bg-destructive/10 text-destructive">
                 <TrendingDown />
@@ -72,7 +79,9 @@ export function KpiCards() {
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="flex items-center gap-3">
-              <span className="text-3xl leading-none tracking-tight">42</span>
+              <span className="text-3xl leading-none tracking-tight">
+                <AnimatedValue text="42" />
+              </span>
 
               <Badge
                 variant="outline"
@@ -98,7 +107,9 @@ export function KpiCards() {
           </CardHeader>
           <CardContent className="space-y-2">
             <div className="flex items-center gap-3">
-              <span className="text-3xl leading-none tracking-tight">18.1%</span>
+              <span className="text-3xl leading-none tracking-tight">
+                <AnimatedValue text="18.1%" />
+              </span>
 
               <Badge
                 variant="outline"

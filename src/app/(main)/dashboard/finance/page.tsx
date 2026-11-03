@@ -15,7 +15,7 @@ import { UpcomingTransactions } from "./_components/upcoming-transactions";
 import { Wallet } from "./_components/wallet";
 
 export const metadata: Metadata = {
-  title: "NOREVA Finance | Demo workspace",
+  title: "NOREVA Money overview | Demo workspace",
   description:
     "Explore the NOREVA demo personal finance dashboard with net worth, spending, income sources, account allocation, transactions, and wallets.",
   alternates: {
@@ -29,7 +29,7 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-4">
       <div className="space-y-1">
-        <h1 className="text-3xl tracking-tight">NOREVA Finance</h1>
+        <h1 className="text-3xl tracking-tight">NOREVA Money overview</h1>
         <p className="text-muted-foreground text-sm">{formattedDate}</p>
       </div>
 
@@ -44,7 +44,7 @@ export default function Page() {
           <div className="flex flex-wrap items-center gap-3">
             <div className="text-muted-foreground flex items-center gap-1.5 text-xs">
               <RotateCw className="size-4" />
-              <span>Updated 5 min ago</span>
+              <span>Illustrative ZAR balances</span>
             </div>
             <Button size="sm" variant="outline">
               <Settings2 />

@@ -26,19 +26,19 @@ const products = [
     name: "Linen Overshirt",
     category: "Apparel",
     share: "31%",
-    sales: "$14,820",
+    sales: "R 14,820",
   },
   {
     name: "Everyday Tote",
     category: "Accessories",
     share: "24%",
-    sales: "$11,460",
+    sales: "R 11,460",
   },
   {
     name: "Ceramic Planter",
     category: "Home",
     share: "18%",
-    sales: "$8,930",
+    sales: "R 8,930",
   },
 ] as const;
 

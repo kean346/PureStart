@@ -1,3 +1,5 @@
+import { numericLabel } from "@/lib/motion/number-label";
+import { motionPreferenceEvent, motionReduced } from "@/lib/motion/preference";
 /** DOM enhancement only: React owns the components, their state, data and layout. */
 export const motionEase = "cubic-bezier(0.16, 1, 0.3, 1)";
 const targets =
@@ -7,20 +9,6 @@ const panels =
   '[data-motion-panel], [role="tabpanel"], [data-slot="tabs-content"], [data-slot="accordion-content"], [data-slot="collapsible-content"]';
 const overlaySelector =
   '[data-slot="dialog-content"], [data-slot="sheet-content"], [data-slot="popover-content"], [data-slot="dropdown-menu-content"], [data-slot="select-content"], [data-slot="tooltip-content"], [data-slot="hover-card-content"]';
-
-export function numericLabel(text: string) {
-  const match = text.match(/^([+$€£−-]?)(\d[\d,]*(?:\.\d+)?)([%kKmMbB]?)$/);
-  if (!match) return null;
-  const value = Number(match[2].replaceAll(",", ""));
-  if (!Number.isFinite(value)) return null;
-  const decimals = match[2].split(".")[1]?.length ?? 0;
-  const format = new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-    useGrouping: match[2].includes(","),
-  });
-  return (progress: number) => (progress >= 1 ? text : `${match[1]}${format.format(value * progress)}${match[3]}`);
-}
 
 function shown(node: Element) {
   return !node.closest('[hidden], [inert], [data-state="inactive"]') && node.getClientRects().length > 0;
@@ -41,7 +29,7 @@ export function createMotionController(root: HTMLElement, overlays = false) {
   let panelQueue = new Set<Element>();
 
   function animate(node: Element, keyframes: Keyframe[], options: KeyframeAnimationOptions) {
-    if (media.matches || disposed || typeof node.animate !== "function") return;
+    if (motionReduced() || disposed || typeof node.animate !== "function") return;
     const animation = node.animate(keyframes, { duration: 500, easing: motionEase, fill: "backwards", ...options });
     animations.add(animation);
     void animation.finished.catch(() => undefined).finally(() => animations.delete(animation));
@@ -51,7 +39,7 @@ export function createMotionController(root: HTMLElement, overlays = false) {
   function count(node: Element, delay: number) {
     if (
       numbers.has(node) ||
-      media.matches ||
+      motionReduced() ||
       node.closest('[data-motion-counter="managed"]') ||
       node.querySelector('[data-motion-counter="managed"]')
     )
@@ -72,12 +60,12 @@ export function createMotionController(root: HTMLElement, overlays = false) {
     };
     counterStops.add(stop);
     const tick = (time: number) => {
-      if (!node.isConnected || text.data !== last || disposed || media.matches) {
+      if (!node.isConnected || text.data !== last || disposed || motionReduced()) {
         stop();
         return;
       }
       if (!start) start = time;
-      const p = Math.min(1, Math.max(0, (time - start - delay) / 800));
+      const p = Math.min(1, Math.max(0, (time - start - delay) / 1400));
       last = formatter(1 - (1 - p) ** 3);
       text.data = last;
       if (p < 1) raf = requestAnimationFrame(tick);
@@ -87,31 +75,36 @@ export function createMotionController(root: HTMLElement, overlays = false) {
   }
 
   function drawChart(chart: Element) {
-    if (charts.has(chart) || media.matches) return;
+    if (motionReduced()) return;
     const curves = chart.querySelectorAll<SVGPathElement>(".recharts-line-curve, .recharts-area-curve");
     const bars = chart.querySelectorAll<SVGGraphicsElement>(".recharts-bar-rectangle");
     const sectors = chart.querySelectorAll(".recharts-pie, .recharts-radial-bar");
     if (!curves.length && !bars.length && !sectors.length) return; // Recharts may mount after sizing.
-    charts.add(chart);
     curves.forEach((curve) => {
+      if (charts.has(curve)) return;
       const length = curve.getTotalLength();
-      if (length > 0)
-        animate(curve, [{ strokeDasharray: `0 ${length}` }, { strokeDasharray: `${length} ${length}` }], {
-          duration: 950,
-          delay: 150,
-        });
+      if (length <= 0) return;
+      charts.add(curve);
+      animate(curve, [{ strokeDasharray: `0 ${length}` }, { strokeDasharray: `${length} ${length}` }], {
+        duration: 1500,
+        delay: 150,
+      });
     });
     chart.querySelectorAll(".recharts-area-area").forEach((area) => {
+      if (charts.has(area)) return;
+      charts.add(area);
       animate(
         area,
         [
           { clipPath: "inset(0 100% 0 0)", opacity: 0 },
           { clipPath: "inset(0 0% 0 0)", opacity: 1 },
         ],
-        { duration: 950, delay: 150 },
+        { duration: 1500, delay: 150 },
       );
     });
     bars.forEach((bar, i) => {
+      if (charts.has(bar)) return;
+      charts.add(bar);
       const box = bar.getBBox();
       const horizontal = box.width > box.height * 2;
       animate(
@@ -128,11 +121,13 @@ export function createMotionController(root: HTMLElement, overlays = false) {
             transformBox: "fill-box",
           },
         ],
-        { duration: 850, delay: 120 + Math.min(i, 20) * 14 },
+        { duration: 1300, delay: 120 + Math.min(i, 20) * 14 },
       );
     });
     // Existing Recharts sector interpolation remains responsible for drawing each arc.
     sectors.forEach((sector) => {
+      if (charts.has(sector)) return;
+      charts.add(sector);
       animate(
         sector,
         [
@@ -151,6 +146,8 @@ export function createMotionController(root: HTMLElement, overlays = false) {
     chart
       .querySelectorAll(".recharts-legend-wrapper, .recharts-cartesian-axis, .recharts-cartesian-grid")
       .forEach((node) => {
+        if (charts.has(node)) return;
+        charts.add(node);
         animate(node, [{ opacity: 0 }, { opacity: 1 }], { duration: 450, delay: 100 });
       });
   }
@@ -158,7 +155,7 @@ export function createMotionController(root: HTMLElement, overlays = false) {
   function reveal(node: Element) {
     if (seen.has(node) || !shown(node) || disposed) return;
     seen.add(node);
-    if (media.matches) return;
+    if (motionReduced()) return;
     const slot = node.getAttribute("data-slot");
     if (slot === "chart") {
       drawChart(node);
@@ -171,13 +168,13 @@ export function createMotionController(root: HTMLElement, overlays = false) {
           { transform: "scaleX(0)", transformOrigin: "left" },
           { transform: "scaleX(1)", transformOrigin: "left" },
         ],
-        { duration: 850, delay: 120 },
+        { duration: 1300, delay: 120 },
       );
       return;
     }
     if (slot === "progress") {
       const bar = node.firstElementChild;
-      if (bar) animate(bar, [{ clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0)" }], { duration: 850 });
+      if (bar) animate(bar, [{ clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0)" }], { duration: 1300 });
       return;
     }
     if (slot === "button" || slot === "select-trigger") {
@@ -221,7 +218,7 @@ export function createMotionController(root: HTMLElement, overlays = false) {
         { delay: 100, duration: 400 },
       );
     if (isCard) {
-      node.querySelectorAll(".text-2xl, .text-3xl, .text-4xl").forEach((number) => {
+      node.querySelectorAll(".text-xl, .text-2xl, .text-3xl, .text-4xl").forEach((number) => {
         count(number, delay + 80);
       });
       node.querySelectorAll('[data-slot="badge"]').forEach((badge) => {
@@ -248,7 +245,7 @@ export function createMotionController(root: HTMLElement, overlays = false) {
   function watch(node: Element) {
     if (seen.has(node) || watched.has(node) || !shown(node)) return;
     watched.add(node);
-    if (media.matches) {
+    if (motionReduced()) {
       seen.add(node);
       return;
     }
@@ -307,6 +304,9 @@ export function createMotionController(root: HTMLElement, overlays = false) {
   }
 
   function replayPanel(panel: Element) {
+    panel.querySelectorAll("svg *, .recharts-legend-wrapper").forEach((node) => {
+      charts.delete(node);
+    });
     [panel, ...panel.querySelectorAll(targets)].forEach((node) => {
       seen.delete(node);
       watched.delete(node);
@@ -361,7 +361,7 @@ export function createMotionController(root: HTMLElement, overlays = false) {
     attributeFilter: ["data-state", "hidden", "aria-expanded", "data-motion-panel"],
   });
   const reduce = () => {
-    if (media.matches) {
+    if (motionReduced()) {
       animations.forEach((animation) => {
         animation.cancel();
       });
@@ -371,6 +371,11 @@ export function createMotionController(root: HTMLElement, overlays = false) {
     }
   };
   media.addEventListener("change", reduce);
+  const preferenceChanged = () => {
+    if (motionReduced()) reduce();
+    else if (!overlays) replayPanel(root);
+  };
+  window.addEventListener(motionPreferenceEvent, preferenceChanged);
   scan(root);
   return {
     replay: () => replayPanel(root),
@@ -380,6 +385,7 @@ export function createMotionController(root: HTMLElement, overlays = false) {
       observer.disconnect();
       intersection?.disconnect();
       media.removeEventListener("change", reduce);
+      window.removeEventListener(motionPreferenceEvent, preferenceChanged);
       animations.forEach((animation) => {
         animation.cancel();
       });

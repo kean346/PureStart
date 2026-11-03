@@ -96,7 +96,7 @@ export function getAnalytics(range: RangeKey) {
     ),
     countries: breakdown(
       current.visitors,
-      ["United States", "United Kingdom", "Germany", "Canada", "South Africa", "Other regions"],
+      ["South Africa", "Namibia", "Botswana", "Kenya", "Mauritius", "Other regions"],
       [38, 21, 15, 11, 8, 7],
     ),
     devices: breakdown(current.sessions, ["Desktop", "Mobile", "Tablet"], [68, 27, 5]),
@@ -134,10 +134,10 @@ export type AnalyticsData = ReturnType<typeof getAnalytics>;
 export const snapshot = {
   minutes: Array.from({ length: 30 }, (_, i) => ({ minute: i + 1, visitors: 18 + ((i * 13) % 25) })),
   countries: [
-    { name: "United States", flag: "US", value: 21 },
-    { name: "United Kingdom", flag: "GB", value: 9 },
-    { name: "Germany", flag: "DE", value: 7 },
-    { name: "South Africa", flag: "ZA", value: 5 },
+    { name: "South Africa", flag: "ZA", value: 21 },
+    { name: "Namibia", flag: "NA", value: 9 },
+    { name: "Botswana", flag: "BW", value: 7 },
+    { name: "Kenya", flag: "KE", value: 5 },
   ],
 };
 snapshot.minutes[29].visitors = 42;

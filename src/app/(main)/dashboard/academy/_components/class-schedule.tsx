@@ -27,7 +27,7 @@ export function ClassSchedule() {
             </div>
 
             <div className="flex min-w-0 flex-col gap-1">
-              <div className="text-foreground truncate text-sm leading-none font-medium">Pure Mathematics</div>
+              <div className="text-foreground truncate text-sm leading-none font-medium">Pure Data foundations</div>
               <div className="text-muted-foreground truncate text-xs leading-none">Grade 11A • Room 2.14</div>
             </div>
 
@@ -71,8 +71,10 @@ export function ClassSchedule() {
             </div>
 
             <div className="flex min-w-0 flex-col gap-1">
-              <div className="text-foreground truncate text-sm leading-none font-medium">Physics</div>
-              <div className="text-muted-foreground truncate text-xs leading-none">Grade 11C • Physics Lab</div>
+              <div className="text-foreground truncate text-sm leading-none font-medium">Operational thinking</div>
+              <div className="text-muted-foreground truncate text-xs leading-none">
+                Grade 11C • Operational thinking Lab
+              </div>
             </div>
 
             <Badge
@@ -93,7 +95,9 @@ export function ClassSchedule() {
             </div>
 
             <div className="flex min-w-0 flex-col gap-1">
-              <div className="text-foreground truncate text-sm leading-none font-medium">Modern European History</div>
+              <div className="text-foreground truncate text-sm leading-none font-medium">
+                Modern European Market context
+              </div>
               <div className="text-muted-foreground truncate text-xs leading-none">Grade 11A • Room 1.08</div>
             </div>
 

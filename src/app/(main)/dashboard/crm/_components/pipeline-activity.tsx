@@ -99,6 +99,7 @@ export function PipelineActivity() {
                   }
                 />
                 <Bar
+                  isAnimationActive={false}
                   dataKey="qualified"
                   fill="url(#crm-qualified-pattern)"
                   radius={[8, 8, 0, 0]}

@@ -3,11 +3,11 @@
 import type { ReactTable } from "@tanstack/react-table";
 import { cn } from "cn";
 import {
+  Banknote,
   Boxes,
   ChevronLeft,
   ChevronRight,
   CircleCheck,
-  DollarSign,
   Hash,
   Package,
   ShoppingBag,
@@ -28,7 +28,7 @@ const headerIcons: Record<string, typeof Package> = {
   category: Tags,
   status: CircleCheck,
   stock: Boxes,
-  price: DollarSign,
+  price: Banknote,
   sold: ShoppingBag,
 };
 

@@ -67,7 +67,7 @@ export function CardOverview() {
               <div className="flex items-end justify-between">
                 <div className="space-y-2">
                   <p className="text-primary-foreground font-mono text-sm font-medium tracking-wide uppercase">
-                    Arham Khan
+                    Avery Sloan
                   </p>
                   <div className="flex gap-6">
                     <div>
@@ -96,11 +96,11 @@ export function CardOverview() {
             </div>
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Card Limit</span>
-              <span className="font-medium tabular-nums">$62,000.00</span>
+              <span className="font-medium tabular-nums">R 62,000.00</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Available Balance</span>
-              <span className="font-medium tabular-nums">$13,100.06</span>
+              <span className="font-medium tabular-nums">R 13,100.06</span>
             </div>
           </div>
 

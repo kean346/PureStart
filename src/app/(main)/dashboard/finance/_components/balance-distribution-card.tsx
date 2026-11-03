@@ -65,17 +65,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const currencies = {
-  EUR: {
-    label: "Euro Balance",
-  },
-  GBP: {
-    label: "GBP Balance",
-  },
-  USD: {
-    label: "USD Balance",
-  },
-} as const;
+const currencies = { ZAR: { label: "Rand balance" } } as const;
 
 type Currency = keyof typeof currencies;
 
@@ -92,7 +82,7 @@ const chartData = balanceData.map((item) => ({
 const totalBalance = balanceData.reduce((total, item) => total + item.amount, 0);
 
 export function BalanceDistributionCard() {
-  const [currency, setCurrency] = React.useState<Currency>("USD");
+  const [currency, setCurrency] = React.useState<Currency>("ZAR");
 
   return (
     <Card>

@@ -58,21 +58,21 @@ export const defaultInvoiceValues: InvoiceFormValues = {
   issuedDate: format(today, "yyyy-MM-dd"),
   paymentDueDate: format(addDays(today, 14), "yyyy-MM-dd"),
   from: {
-    name: "Weblabs Studio",
-    email: "hello@weblabs.studio",
-    phone: "+1-512-555-0184",
-    website: "weblabs.studio",
-    addressLines: ["214 Pixel Avenue", "Austin, TX 78701"],
+    name: "NOREVA Services",
+    email: "accounts@noreva.example",
+    phone: "+27 00 000 0000",
+    website: "noreva.example",
+    addressLines: ["Demo workspace, 12 Atlas Lane", "Cape Town, South Africa"],
     taxId: "WS-1029384756",
-    paymentAccountName: "Mercury Business",
-    routingNumber: "084009519",
-    issuerName: "Arham Khan",
+    paymentAccountName: "NOREVA Demo Account",
+    routingNumber: "DEMO-ACCOUNT",
+    issuerName: "Avery Sloan",
   },
   to: {
     id: "aiy-cap",
-    name: "AIY Cap",
-    email: "finance@aiycap.com",
-    addressLines: ["One BKC, Bandra Kurla Complex", "Mumbai, Maharashtra 400051"],
+    name: "Karoo Fieldworks",
+    email: "finance@karoo.example",
+    addressLines: ["Demo client, 8 Kopano Road", "Johannesburg, South Africa"],
     taxId: "GSTIN-27AAICA9102K1Z7",
   },
   taxId: "vat",
@@ -101,42 +101,24 @@ export const defaultInvoiceValues: InvoiceFormValues = {
 };
 
 export const invoiceTaxOptions: InvoiceTaxOption[] = [
-  {
-    id: "gst",
-    name: "GST",
-    rate: 18,
-  },
-  {
-    id: "vat",
-    name: "VAT",
-    rate: 12,
-  },
-  {
-    id: "service-tax",
-    name: "Service Tax",
-    rate: 10,
-  },
-  {
-    id: "none",
-    name: "No Tax",
-    rate: 0,
-  },
+  { id: "vat", name: "VAT", rate: 15 },
+  { id: "none", name: "No VAT", rate: 0 },
 ];
 
 export const invoiceClients: InvoiceToDetails[] = [
   {
     id: "bright-enterprises",
-    name: "Bright Enterprises",
-    email: "billing@brightenterprises.com",
-    addressLines: ["450 Park Avenue South", "New York, NY 10016", "United States"],
+    name: "Highveld Digital",
+    email: "billing@highveld.example",
+    addressLines: ["Demo client, 3 Berg Street", "Pretoria, Gauteng", "South Africa"],
     taxId: "US-EIN-84-2938475",
   },
   defaultInvoiceValues.to,
   {
     id: "northline-gmbh",
-    name: "Northline GmbH",
-    email: "ap@northline.de",
-    addressLines: ["Kastanienallee 32", "10435 Berlin", "Germany"],
+    name: "Coastline Supply",
+    email: "accounts@coastline.example",
+    addressLines: ["Demo client, 7 Harbour Road", "Durban, KwaZulu-Natal", "South Africa"],
     taxId: "DE-VAT-219384756",
   },
 ];

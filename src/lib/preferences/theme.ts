@@ -12,7 +12,7 @@ export type ResolvedThemeMode = "light" | "dark";
 
 export const THEME_PRESET_OPTIONS = [
   {
-    label: "NOREVA Charcoal",
+    label: "Default",
     value: "default",
     primary: {
       light: "oklch(0.205 0 0)",

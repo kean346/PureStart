@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 
+import { motionPreferenceEvent, motionReduced } from "@/lib/motion/preference";
+
 import { number, percent } from "./analytics-data";
 
 export { useReducedMotion } from "@/hooks/use-reduced-motion";
@@ -28,7 +30,7 @@ export function CountUp({ value, rate = false, delay = 0 }: { value: number; rat
     const run = () => {
       stop();
       started = 0;
-      if (!media.matches) frame = requestAnimationFrame(animate);
+      if (!motionReduced()) frame = requestAnimationFrame(animate);
     };
     if (typeof IntersectionObserver === "undefined") {
       run();
@@ -44,11 +46,17 @@ export function CountUp({ value, rate = false, delay = 0 }: { value: number; rat
       observer.unobserve(node);
       observer.observe(node);
     };
+    const preferenceChanged = () => {
+      stop();
+      if (!motionReduced()) replay();
+    };
+    window.addEventListener(motionPreferenceEvent, preferenceChanged);
     observer.observe(node);
     node.addEventListener("noreva:counter-replay", replay);
     media.addEventListener("change", stop);
     return () => {
       observer.disconnect();
+      window.removeEventListener(motionPreferenceEvent, preferenceChanged);
       stop();
       node.removeEventListener("noreva:counter-replay", replay);
       media.removeEventListener("change", stop);

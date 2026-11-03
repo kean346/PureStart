@@ -57,7 +57,7 @@ export function DriversForecastTarget() {
       <CardContent className="space-y-4">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           <MetricChip label="Attainment" value="72.4%" note="closed won / monthly target" />
-          <MetricChip label="Weighted Pipeline" value="$1,284,000" note="vs $668,000 remaining" />
+          <MetricChip label="Weighted Pipeline" value="R 1,284,000" note="vs R 668,000 remaining" />
           <MetricChip label="Forecast Confidence" value="81.0%" note="volatility-adjusted confidence" />
         </div>
         <ChartContainer config={forecastChartConfig} className="h-68 w-full">

@@ -2,6 +2,8 @@
 
 import { flushSync } from "react-dom";
 
+import { motionReduced } from "@/lib/motion/preference";
+
 let active: ViewTransition | null = null;
 let revision = 0;
 let fallbackTimer: ReturnType<typeof setTimeout> | undefined;
@@ -16,7 +18,7 @@ export function transitionTheme(update: () => void) {
   const root = document.documentElement;
   active?.skipTransition();
   clearTimeout(fallbackTimer);
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (motionReduced()) {
     delete root.dataset.themeTransition;
     update();
     return;

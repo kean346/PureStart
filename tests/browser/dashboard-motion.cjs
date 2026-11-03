@@ -19,11 +19,11 @@ const base = process.env.BASE_URL || "http://127.0.0.1:3001";
     }).observe({ type: "layout-shift", buffered: true });
   });
   await page.goto(`${base}/dashboard/default`, { waitUntil: "networkidle" });
-  await page.waitForTimeout(1600);
+  await page.waitForTimeout(2200);
   const first = page.locator('[data-motion-page] [data-slot="card"]').first();
   const originalRun = await first.getAttribute("data-motion-run");
   assert.ok(originalRun);
-  assert.ok((await first.textContent()).includes("$1,250.00"));
+  assert.ok((await first.textContent()).includes("R 184,250.00"));
   const lower = page.locator('[data-motion-page] [data-slot="card"]').last();
   assert.equal(await lower.getAttribute("data-motion-run"), null, "below-fold table waits for scrolling");
   await lower.scrollIntoViewIfNeeded();
@@ -40,29 +40,39 @@ const base = process.env.BASE_URL || "http://127.0.0.1:3001";
   console.log("PASS initial cards/counters, scroll reveal once per visit, search isolation");
 
   for (const label of ["CRM", "Finance", "Analytics", "Home", "CRM", "Home"]) {
-    await page.getByRole("link", { name: label, exact: true }).click();
-    await page.waitForTimeout(1400);
+    await page
+      .getByRole("link", {
+        name: {
+          CRM: "Client relationships",
+          Finance: "Money overview",
+          Analytics: "Audience insights",
+          Home: "Business pulse",
+        }[label],
+        exact: true,
+      })
+      .click();
+    await page.waitForTimeout(1900);
     const card = page.locator('[data-motion-page] [data-slot="card"]').first();
     assert.ok(await card.getAttribute("data-motion-run"), `${label} enters`);
     if (label === "Home") assert.notEqual(await card.getAttribute("data-motion-run"), originalRun, "return replays");
   }
   await page.goBack();
-  await page.waitForTimeout(1400);
+  await page.waitForTimeout(1900);
   assert.ok((await page.locator("[data-motion-page]").getAttribute("data-motion-page")).includes("crm"));
   await page.goForward();
-  await page.waitForTimeout(1400);
+  await page.waitForTimeout(1900);
   console.log("PASS sidebar revisits and browser back/forward");
 
-  await page.getByRole("link", { name: "Analytics", exact: true }).click();
-  await page.waitForTimeout(1400);
+  await page.getByRole("link", { name: "Audience insights", exact: true }).click();
+  await page.waitForTimeout(1900);
   const analyticsCard = page.locator('[data-motion-page] [data-slot="card"]').first();
   const analyticsRun = await analyticsCard.getAttribute("data-motion-run");
   await page.getByRole("tab", { name: "Audience", exact: true }).click();
-  await page.waitForTimeout(1400);
+  await page.waitForTimeout(1900);
   assert.ok(await page.getByText("Sessions by device", { exact: true }).isVisible());
   assert.equal(await analyticsCard.getAttribute("data-motion-run"), analyticsRun, "only the new tab panel animates");
   await page.getByRole("tab", { name: "Overview", exact: true }).click();
-  await page.waitForTimeout(1400);
+  await page.waitForTimeout(1900);
   console.log("PASS tab panels animate without remounting KPI state");
 
   const beforeTheme = await analyticsCard.getAttribute("data-motion-run");
@@ -156,7 +166,7 @@ const base = process.env.BASE_URL || "http://127.0.0.1:3001";
     await reduced.locator('[data-motion-page] [data-slot="card"]').first().getAttribute("data-motion-run"),
     null,
   );
-  assert.ok(await reduced.getByText("$1,250.00", { exact: true }).isVisible());
+  assert.ok(await reduced.getByText("R 184,250.00", { exact: true }).isVisible());
   await reduced.getByRole("button", { name: /Current theme: dark/ }).click();
   assert.equal(await reduced.locator("html").getAttribute("data-theme-transition"), null);
   assert.equal(await reduced.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);

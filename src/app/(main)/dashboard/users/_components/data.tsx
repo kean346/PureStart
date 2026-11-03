@@ -26,8 +26,8 @@ export type UserRow = {
 
 export const users: UserRow[] = [
   {
-    name: "Olivia Rhye",
-    email: "olivia.rhye@weblabs.studio",
+    name: "Lerato Mokoena",
+    email: "olivia.rhye@noreva.example",
     role: "Workspace Owner",
     status: "Active",
     team: "Platform",
@@ -36,8 +36,8 @@ export const users: UserRow[] = [
     lastActive: 0,
   },
   {
-    name: "Phoenix Baker",
-    email: "phoenix.baker@weblabs.studio",
+    name: "Thabo Dlamini",
+    email: "phoenix.baker@noreva.example",
     role: "Admin",
     status: "Active",
     team: "Growth",
@@ -46,8 +46,8 @@ export const users: UserRow[] = [
     lastActive: 5,
   },
   {
-    name: "Lana Steiner",
-    email: "lana.steiner@acme.inc",
+    name: "Naledi Jacobs",
+    email: "lana.steiner@noreva.example",
     role: "Billing Admin",
     status: "Active",
     team: "Revenue",
@@ -56,8 +56,8 @@ export const users: UserRow[] = [
     lastActive: 14 * 24 * 60,
   },
   {
-    name: "Demi Wilkinson",
-    email: "demi.wilkinson@weblabs.studio",
+    name: "Amina Naidoo",
+    email: "demi.wilkinson@noreva.example",
     role: "Security Admin",
     status: "Locked",
     team: "Internal Tools",
@@ -77,7 +77,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Natali Craig",
-    email: "natali.craig@weblabs.studio",
+    email: "natali.craig@noreva.example",
     role: "Contributor",
     status: "Pending invite",
     team: "Compliance",
@@ -86,8 +86,8 @@ export const users: UserRow[] = [
     lastActive: 90 * 24 * 60,
   },
   {
-    name: "Drew Cano",
-    email: "drew.cano@internal.tools",
+    name: "Khaya Maseko",
+    email: "drew.cano@noreva.example",
     role: "Guest",
     status: "Active",
     team: "Internal Tools",
@@ -96,8 +96,8 @@ export const users: UserRow[] = [
     lastActive: 3 * 60,
   },
   {
-    name: "Orlando Diggs",
-    email: "orlando.diggs@acme.inc",
+    name: "Zola Pillay",
+    email: "orlando.diggs@noreva.example",
     role: "Read-only",
     status: "Deactivated",
     team: "Revenue",
@@ -106,8 +106,8 @@ export const users: UserRow[] = [
     lastActive: 6,
   },
   {
-    name: "Andi Lane",
-    email: "andi.lane@weblabs.studio",
+    name: "Sipho Rowan",
+    email: "andi.lane@noreva.example",
     role: "Contributor",
     status: "Active",
     team: "People Ops",
@@ -117,7 +117,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Kate Morrison",
-    email: "kate.morrison@weblabs.studio",
+    email: "kate.morrison@noreva.example",
     role: "Admin",
     status: "Active",
     team: "Platform",
@@ -127,7 +127,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Alec Whitten",
-    email: "alec.whitten@internal.tools",
+    email: "alec.whitten@noreva.example",
     role: "Team Lead",
     status: "Suspended",
     team: "Internal Tools",
@@ -137,7 +137,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Ariana Decker",
-    email: "ariana.decker@weblabs.studio",
+    email: "ariana.decker@noreva.example",
     role: "Contributor",
     status: "Active",
     team: "Growth",
@@ -157,7 +157,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Lori Bryson",
-    email: "lori.bryson@acme.inc",
+    email: "lori.bryson@noreva.example",
     role: "Billing Admin",
     status: "Active",
     team: "Finance",
@@ -167,7 +167,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Koray Okumus",
-    email: "koray.okumus@weblabs.studio",
+    email: "koray.okumus@noreva.example",
     role: "Security Admin",
     status: "Active",
     team: "Internal Tools",
@@ -177,7 +177,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Josh Miller",
-    email: "josh.miller@internal.tools",
+    email: "josh.miller@noreva.example",
     role: "Read-only",
     status: "Active",
     team: "Compliance",
@@ -187,7 +187,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Mollie Hall",
-    email: "mollie.hall@weblabs.studio",
+    email: "mollie.hall@noreva.example",
     role: "Contributor",
     status: "Deactivated",
     team: "Platform",
@@ -197,7 +197,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Rene Wells",
-    email: "rene.wells@acme.inc",
+    email: "rene.wells@noreva.example",
     role: "Team Lead",
     status: "Active",
     team: "Revenue",
@@ -217,7 +217,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Sienna Hewitt",
-    email: "sienna.hewitt@weblabs.studio",
+    email: "sienna.hewitt@noreva.example",
     role: "Admin",
     status: "Active",
     team: "Internal Tools",
@@ -227,7 +227,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Noah Pierre",
-    email: "noah.pierre@weblabs.studio",
+    email: "noah.pierre@noreva.example",
     role: "Contributor",
     status: "Active",
     team: "Platform",
@@ -237,7 +237,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Eve Lechner",
-    email: "eve.lechner@acme.inc",
+    email: "eve.lechner@noreva.example",
     role: "Read-only",
     status: "Suspended",
     team: "Finance",
@@ -247,7 +247,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Zahir McClure",
-    email: "zahir.mcclure@internal.tools",
+    email: "zahir.mcclure@noreva.example",
     role: "Security Admin",
     status: "Active",
     team: "Internal Tools",
@@ -257,7 +257,7 @@ export const users: UserRow[] = [
   },
   {
     name: "Mia Romberg",
-    email: "mia.romberg@weblabs.studio",
+    email: "mia.romberg@noreva.example",
     role: "Billing Admin",
     status: "Pending invite",
     team: "Finance",

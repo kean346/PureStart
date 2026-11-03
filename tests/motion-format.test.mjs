@@ -1,8 +1,20 @@
-import { numericLabel } from "../src/lib/motion/dashboard-motion.ts";
+import { numericLabel } from "../src/lib/motion/number-label.ts";
 import assert from "node:assert/strict";
 import test from "node:test";
 
-for (const label of ["$1,250.00", "45,678", "4.5%", "−12.5%", "+8.70%", "1.2k", "€23.99", "0"]) {
+for (const label of [
+  "+R 2,780",
+  "R 1,250.00",
+  "R 284,500",
+  "$1,250.00",
+  "45,678",
+  "4.5%",
+  "−12.5%",
+  "+8.70%",
+  "1.2k",
+  "€23.99",
+  "0",
+]) {
   test(`animated counter restores the exact data label: ${label}`, () => {
     const formatter = numericLabel(label);
     assert.ok(formatter);

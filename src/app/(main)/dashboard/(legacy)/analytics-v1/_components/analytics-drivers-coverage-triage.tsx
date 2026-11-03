@@ -7,19 +7,19 @@ export function DriversCoverageTriage() {
     {
       key: "deal",
       label: "+1 enterprise deal",
-      value: "+$72,133 weighted",
+      value: "+R 72,133 weighted",
       context: "32% of gap",
     },
     {
       key: "conversion",
       label: "+5pp conversion",
-      value: "+$49,182/month",
+      value: "+R 49,182/month",
       context: "22% of gap",
     },
     {
       key: "cycle",
       label: "-4d cycle",
-      value: "+$90,167/day",
+      value: "+R 90,167/day",
       context: "40% of gap",
     },
   ] as const;
@@ -39,7 +39,7 @@ export function DriversCoverageTriage() {
             1.9x / 3.0x
           </Badge>
           <Badge variant="outline" className="font-medium tabular-nums">
-            Gap $222,930
+            Gap R 222,930
           </Badge>
           <Badge variant="outline" className="font-medium tabular-nums">
             4 deals • ETA 10d

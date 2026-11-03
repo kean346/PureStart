@@ -47,7 +47,7 @@ const productSchema = z.object({
     .string()
     .min(1, "Enter a price.")
     .regex(/^\d+(\.\d{1,2})?$/, "Enter a non-negative price with up to two decimal places.")
-    .refine((value) => Number(value) <= 1_000_000, "Price must not exceed $1,000,000."),
+    .refine((value) => Number(value) <= 1_000_000, "Price must not exceed R 1,000,000."),
   stock: z
     .string()
     .min(1, "Enter a stock quantity.")
@@ -227,7 +227,7 @@ export function AddProductDrawer() {
                   )}
                 />
                 <Field data-invalid={!!errors.price}>
-                  <FieldLabel htmlFor="add-product-price">Price (USD)</FieldLabel>
+                  <FieldLabel htmlFor="add-product-price">Price (ZAR)</FieldLabel>
                   <Input
                     id="add-product-price"
                     type="number"

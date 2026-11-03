@@ -128,7 +128,7 @@ export function ProductForm({ product, products, onClose, onSave }: ProductFormP
                 </Select>
               </Field>
               <Field>
-                <FieldLabel htmlFor="product-price">Price (USD)</FieldLabel>
+                <FieldLabel htmlFor="product-price">Price (ZAR)</FieldLabel>
                 <Input
                   id="product-price"
                   name="price"

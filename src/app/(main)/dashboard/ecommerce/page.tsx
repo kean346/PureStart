@@ -15,7 +15,7 @@ import { TopProducts } from "./_components/top-products";
 import { TrafficSources } from "./_components/traffic-sources";
 
 export const metadata: Metadata = {
-  title: "NOREVA Commerce | Demo workspace",
+  title: "NOREVA Commerce desk | Demo workspace",
   description:
     "Explore the NOREVA demo e-commerce dashboard with sales metrics, orders, store traffic, inventory, products, and reviews.",
   alternates: {
@@ -30,7 +30,7 @@ export default function Page() {
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="flex flex-col gap-1">
-          <h1 className="text-3xl leading-none tracking-tight">NOREVA Commerce</h1>
+          <h1 className="text-3xl leading-none tracking-tight">NOREVA Commerce desk</h1>
           <p className="text-muted-foreground text-sm">{formattedDate}</p>
         </div>
 

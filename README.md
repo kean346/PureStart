@@ -2,7 +2,7 @@
 
 A fictional analytics and intelligence platform, designed and built by paceIT on the open-source Studio Admin Analytics dashboard. This is a portfolio concept, not a real company or a representation of business results.
 
-The original Analytics composition, sidebar, component primitives, and Recharts foundation are retained. NOREVA adds original branding, a deterministic dataset, functional analytics tabs and date ranges, CSV export, and a coordinated entrance sequence. No backend, account, or database is required.
+NOREVA builds on the Studio Admin component and Recharts foundation with a charcoal workspace, its own navigation and headings, a revised business overview, Southern African demo routes and records, rand-denominated amounts, functional analytics views, CSV export, and coordinated motion across the application. No backend, account, or database is required.
 
 ## Run locally
 
@@ -16,7 +16,7 @@ npm run dev
 Open the application root; it redirects to `/dashboard/default` (Home). Both `localhost` and `127.0.0.1` are supported in development. All fonts are locally bundled through the existing Geist package; no Google Fonts network access is needed.
 
 ```bash
-npm test            # Five deterministic data-consistency tests
+npm test            # 19 data and numeric-formatting tests
 npx tsc --noEmit    # Type check
 npm run build      # Production build
 npm start          # Production server
@@ -33,9 +33,9 @@ npm start          # Production server
 
 ## Motion and accessibility
 
-The shared motion controller animates meaningful page elements on every route visit and newly opened panels, without forced component remounts. It defers offscreen reveals, bounds table work, preserves exact counter values, and retains native Recharts and Radix interactions. The global theme switch uses a circular reveal with a CSS fallback. Reduced motion disables entrances, counting, and theme reveal.
+The shared motion controller animates meaningful page elements on every route visit and newly opened panels, without forced component remounts. It defers offscreen reveals, bounds table work, preserves exact counter values, and retains native Recharts and Radix interactions. The global theme switch uses a circular reveal with a CSS fallback. The default follows the device reduced-motion setting. Appearance settings → Animation offers Follow device, Full animation, and Reduced animation; the saved Full animation choice enables counting, chart drawing, and the screen reveal even when the device requests reduced motion.
 
-See [the motion architecture and verification report](docs/MOTION.md) for implementation details, tested routes, browser checks, and the approved subtle Slate-neutral palette refinements. Layout, typography, data, and existing UI component source are preserved.
+See [the motion architecture and verification report](docs/MOTION.md) for implementation details, tested routes, browser checks, and the charcoal/Slate palette refinements. Existing UI component source and licenses are preserved.
 
 ## Deploy to Vercel
 
@@ -51,14 +51,12 @@ See `artifacts/noreva-desktop.png`, `artifacts/noreva-mobile.png`, `artifacts/no
 
 The original MIT copyright notice remains in [LICENSE](LICENSE); a distribution copy is in `public/licenses/Studio-Admin-MIT.txt`. The existing Geist font files are licensed under the SIL Open Font License, retained in `public/licenses/Geist-OFL.txt`. Recharts is MIT-licensed. No additional application libraries, stock photography, paid features, or proprietary media were added. The monogram and social preview artwork are original typography and geometry.
 
-### Charcoal workspace update
+### Regional workspace and motion update
 
-All ten dashboard modules now appear under Dashboards. The shared shell uses NOREVA Charcoal with charcoal-black surfaces by default; light and system modes remain available. Every dashboard route has a brief staggered entrance. Changing theme mode or preset uses a 700ms screen-covering circular reveal from the control through the browser View Transition API, with instant switching for reduced motion or unsupported browsers.
+The ten dashboard modules use original workspace labels, including Business pulse, Client relationships, Money overview, Shipment desk, and Cloud operations. The Home header and KPI proportions have changed while retaining Customer Activity and the customer table. Monetary demo values use ZAR (R), including finance, commerce, products, invoices, CRM, and legacy dashboards. These are fictional rand amounts, not live currency conversions.
 
-Logistics matches the original shipment-list/map/detail composition and uses a local atlas, real status/search/transport filtering, functional detail tabs, clipboard actions, and downloadable fictional manifests. Desktop and mobile review images are in `artifacts/noreva-logistics-*.png`.
+Shipment routes now connect Southern African airports, ports, and road hubs, with matching country codes and map coordinates. Regional audience breakdowns, fictional client companies, infrastructure locations, invoice addresses, and learning labels provide further customisation. Patient Monitoring remains removed.
 
-Home now opens the reference-style business dashboard: four KPI cards, the wide Customer Activity chart with period/segment filters and CSV reporting, and the searchable customer table. Chart data uses a fixed November 2026 demo window; customer records use fictional names and reserved `.example` email domains.
+Counters and chart drawing replay on route visits. Home and CRM KPI components count explicitly from zero; the shared controller also handles counters, charts, cards, rows, and panels elsewhere. It tracks individual chart elements so areas mounted after lines still animate. The theme reveal expands across the viewport over 1.1 seconds. Choose **Appearance settings → Animation → Full animation** to enable the sequence when your device requests reduced motion.
 
-Page entrances replay on sidebar navigation, including returning to an earlier route. Analytics subview changes also remount their content to replay the metric, chart, and table sequence. Cards and table rows reveal with a short stagger, with reduced motion respected throughout.
-
-Patient Monitoring has been removed from the application and sidebar. Its previous route returns a not-found response. The header and appearance controls retain the full-screen colour transition on every remaining page.
+Current review images are `artifacts/noreva-regional-home.png`, `noreva-regional-crm.png`, `noreva-regional-logistics.png`, and `noreva-regional-mobile.png`. The screen recording is `artifacts/noreva-regional-motion.mp4`. The targeted `tests/browser/regional-workspace.cjs` check samples actual intermediate counter values and chart clipping, then verifies theme reveal, mobile width, regional routes, and motion preference persistence. See `docs/MOTION.md` for validation scope.

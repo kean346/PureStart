@@ -61,20 +61,20 @@ export interface ProfileRecord {
 }
 
 export const profile: ProfileRecord = {
-  name: "Arham Khan",
-  preferredName: "Arham",
-  legalName: "Arham Khan",
+  name: "Avery Sloan",
+  preferredName: "Avery",
+  legalName: "Avery Sloan",
   pronouns: "He / him",
   initials: "AK",
-  avatar: "https://avatars.githubusercontent.com/u/43849669",
+  avatar: "",
   engagementStatus: "Active",
   jobTitle: "Software Engineer",
   jobLevel: "Senior",
   department: "Product",
   team: "Product",
   currentProject: "Autonomous Bid Agent",
-  workEmail: "hello@arhamkhnz.com",
-  personalEmail: "arhamkhnz@gmail.com",
+  workEmail: "avery@noreva.example",
+  personalEmail: "avery.personal@noreva.example",
   workPhone: "+1 (415) 555-0148",
   workplace: "Remote",
   timeZone: "UTC+5:30",
@@ -87,7 +87,7 @@ export const profile: ProfileRecord = {
   contractingEntity: "Studio Technologies Pte. Ltd.",
   noticePeriod: "30 days",
   dateOfBirth: "September 9, 1993",
-  address: "1842 Valencia Street, San Francisco, CA 94110",
+  address: "Demo address · Cape Town, South Africa",
   emergencyContact: "Ammar K. · Brother",
   emergencyPhone: "+1 (510) 555-0177",
   manager: {
@@ -95,7 +95,7 @@ export const profile: ProfileRecord = {
     role: "Head of Product",
     initials: "PK",
   },
-  bio: "Arham is a software engineer on the product team, building bids and tender management software, including autonomous bid agents that streamline opportunity discovery, requirement analysis, document preparation, compliance checks, pricing, and submission. He focuses on turning complex tender workflows into reliable, easy-to-use products that help teams work faster and make better bidding decisions.",
+  bio: "Avery is a product specialist on the product team, building bids and tender management software, including autonomous bid agents that streamline opportunity discovery, requirement analysis, document preparation, compliance checks, pricing, and submission. He focuses on turning complex tender workflows into reliable, easy-to-use products that help teams work faster and make better bidding decisions.",
   leavePolicy: "Contract leave allowance",
   annualLeaveAllowance: "25 days",
   remainingLeave: "18 days",
@@ -106,7 +106,7 @@ export const profile: ProfileRecord = {
   leaveYear: "January 1–December 31, 2026",
   nextLeave: "August 24–28, 2026",
   lastWorkingDay: "October 3, 2026",
-  updatedBy: "Arham Khan",
+  updatedBy: "Avery Sloan",
   updatedAt: "August 8, 2026",
   documents: [
     {

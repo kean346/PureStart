@@ -1,7 +1,7 @@
 "use client";
 
 import { format, parse } from "date-fns";
-import { ArrowUpRight, DollarSign, PackageCheck, ReceiptText, RotateCcw, ShoppingBag, Users } from "lucide-react";
+import { ArrowUpRight, Banknote, PackageCheck, ReceiptText, RotateCcw, ShoppingBag, Users } from "lucide-react";
 import { Area, Bar, CartesianGrid, ComposedChart, XAxis, YAxis } from "recharts";
 
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -82,7 +82,7 @@ function formatTooltipLabel(value: string) {
 }
 
 function formatCurrencyTooltipValue(value: unknown) {
-  return typeof value === "number" ? `$${value.toLocaleString()}` : String(value ?? "");
+  return typeof value === "number" ? `R ${value.toLocaleString()}` : String(value ?? "");
 }
 
 export function KpiStrip() {
@@ -95,10 +95,10 @@ export function KpiStrip() {
               <CardHeader>
                 <CardTitle className="text-sm font-normal">Total Sales</CardTitle>
                 <CardDescription className="text-foreground text-3xl leading-none tracking-tight tabular-nums">
-                  $48,560.00
+                  R 48,560.00
                 </CardDescription>
                 <CardAction className="bg-muted grid size-6 place-items-center rounded-sm">
-                  <DollarSign className="text-foreground size-3" />
+                  <Banknote className="text-foreground size-3" />
                 </CardAction>
               </CardHeader>
               <CardContent>
@@ -149,7 +149,7 @@ export function KpiStrip() {
               <CardHeader>
                 <CardTitle className="text-sm font-normal">Average Order</CardTitle>
                 <CardDescription className="text-foreground text-3xl leading-none tracking-tight tabular-nums">
-                  $128
+                  R 128
                 </CardDescription>
                 <CardAction className="bg-muted grid size-6 place-items-center rounded-sm">
                   <ReceiptText className="text-foreground size-3" />
@@ -157,7 +157,7 @@ export function KpiStrip() {
               </CardHeader>
               <CardContent>
                 <div className="text-sm">
-                  <span className="text-destructive">-$4.20</span>
+                  <span className="text-destructive">-R 4.20</span>
                   <span className="text-muted-foreground"> vs last week</span>
                 </div>
               </CardContent>

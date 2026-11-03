@@ -23,9 +23,9 @@ export default function Page() {
     <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div className="space-y-1">
-          <h1 className="text-3xl tracking-tight">Academy Dashboard</h1>
+          <h1 className="text-3xl tracking-tight">NOREVA Learning hub</h1>
           <p className="text-muted-foreground text-sm">
-            Good morning, Teacher. Here's a quick overview of today's activity.
+            Build the skills behind your next chapter. Team learning, assignments, and progress.
           </p>
         </div>
 

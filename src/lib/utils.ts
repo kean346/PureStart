@@ -22,10 +22,11 @@ export function formatCurrency(
     noDecimals?: boolean;
   },
 ) {
-  const { currency = "USD", locale = "en-US", minimumFractionDigits, maximumFractionDigits, noDecimals } = opts ?? {};
+  const { currency = "ZAR", locale = "en-US", minimumFractionDigits, maximumFractionDigits, noDecimals } = opts ?? {};
 
   const formatOptions: Intl.NumberFormatOptions = {
     style: "currency",
+    currencyDisplay: "narrowSymbol",
     currency,
     minimumFractionDigits: noDecimals ? 0 : minimumFractionDigits,
     maximumFractionDigits: noDecimals ? 0 : maximumFractionDigits,

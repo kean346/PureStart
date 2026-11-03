@@ -46,6 +46,8 @@ export function ThemeBootScript() {
           return definition.values.indexOf(value) >= 0 ? value : definition.defaultValue;
         }
 
+        var motion = readLocal("noreva-motion");
+        root.dataset.motionPreference = ["full", "reduced"].indexOf(motion) >= 0 ? motion : "system";
         var preferences = {};
 
         Object.keys(REGISTRY).forEach(function(key) {

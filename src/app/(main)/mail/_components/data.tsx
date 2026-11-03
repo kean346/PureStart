@@ -2,13 +2,13 @@ import { Archive, CircleHelp, File, Inbox, Keyboard, type LucideIcon, Send, Star
 import { siFigma, siGoogledocs, siGooglephotos } from "simple-icons";
 
 const arhamKhan = {
-  name: "Arham Khan",
-  email: "hello@arhamkhnz.com",
+  name: "Avery Sloan",
+  email: "avery@noreva.example",
 };
 
 const weblabsStudio = {
   name: "Weblabs Studio",
-  email: "contact@weblabs.studio",
+  email: "contact@noreva.example",
 };
 
 const minutesAgo = (minutes: number) => new Date(Date.now() - minutes * 60_000).toISOString();
@@ -470,12 +470,12 @@ export const mailNavigation: MailNavigation = {
 export const accounts = [
   {
     id: 1,
-    label: "Arham Khan",
-    email: "hello@arhamkhnz.com",
+    label: "Avery Sloan",
+    email: "avery@noreva.example",
   },
   {
     id: 2,
     label: "Weblabs Studio",
-    email: "contact@weblabs.studio",
+    email: "contact@noreva.example",
   },
 ];

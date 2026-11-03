@@ -1,1058 +1,1058 @@
 [
   {
     "id": "OP-1842",
-    "account": "Asteron Bioworks",
+    "account": "Karoo Fieldworks",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$42,000"
+    "value": "R 42,000"
   },
   {
     "id": "OP-1841",
-    "account": "BlueHaven Systems",
+    "account": "Highveld Digital",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$18,500"
+    "value": "R 18,500"
   },
   {
     "id": "OP-1840",
-    "account": "Cinder Health",
+    "account": "Coastline Supply",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$63,000"
+    "value": "R 63,000"
   },
   {
     "id": "OP-1839",
-    "account": "Drift Manufacturing",
+    "account": "Mopane Systems",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$26,400"
+    "value": "R 26,400"
   },
   {
     "id": "OP-1838",
-    "account": "Everline Freight",
+    "account": "Fynbos Collective",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$58,900"
+    "value": "R 58,900"
   },
   {
     "id": "OP-1837",
-    "account": "Fieldstone Capital",
+    "account": "Kopano Manufacturing",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$31,200"
+    "value": "R 31,200"
   },
   {
     "id": "OP-1836",
-    "account": "Granite Studios",
+    "account": "Bergline Retail",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$15,600"
+    "value": "R 15,600"
   },
   {
     "id": "OP-1835",
-    "account": "Halcyon Dynamics",
+    "account": "Umoya Networks",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$47,900"
+    "value": "R 47,900"
   },
   {
     "id": "OP-1834",
-    "account": "Ironcrest Ventures",
+    "account": "Cedar Ridge Foods",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$52,400"
+    "value": "R 52,400"
   },
   {
     "id": "OP-1833",
-    "account": "Juniper Infrastructure",
+    "account": "Metsi Consulting",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$22,800"
+    "value": "R 22,800"
   },
   {
     "id": "OP-1832",
-    "account": "Kestrel Commerce",
+    "account": "Karoo Fieldworks 2",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$19,300"
+    "value": "R 19,300"
   },
   {
     "id": "OP-1831",
-    "account": "Lattice Clinical",
+    "account": "Highveld Digital 2",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$68,500"
+    "value": "R 68,500"
   },
   {
     "id": "OP-1830",
-    "account": "Mariner Foods",
+    "account": "Coastline Supply 2",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$36,100"
+    "value": "R 36,100"
   },
   {
     "id": "OP-1829",
-    "account": "Northfield Energy",
+    "account": "Mopane Systems 2",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$27,400"
+    "value": "R 27,400"
   },
   {
     "id": "OP-1828",
-    "account": "Oakwell Networks",
+    "account": "Fynbos Collective 2",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$24,700"
+    "value": "R 24,700"
   },
   {
     "id": "OP-1827",
-    "account": "Palisade Software",
+    "account": "Kopano Manufacturing 2",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$33,400"
+    "value": "R 33,400"
   },
   {
     "id": "OP-1826",
-    "account": "Quarry Aerospace",
+    "account": "Bergline Retail 2",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$71,800"
+    "value": "R 71,800"
   },
   {
     "id": "OP-1825",
-    "account": "Redwood Devices",
+    "account": "Umoya Networks 2",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$29,200"
+    "value": "R 29,200"
   },
   {
     "id": "OP-1824",
-    "account": "Silverline Research",
+    "account": "Cedar Ridge Foods 2",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$44,800"
+    "value": "R 44,800"
   },
   {
     "id": "OP-1823",
-    "account": "TrueNorth Services",
+    "account": "Metsi Consulting 2",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$38,100"
+    "value": "R 38,100"
   },
   {
     "id": "OP-1822",
-    "account": "Union Operations",
+    "account": "Karoo Fieldworks 3",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$26,750"
+    "value": "R 26,750"
   },
   {
     "id": "OP-1821",
-    "account": "Vale Design",
+    "account": "Highveld Digital 3",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$54,900"
+    "value": "R 54,900"
   },
   {
     "id": "OP-1820",
-    "account": "Westbridge Logistics",
+    "account": "Coastline Supply 3",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$60,700"
+    "value": "R 60,700"
   },
   {
     "id": "OP-1819",
-    "account": "Yellowtail Analytics",
+    "account": "Mopane Systems 3",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$17,100"
+    "value": "R 17,100"
   },
   {
     "id": "OP-1818",
-    "account": "Zephyr Mobility",
+    "account": "Fynbos Collective 3",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$45,500"
+    "value": "R 45,500"
   },
   {
     "id": "OP-1817",
-    "account": "Bayshore Labs",
+    "account": "Kopano Manufacturing 3",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$28,600"
+    "value": "R 28,600"
   },
   {
     "id": "OP-1816",
-    "account": "Clearpoint Partners",
+    "account": "Bergline Retail 3",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$39,100"
+    "value": "R 39,100"
   },
   {
     "id": "OP-1815",
-    "account": "Dovetail Supply",
+    "account": "Umoya Networks 3",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$64,200"
+    "value": "R 64,200"
   },
   {
     "id": "OP-1814",
-    "account": "Elmwood Works",
+    "account": "Cedar Ridge Foods 3",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$20,800"
+    "value": "R 20,800"
   },
   {
     "id": "OP-1813",
-    "account": "Foxglove Holdings",
+    "account": "Metsi Consulting 3",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$57,400"
+    "value": "R 57,400"
   },
   {
     "id": "OP-1812",
-    "account": "Glenrock Therapeutics",
+    "account": "Karoo Fieldworks 4",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$48,300"
+    "value": "R 48,300"
   },
   {
     "id": "OP-1811",
-    "account": "Highspire Materials",
+    "account": "Highveld Digital 4",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$35,200"
+    "value": "R 35,200"
   },
   {
     "id": "OP-1810",
-    "account": "Ivory Bioworks",
+    "account": "Coastline Supply 4",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$61,500"
+    "value": "R 61,500"
   },
   {
     "id": "OP-1809",
-    "account": "Kingswell Systems",
+    "account": "Mopane Systems 4",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$42,000"
+    "value": "R 42,000"
   },
   {
     "id": "OP-1808",
-    "account": "Lakefront Health",
+    "account": "Fynbos Collective 4",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$18,500"
+    "value": "R 18,500"
   },
   {
     "id": "OP-1807",
-    "account": "Moorland Manufacturing",
+    "account": "Kopano Manufacturing 4",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$63,000"
+    "value": "R 63,000"
   },
   {
     "id": "OP-1806",
-    "account": "Asteron Freight",
+    "account": "Bergline Retail 4",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$26,400"
+    "value": "R 26,400"
   },
   {
     "id": "OP-1805",
-    "account": "BlueHaven Capital",
+    "account": "Umoya Networks 4",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$58,900"
+    "value": "R 58,900"
   },
   {
     "id": "OP-1804",
-    "account": "Cinder Studios",
+    "account": "Cedar Ridge Foods 4",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$31,200"
+    "value": "R 31,200"
   },
   {
     "id": "OP-1803",
-    "account": "Drift Dynamics",
+    "account": "Metsi Consulting 4",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$15,600"
+    "value": "R 15,600"
   },
   {
     "id": "OP-1802",
-    "account": "Everline Ventures",
+    "account": "Karoo Fieldworks 5",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$47,900"
+    "value": "R 47,900"
   },
   {
     "id": "OP-1801",
-    "account": "Fieldstone Infrastructure",
+    "account": "Highveld Digital 5",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$52,400"
+    "value": "R 52,400"
   },
   {
     "id": "OP-1800",
-    "account": "Granite Commerce",
+    "account": "Coastline Supply 5",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$22,800"
+    "value": "R 22,800"
   },
   {
     "id": "OP-1799",
-    "account": "Halcyon Clinical",
+    "account": "Mopane Systems 5",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$19,300"
+    "value": "R 19,300"
   },
   {
     "id": "OP-1798",
-    "account": "Ironcrest Foods",
+    "account": "Fynbos Collective 5",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$68,500"
+    "value": "R 68,500"
   },
   {
     "id": "OP-1797",
-    "account": "Juniper Energy",
+    "account": "Kopano Manufacturing 5",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$36,100"
+    "value": "R 36,100"
   },
   {
     "id": "OP-1796",
-    "account": "Kestrel Networks",
+    "account": "Bergline Retail 5",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$27,400"
+    "value": "R 27,400"
   },
   {
     "id": "OP-1795",
-    "account": "Lattice Software",
+    "account": "Umoya Networks 5",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$24,700"
+    "value": "R 24,700"
   },
   {
     "id": "OP-1794",
-    "account": "Mariner Aerospace",
+    "account": "Cedar Ridge Foods 5",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$33,400"
+    "value": "R 33,400"
   },
   {
     "id": "OP-1793",
-    "account": "Northfield Devices",
+    "account": "Metsi Consulting 5",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$71,800"
+    "value": "R 71,800"
   },
   {
     "id": "OP-1792",
-    "account": "Oakwell Research",
+    "account": "Karoo Fieldworks 6",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$29,200"
+    "value": "R 29,200"
   },
   {
     "id": "OP-1791",
-    "account": "Palisade Services",
+    "account": "Highveld Digital 6",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$44,800"
+    "value": "R 44,800"
   },
   {
     "id": "OP-1790",
-    "account": "Quarry Operations",
+    "account": "Coastline Supply 6",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$38,100"
+    "value": "R 38,100"
   },
   {
     "id": "OP-1789",
-    "account": "Redwood Design",
+    "account": "Mopane Systems 6",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$26,750"
+    "value": "R 26,750"
   },
   {
     "id": "OP-1788",
-    "account": "Silverline Logistics",
+    "account": "Fynbos Collective 6",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$54,900"
+    "value": "R 54,900"
   },
   {
     "id": "OP-1787",
-    "account": "TrueNorth Analytics",
+    "account": "Kopano Manufacturing 6",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$60,700"
+    "value": "R 60,700"
   },
   {
     "id": "OP-1786",
-    "account": "Union Mobility",
+    "account": "Bergline Retail 6",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$17,100"
+    "value": "R 17,100"
   },
   {
     "id": "OP-1785",
-    "account": "Vale Labs",
+    "account": "Umoya Networks 6",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$45,500"
+    "value": "R 45,500"
   },
   {
     "id": "OP-1784",
-    "account": "Westbridge Partners",
+    "account": "Cedar Ridge Foods 6",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$28,600"
+    "value": "R 28,600"
   },
   {
     "id": "OP-1783",
-    "account": "Yellowtail Supply",
+    "account": "Metsi Consulting 6",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$39,100"
+    "value": "R 39,100"
   },
   {
     "id": "OP-1782",
-    "account": "Zephyr Works",
+    "account": "Karoo Fieldworks 7",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$64,200"
+    "value": "R 64,200"
   },
   {
     "id": "OP-1781",
-    "account": "Bayshore Holdings",
+    "account": "Highveld Digital 7",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$20,800"
+    "value": "R 20,800"
   },
   {
     "id": "OP-1780",
-    "account": "Clearpoint Therapeutics",
+    "account": "Coastline Supply 7",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$57,400"
+    "value": "R 57,400"
   },
   {
     "id": "OP-1779",
-    "account": "Dovetail Materials",
+    "account": "Mopane Systems 7",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$48,300"
+    "value": "R 48,300"
   },
   {
     "id": "OP-1778",
-    "account": "Elmwood Bioworks",
+    "account": "Fynbos Collective 7",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$35,200"
+    "value": "R 35,200"
   },
   {
     "id": "OP-1777",
-    "account": "Foxglove Systems",
+    "account": "Kopano Manufacturing 7",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$61,500"
+    "value": "R 61,500"
   },
   {
     "id": "OP-1776",
-    "account": "Glenrock Health",
+    "account": "Bergline Retail 7",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$42,000"
+    "value": "R 42,000"
   },
   {
     "id": "OP-1775",
-    "account": "Highspire Manufacturing",
+    "account": "Umoya Networks 7",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$18,500"
+    "value": "R 18,500"
   },
   {
     "id": "OP-1774",
-    "account": "Ivory Freight",
+    "account": "Cedar Ridge Foods 7",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$63,000"
+    "value": "R 63,000"
   },
   {
     "id": "OP-1773",
-    "account": "Kingswell Capital",
+    "account": "Metsi Consulting 7",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$26,400"
+    "value": "R 26,400"
   },
   {
     "id": "OP-1772",
-    "account": "Lakefront Studios",
+    "account": "Karoo Fieldworks 8",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$58,900"
+    "value": "R 58,900"
   },
   {
     "id": "OP-1771",
-    "account": "Moorland Dynamics",
+    "account": "Highveld Digital 8",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$31,200"
+    "value": "R 31,200"
   },
   {
     "id": "OP-1770",
-    "account": "Asteron Ventures",
+    "account": "Coastline Supply 8",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$15,600"
+    "value": "R 15,600"
   },
   {
     "id": "OP-1769",
-    "account": "BlueHaven Infrastructure",
+    "account": "Mopane Systems 8",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$47,900"
+    "value": "R 47,900"
   },
   {
     "id": "OP-1768",
-    "account": "Cinder Commerce",
+    "account": "Fynbos Collective 8",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$52,400"
+    "value": "R 52,400"
   },
   {
     "id": "OP-1767",
-    "account": "Drift Clinical",
+    "account": "Kopano Manufacturing 8",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$22,800"
+    "value": "R 22,800"
   },
   {
     "id": "OP-1766",
-    "account": "Everline Foods",
+    "account": "Bergline Retail 8",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$19,300"
+    "value": "R 19,300"
   },
   {
     "id": "OP-1765",
-    "account": "Fieldstone Energy",
+    "account": "Umoya Networks 8",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$68,500"
+    "value": "R 68,500"
   },
   {
     "id": "OP-1764",
-    "account": "Granite Networks",
+    "account": "Cedar Ridge Foods 8",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$36,100"
+    "value": "R 36,100"
   },
   {
     "id": "OP-1763",
-    "account": "Halcyon Software",
+    "account": "Metsi Consulting 8",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$27,400"
+    "value": "R 27,400"
   },
   {
     "id": "OP-1762",
-    "account": "Ironcrest Aerospace",
+    "account": "Karoo Fieldworks 9",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$24,700"
+    "value": "R 24,700"
   },
   {
     "id": "OP-1761",
-    "account": "Juniper Devices",
+    "account": "Highveld Digital 9",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$33,400"
+    "value": "R 33,400"
   },
   {
     "id": "OP-1760",
-    "account": "Kestrel Research",
+    "account": "Coastline Supply 9",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$71,800"
+    "value": "R 71,800"
   },
   {
     "id": "OP-1759",
-    "account": "Lattice Services",
+    "account": "Mopane Systems 9",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$29,200"
+    "value": "R 29,200"
   },
   {
     "id": "OP-1758",
-    "account": "Mariner Operations",
+    "account": "Fynbos Collective 9",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$44,800"
+    "value": "R 44,800"
   },
   {
     "id": "OP-1757",
-    "account": "Northfield Design",
+    "account": "Kopano Manufacturing 9",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$38,100"
+    "value": "R 38,100"
   },
   {
     "id": "OP-1756",
-    "account": "Oakwell Logistics",
+    "account": "Bergline Retail 9",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$26,750"
+    "value": "R 26,750"
   },
   {
     "id": "OP-1755",
-    "account": "Palisade Analytics",
+    "account": "Umoya Networks 9",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$54,900"
+    "value": "R 54,900"
   },
   {
     "id": "OP-1754",
-    "account": "Quarry Mobility",
+    "account": "Cedar Ridge Foods 9",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$60,700"
+    "value": "R 60,700"
   },
   {
     "id": "OP-1753",
-    "account": "Redwood Labs",
+    "account": "Metsi Consulting 9",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$17,100"
+    "value": "R 17,100"
   },
   {
     "id": "OP-1752",
-    "account": "Silverline Partners",
+    "account": "Karoo Fieldworks 10",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$45,500"
+    "value": "R 45,500"
   },
   {
     "id": "OP-1751",
-    "account": "TrueNorth Supply",
+    "account": "Highveld Digital 10",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$28,600"
+    "value": "R 28,600"
   },
   {
     "id": "OP-1750",
-    "account": "Union Works",
+    "account": "Coastline Supply 10",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$39,100"
+    "value": "R 39,100"
   },
   {
     "id": "OP-1749",
-    "account": "Vale Holdings",
+    "account": "Mopane Systems 10",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$64,200"
+    "value": "R 64,200"
   },
   {
     "id": "OP-1748",
-    "account": "Westbridge Therapeutics",
+    "account": "Fynbos Collective 10",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$20,800"
+    "value": "R 20,800"
   },
   {
     "id": "OP-1747",
-    "account": "Yellowtail Materials",
+    "account": "Kopano Manufacturing 10",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$57,400"
+    "value": "R 57,400"
   },
   {
     "id": "OP-1746",
-    "account": "Zephyr Bioworks",
+    "account": "Bergline Retail 10",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$48,300"
+    "value": "R 48,300"
   },
   {
     "id": "OP-1745",
-    "account": "Bayshore Systems",
+    "account": "Umoya Networks 10",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$35,200"
+    "value": "R 35,200"
   },
   {
     "id": "OP-1744",
-    "account": "Clearpoint Health",
+    "account": "Cedar Ridge Foods 10",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$61,500"
+    "value": "R 61,500"
   },
   {
     "id": "OP-1743",
-    "account": "Dovetail Manufacturing",
+    "account": "Metsi Consulting 10",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$42,000"
+    "value": "R 42,000"
   },
   {
     "id": "OP-1742",
-    "account": "Elmwood Freight",
+    "account": "Karoo Fieldworks 11",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$18,500"
+    "value": "R 18,500"
   },
   {
     "id": "OP-1741",
-    "account": "Foxglove Capital",
+    "account": "Highveld Digital 11",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$63,000"
+    "value": "R 63,000"
   },
   {
     "id": "OP-1740",
-    "account": "Glenrock Studios",
+    "account": "Coastline Supply 11",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$26,400"
+    "value": "R 26,400"
   },
   {
     "id": "OP-1739",
-    "account": "Highspire Dynamics",
+    "account": "Mopane Systems 11",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$58,900"
+    "value": "R 58,900"
   },
   {
     "id": "OP-1738",
-    "account": "Ivory Ventures",
+    "account": "Fynbos Collective 11",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$31,200"
+    "value": "R 31,200"
   },
   {
     "id": "OP-1737",
-    "account": "Kingswell Infrastructure",
+    "account": "Kopano Manufacturing 11",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$15,600"
+    "value": "R 15,600"
   },
   {
     "id": "OP-1736",
-    "account": "Lakefront Commerce",
+    "account": "Bergline Retail 11",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$47,900"
+    "value": "R 47,900"
   },
   {
     "id": "OP-1735",
-    "account": "Moorland Clinical",
+    "account": "Umoya Networks 11",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$52,400"
+    "value": "R 52,400"
   },
   {
     "id": "OP-1734",
-    "account": "Asteron Foods",
+    "account": "Cedar Ridge Foods 11",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$22,800"
+    "value": "R 22,800"
   },
   {
     "id": "OP-1733",
-    "account": "BlueHaven Energy",
+    "account": "Metsi Consulting 11",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$19,300"
+    "value": "R 19,300"
   },
   {
     "id": "OP-1732",
-    "account": "Cinder Networks",
+    "account": "Karoo Fieldworks 12",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$68,500"
+    "value": "R 68,500"
   },
   {
     "id": "OP-1731",
-    "account": "Drift Software",
+    "account": "Highveld Digital 12",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$36,100"
+    "value": "R 36,100"
   },
   {
     "id": "OP-1730",
-    "account": "Everline Aerospace",
+    "account": "Coastline Supply 12",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$27,400"
+    "value": "R 27,400"
   },
   {
     "id": "OP-1729",
-    "account": "Fieldstone Devices",
+    "account": "Mopane Systems 12",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$24,700"
+    "value": "R 24,700"
   },
   {
     "id": "OP-1728",
-    "account": "Granite Research",
+    "account": "Fynbos Collective 12",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$33,400"
+    "value": "R 33,400"
   },
   {
     "id": "OP-1727",
-    "account": "Halcyon Services",
+    "account": "Kopano Manufacturing 12",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$71,800"
+    "value": "R 71,800"
   },
   {
     "id": "OP-1726",
-    "account": "Ironcrest Operations",
+    "account": "Bergline Retail 12",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$29,200"
+    "value": "R 29,200"
   },
   {
     "id": "OP-1725",
-    "account": "Juniper Design",
+    "account": "Umoya Networks 12",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$44,800"
+    "value": "R 44,800"
   },
   {
     "id": "OP-1724",
-    "account": "Kestrel Logistics",
+    "account": "Cedar Ridge Foods 12",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$38,100"
+    "value": "R 38,100"
   },
   {
     "id": "OP-1723",
-    "account": "Lattice Analytics",
+    "account": "Metsi Consulting 12",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$26,750"
+    "value": "R 26,750"
   },
   {
     "id": "OP-1722",
-    "account": "Mariner Mobility",
+    "account": "Karoo Fieldworks 13",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "On Track",
-    "value": "$54,900"
+    "value": "R 54,900"
   },
   {
     "id": "OP-1721",
-    "account": "Northfield Labs",
+    "account": "Highveld Digital 13",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Hold",
-    "value": "$60,700"
+    "value": "R 60,700"
   },
   {
     "id": "OP-1720",
-    "account": "Oakwell Partners",
+    "account": "Coastline Supply 13",
     "stage": "Negotiation",
     "priority": 1,
     "health": "At Risk",
-    "value": "$17,100"
+    "value": "R 17,100"
   },
   {
     "id": "OP-1719",
-    "account": "Palisade Supply",
+    "account": "Mopane Systems 13",
     "stage": "Qualified",
     "priority": 1,
     "health": "At Risk",
-    "value": "$45,500"
+    "value": "R 45,500"
   },
   {
     "id": "OP-1718",
-    "account": "Quarry Works",
+    "account": "Fynbos Collective 13",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$28,600"
+    "value": "R 28,600"
   },
   {
     "id": "OP-1717",
-    "account": "Redwood Holdings",
+    "account": "Kopano Manufacturing 13",
     "stage": "Discovery",
     "priority": 1,
     "health": "On Track",
-    "value": "$39,100"
+    "value": "R 39,100"
   },
   {
     "id": "OP-1716",
-    "account": "Silverline Therapeutics",
+    "account": "Bergline Retail 13",
     "stage": "Negotiation",
     "priority": 1,
     "health": "On Track",
-    "value": "$64,200"
+    "value": "R 64,200"
   },
   {
     "id": "OP-1715",
-    "account": "TrueNorth Materials",
+    "account": "Umoya Networks 13",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Hold",
-    "value": "$20,800"
+    "value": "R 20,800"
   },
   {
     "id": "OP-1714",
-    "account": "Union Bioworks",
+    "account": "Cedar Ridge Foods 13",
     "stage": "Proposal Sent",
     "priority": 1,
     "health": "At Risk",
-    "value": "$57,400"
+    "value": "R 57,400"
   },
   {
     "id": "OP-1713",
-    "account": "Vale Systems",
+    "account": "Metsi Consulting 13",
     "stage": "Discovery",
     "priority": 1,
     "health": "At Risk",
-    "value": "$48,300"
+    "value": "R 48,300"
   },
   {
     "id": "OP-1712",
-    "account": "Westbridge Health",
+    "account": "Karoo Fieldworks 14",
     "stage": "Negotiation",
     "priority": 1,
     "health": "Needs Review",
-    "value": "$35,200"
+    "value": "R 35,200"
   },
   {
     "id": "OP-1711",
-    "account": "Yellowtail Manufacturing",
+    "account": "Highveld Digital 14",
     "stage": "Qualified",
     "priority": 1,
     "health": "On Track",
-    "value": "$61,500"
+    "value": "R 61,500"
   }
 ]

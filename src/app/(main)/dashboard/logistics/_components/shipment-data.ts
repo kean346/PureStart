@@ -77,84 +77,84 @@ export type Shipment = {
 const customerAccounts = {
   techCorp: {
     name: "Northstar Devices",
-    initials: "TC",
+    initials: "ND",
     id: "NRV-1001-2401-01",
     tier: "Priority",
     tierLabel: "Priority demo account",
   },
   regionalRoadExpress: {
     name: "Meridian Freight",
-    initials: "RR",
+    initials: "MF",
     id: "NRV-1002-2402-02",
     tier: "Priority",
     tierLabel: "Priority demo account",
   },
   sendWell: {
     name: "Harborline Goods",
-    initials: "SW",
+    initials: "HG",
     id: "NRV-1003-2403-03",
     tier: "Priority",
     tierLabel: "Priority demo account",
   },
   sourceDay: {
     name: "Fieldwork Supply",
-    initials: "SD",
+    initials: "FS",
     id: "NRV-1004-2404-04",
     tier: "Standard",
     tierLabel: "Recurring shipment account",
   },
   shippingEasy: {
     name: "Rowan Distribution",
-    initials: "SE",
+    initials: "RD",
     id: "NRV-1005-2405-05",
     tier: "Standard",
     tierLabel: "Recurring shipment account",
   },
   freightView: {
     name: "Vale Trading",
-    initials: "FV",
+    initials: "VT",
     id: "NRV-1006-2406-06",
     tier: "Priority",
     tierLabel: "Priority demo account",
   },
   logisticsPlus: {
     name: "Cedar Logistics",
-    initials: "LP",
+    initials: "CL",
     id: "NRV-1007-2407-07",
     tier: "Standard",
     tierLabel: "Managed freight account",
   },
   transvirtual: {
     name: "Aster Transport",
-    initials: "TV",
+    initials: "AT",
     id: "NRV-1008-2408-08",
     tier: "Standard",
     tierLabel: "Managed freight account",
   },
   skyTrack: {
     name: "Lumen Cargo",
-    initials: "ST",
+    initials: "LC",
     id: "NRV-1009-2409-09",
     tier: "Non-priority",
     tierLabel: "Occasional shipment account",
   },
   maersk: {
     name: "Ellery Maritime",
-    initials: "MK",
+    initials: "EM",
     id: "NRV-1010-2410-10",
     tier: "Priority",
     tierLabel: "Priority demo account",
   },
   flexport: {
     name: "Orion Forwarding",
-    initials: "FX",
+    initials: "OF",
     id: "NRV-1011-2411-11",
     tier: "Priority",
     tierLabel: "Priority demo account",
   },
   piedPiper: {
     name: "Kestrel Goods",
-    initials: "PP",
+    initials: "KG",
     id: "NRV-1012-2412-12",
     tier: "Non-priority",
     tierLabel: "Occasional shipment account",
@@ -165,17 +165,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-01-2401",
     customer: customerAccounts.techCorp,
-    origin: {
-      display: "CGK Airport",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [106.6429036, -6.1238696],
-    },
+    origin: { display: "OR Tambo Airport", country: "South Africa", countryCode: "ZA", coordinates: [28.246, -26.139] },
     destination: {
-      display: "SIN Airport",
-      country: "Singapore",
-      countryCode: "SG",
-      coordinates: [103.9949824, 1.3510921],
+      display: "Hosea Kutako Airport",
+      country: "Namibia",
+      countryCode: "NA",
+      coordinates: [17.464, -22.48],
     },
     cargo: "Consumer Electronics",
     handling: {
@@ -199,18 +194,8 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-02-2402",
     customer: customerAccounts.regionalRoadExpress,
-    origin: {
-      display: "Surabaya",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [112.7377674, -7.2462836],
-    },
-    destination: {
-      display: "Semarang",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [110.4229104, -6.9903988],
-    },
+    origin: { display: "Pretoria depot", country: "South Africa", countryCode: "ZA", coordinates: [28.188, -25.747] },
+    destination: { display: "Mbabane depot", country: "Eswatini", countryCode: "SZ", coordinates: [31.137, -26.306] },
     cargo: "Industrial Machinery",
     handling: {
       label: "Heavy machinery",
@@ -233,17 +218,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-03-2403",
     customer: customerAccounts.sendWell,
-    origin: {
-      display: "Tanjung Priok Port",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [106.8805674, -6.1045642],
-    },
+    origin: { display: "Walvis Bay Harbour", country: "Namibia", countryCode: "NA", coordinates: [14.5, -22.95] },
     destination: {
-      display: "Port of Singapore",
-      country: "Singapore",
-      countryCode: "SG",
-      coordinates: [103.7566, 1.2788],
+      display: "Port of Durban",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [31.03, -29.87],
     },
     cargo: "Frozen Seafood",
     handling: {
@@ -267,17 +247,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-04-2404",
     customer: customerAccounts.maersk,
-    origin: {
-      display: "KUL Airport",
-      country: "Malaysia",
-      countryCode: "MY",
-      coordinates: [101.7063995, 2.7431274],
-    },
+    origin: { display: "Kenneth Kaunda Airport", country: "Zambia", countryCode: "ZM", coordinates: [28.453, -15.331] },
     destination: {
-      display: "BKK Airport",
-      country: "Thailand",
-      countryCode: "TH",
-      coordinates: [100.7485803, 13.6818767],
+      display: "OR Tambo Airport",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [28.246, -26.139],
     },
     cargo: "Pharmaceutical Kits",
     handling: {
@@ -301,18 +276,8 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-05-2405",
     customer: customerAccounts.sourceDay,
-    origin: {
-      display: "Bandung",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [107.6070833, -6.9218457],
-    },
-    destination: {
-      display: "Yogyakarta",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [110.3672845, -7.7953473],
-    },
+    origin: { display: "Johannesburg hub", country: "South Africa", countryCode: "ZA", coordinates: [28.047, -26.204] },
+    destination: { display: "Gaborone hub", country: "Botswana", countryCode: "BW", coordinates: [25.923, -24.629] },
     cargo: "Textiles",
     handling: {
       label: "Standard freight",
@@ -335,17 +300,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-06-2406",
     customer: customerAccounts.logisticsPlus,
-    origin: {
-      display: "Port Klang",
-      country: "Malaysia",
-      countryCode: "MY",
-      coordinates: [101.3913589, 2.9996963],
-    },
+    origin: { display: "Port of Maputo", country: "Mozambique", countryCode: "MZ", coordinates: [32.57, -25.97] },
     destination: {
-      display: "Laem Chabang Port",
-      country: "Thailand",
-      countryCode: "TH",
-      coordinates: [100.8994177, 13.0734119],
+      display: "Port Louis Harbour",
+      country: "Mauritius",
+      countryCode: "MU",
+      coordinates: [57.5, -20.16],
     },
     cargo: "Construction Materials",
     handling: {
@@ -369,17 +329,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-07-2407",
     customer: customerAccounts.flexport,
-    origin: {
-      display: "HKG Airport",
-      country: "Hong Kong",
-      countryCode: "HK",
-      coordinates: [113.9172999, 22.3125986],
-    },
+    origin: { display: "Hosea Kutako Airport", country: "Namibia", countryCode: "NA", coordinates: [17.464, -22.48] },
     destination: {
-      display: "MNL Airport",
-      country: "Philippines",
-      countryCode: "PH",
-      coordinates: [121.0219223, 14.5122467],
+      display: "Cape Town Airport",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [18.602, -33.965],
     },
     cargo: "Medical Devices",
     handling: {
@@ -403,17 +358,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-08-2408",
     customer: customerAccounts.shippingEasy,
-    origin: {
-      display: "Jakarta",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [106.827168, -6.1754049],
-    },
+    origin: { display: "Mbabane depot", country: "Eswatini", countryCode: "SZ", coordinates: [31.137, -26.306] },
     destination: {
-      display: "Bandung",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [107.6070833, -6.9218457],
+      display: "Johannesburg hub",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [28.047, -26.204],
     },
     cargo: "Retail Apparel",
     handling: {
@@ -437,18 +387,8 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-09-2409",
     customer: customerAccounts.freightView,
-    origin: {
-      display: "Shanghai Port",
-      country: "China",
-      countryCode: "CN",
-      coordinates: [121.4872194, 31.2219444],
-    },
-    destination: {
-      display: "Busan Port",
-      country: "South Korea",
-      countryCode: "KR",
-      coordinates: [129.0492086, 35.1177052],
-    },
+    origin: { display: "Port of Durban", country: "South Africa", countryCode: "ZA", coordinates: [31.03, -29.87] },
+    destination: { display: "Walvis Bay Harbour", country: "Namibia", countryCode: "NA", coordinates: [14.5, -22.95] },
     cargo: "Auto Parts",
     handling: {
       label: "Industrial parts",
@@ -472,16 +412,16 @@ export const shipments: Shipment[] = [
     id: "NRV-10-2410",
     customer: customerAccounts.techCorp,
     origin: {
-      display: "NRT Airport",
-      country: "Japan",
-      countryCode: "JP",
-      coordinates: [140.3933101, 35.7758714],
+      display: "Cape Town Airport",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [18.602, -33.965],
     },
     destination: {
-      display: "ICN Airport",
-      country: "South Korea",
-      countryCode: "KR",
-      coordinates: [126.4417093, 37.4634593],
+      display: "Kenneth Kaunda Airport",
+      country: "Zambia",
+      countryCode: "ZM",
+      coordinates: [28.453, -15.331],
     },
     cargo: "Semiconductor Wafers",
     handling: {
@@ -505,17 +445,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-11-2411",
     customer: customerAccounts.sourceDay,
-    origin: {
-      display: "Kuala Lumpur",
-      country: "Malaysia",
-      countryCode: "MY",
-      coordinates: [101.6942371, 3.1516964],
-    },
+    origin: { display: "Gaborone hub", country: "Botswana", countryCode: "BW", coordinates: [25.923, -24.629] },
     destination: {
-      display: "Penang",
-      country: "Malaysia",
-      countryCode: "MY",
-      coordinates: [100.3287352, 5.4141619],
+      display: "Pretoria depot",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [28.188, -25.747],
     },
     cargo: "Food Ingredients",
     handling: {
@@ -539,18 +474,8 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-12-2412",
     customer: customerAccounts.transvirtual,
-    origin: {
-      display: "Cebu Port",
-      country: "Philippines",
-      countryCode: "PH",
-      coordinates: [123.9174564, 10.3054355],
-    },
-    destination: {
-      display: "Davao Port",
-      country: "Philippines",
-      countryCode: "PH",
-      coordinates: [125.6627111, 7.1265272],
-    },
+    origin: { display: "Port Louis Harbour", country: "Mauritius", countryCode: "MU", coordinates: [57.5, -20.16] },
+    destination: { display: "Port of Maputo", country: "Mozambique", countryCode: "MZ", coordinates: [32.57, -25.97] },
     cargo: "Agricultural Produce",
     handling: {
       label: "Perishable goods",
@@ -573,17 +498,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-13-2413",
     customer: customerAccounts.flexport,
-    origin: {
-      display: "SIN Airport",
-      country: "Singapore",
-      countryCode: "SG",
-      coordinates: [103.9949824, 1.3510921],
-    },
+    origin: { display: "OR Tambo Airport", country: "South Africa", countryCode: "ZA", coordinates: [28.246, -26.139] },
     destination: {
-      display: "DPS Airport",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [115.1673704, -8.746515],
+      display: "Hosea Kutako Airport",
+      country: "Namibia",
+      countryCode: "NA",
+      coordinates: [17.464, -22.48],
     },
     cargo: "Luxury Retail Goods",
     handling: {
@@ -607,17 +527,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-14-2414",
     customer: customerAccounts.sendWell,
-    origin: {
-      display: "Port of Manila",
-      country: "Philippines",
-      countryCode: "PH",
-      coordinates: [120.9522815, 14.6038906],
-    },
+    origin: { display: "Port of Maputo", country: "Mozambique", countryCode: "MZ", coordinates: [32.57, -25.97] },
     destination: {
-      display: "Tanjung Priok Port",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [106.8805674, -6.1045642],
+      display: "Port Louis Harbour",
+      country: "Mauritius",
+      countryCode: "MU",
+      coordinates: [57.5, -20.16],
     },
     cargo: "Paper Rolls",
     handling: {
@@ -641,17 +556,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-15-2415",
     customer: customerAccounts.skyTrack,
-    origin: {
-      display: "Medan",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [98.6741623, 3.5894617],
-    },
+    origin: { display: "Gaborone hub", country: "Botswana", countryCode: "BW", coordinates: [25.923, -24.629] },
     destination: {
-      display: "Pekanbaru",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [101.4515727, 0.5262455],
+      display: "Pretoria depot",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [28.188, -25.747],
     },
     cargo: "Beverage Stock",
     handling: {
@@ -675,17 +585,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-16-2416",
     customer: customerAccounts.regionalRoadExpress,
-    origin: {
-      display: "BOM Airport",
-      country: "India",
-      countryCode: "IN",
-      coordinates: [72.8638223, 19.0901376],
-    },
+    origin: { display: "Kenneth Kaunda Airport", country: "Zambia", countryCode: "ZM", coordinates: [28.453, -15.331] },
     destination: {
-      display: "DEL Airport",
-      country: "India",
-      countryCode: "IN",
-      coordinates: [77.0847985, 28.5553942],
+      display: "OR Tambo Airport",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [28.246, -26.139],
     },
     cargo: "Auto Components",
     handling: {
@@ -709,18 +614,8 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-17-2417",
     customer: customerAccounts.logisticsPlus,
-    origin: {
-      display: "Rotterdam Port",
-      country: "Netherlands",
-      countryCode: "NL",
-      coordinates: [4.4298268, 51.904333],
-    },
-    destination: {
-      display: "Hamburg Port",
-      country: "Germany",
-      countryCode: "DE",
-      coordinates: [9.9118353, 53.5279971],
-    },
+    origin: { display: "Port of Durban", country: "South Africa", countryCode: "ZA", coordinates: [31.03, -29.87] },
+    destination: { display: "Walvis Bay Harbour", country: "Namibia", countryCode: "NA", coordinates: [14.5, -22.95] },
     cargo: "Packaging Materials",
     handling: {
       label: "Standard freight",
@@ -743,18 +638,8 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-18-2418",
     customer: customerAccounts.transvirtual,
-    origin: {
-      display: "Ho Chi Minh City",
-      country: "Vietnam",
-      countryCode: "VN",
-      coordinates: [106.7166008, 10.7737261],
-    },
-    destination: {
-      display: "Da Nang",
-      country: "Vietnam",
-      countryCode: "VN",
-      coordinates: [108.212, 16.068],
-    },
+    origin: { display: "Pretoria depot", country: "South Africa", countryCode: "ZA", coordinates: [28.188, -25.747] },
+    destination: { display: "Mbabane depot", country: "Eswatini", countryCode: "SZ", coordinates: [31.137, -26.306] },
     cargo: "Household Appliances",
     handling: {
       label: "Fragile bulky goods",
@@ -777,17 +662,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-19-2419",
     customer: customerAccounts.maersk,
-    origin: {
-      display: "DXB Airport",
-      country: "United Arab Emirates",
-      countryCode: "AE",
-      coordinates: [55.3666519, 25.2515424],
-    },
+    origin: { display: "Hosea Kutako Airport", country: "Namibia", countryCode: "NA", coordinates: [17.464, -22.48] },
     destination: {
-      display: "JED Airport",
-      country: "Saudi Arabia",
-      countryCode: "SA",
-      coordinates: [39.1634852, 21.6839754],
+      display: "Cape Town Airport",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [18.602, -33.965],
     },
     cargo: "Temperature Controlled Goods",
     handling: {
@@ -811,18 +691,8 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-20-2420",
     customer: customerAccounts.freightView,
-    origin: {
-      display: "Nhava Sheva Port",
-      country: "India",
-      countryCode: "IN",
-      coordinates: [72.952661, 18.9470339],
-    },
-    destination: {
-      display: "Colombo Port",
-      country: "Sri Lanka",
-      countryCode: "LK",
-      coordinates: [79.8564409, 6.9646289],
-    },
+    origin: { display: "Port Louis Harbour", country: "Mauritius", countryCode: "MU", coordinates: [57.5, -20.16] },
+    destination: { display: "Port of Maputo", country: "Mozambique", countryCode: "MZ", coordinates: [32.57, -25.97] },
     cargo: "Steel Coils",
     handling: {
       label: "Heavy bulk cargo",
@@ -845,18 +715,8 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-21-2421",
     customer: customerAccounts.piedPiper,
-    origin: {
-      display: "Chiang Mai",
-      country: "Thailand",
-      countryCode: "TH",
-      coordinates: [98.9858802, 18.7882778],
-    },
-    destination: {
-      display: "Bangkok",
-      country: "Thailand",
-      countryCode: "TH",
-      coordinates: [100.4935089, 13.7524938],
-    },
+    origin: { display: "Johannesburg hub", country: "South Africa", countryCode: "ZA", coordinates: [28.047, -26.204] },
+    destination: { display: "Gaborone hub", country: "Botswana", countryCode: "BW", coordinates: [25.923, -24.629] },
     cargo: "Furniture",
     handling: {
       label: "Fragile bulky goods",
@@ -880,16 +740,16 @@ export const shipments: Shipment[] = [
     id: "NRV-22-2422",
     customer: customerAccounts.techCorp,
     origin: {
-      display: "KIX Airport",
-      country: "Japan",
-      countryCode: "JP",
-      coordinates: [135.222523, 34.4342045],
+      display: "Cape Town Airport",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [18.602, -33.965],
     },
     destination: {
-      display: "TPE Airport",
-      country: "Taiwan",
-      countryCode: "TW",
-      coordinates: [121.2345977, 25.0793174],
+      display: "Kenneth Kaunda Airport",
+      country: "Zambia",
+      countryCode: "ZM",
+      coordinates: [28.453, -15.331],
     },
     cargo: "Precision Tools",
     handling: {
@@ -913,17 +773,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-23-2423",
     customer: customerAccounts.maersk,
-    origin: {
-      display: "Port of Singapore",
-      country: "Singapore",
-      countryCode: "SG",
-      coordinates: [103.7566, 1.2788],
-    },
+    origin: { display: "Walvis Bay Harbour", country: "Namibia", countryCode: "NA", coordinates: [14.5, -22.95] },
     destination: {
-      display: "Port Klang",
-      country: "Malaysia",
-      countryCode: "MY",
-      coordinates: [101.3913589, 2.9996963],
+      display: "Port of Durban",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [31.03, -29.87],
     },
     cargo: "Chemicals",
     handling: {
@@ -947,17 +802,12 @@ export const shipments: Shipment[] = [
   {
     id: "NRV-24-2424",
     customer: customerAccounts.shippingEasy,
-    origin: {
-      display: "Bandar Lampung",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [105.2643742, -5.4460713],
-    },
+    origin: { display: "Mbabane depot", country: "Eswatini", countryCode: "SZ", coordinates: [31.137, -26.306] },
     destination: {
-      display: "Jakarta",
-      country: "Indonesia",
-      countryCode: "ID",
-      coordinates: [106.827168, -6.1754049],
+      display: "Johannesburg hub",
+      country: "South Africa",
+      countryCode: "ZA",
+      coordinates: [28.047, -26.204],
     },
     cargo: "Fresh Produce",
     handling: {

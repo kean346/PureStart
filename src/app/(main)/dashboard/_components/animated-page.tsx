@@ -5,6 +5,7 @@ import { type ReactNode, useLayoutEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 
 import { createMotionController } from "@/lib/motion/dashboard-motion";
+import { motionReduced } from "@/lib/motion/preference";
 
 export function AnimatedPage({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
@@ -30,7 +31,7 @@ export function AnimatedPage({ children }: { children: ReactNode }) {
         return;
       const url = new URL(link.href, window.location.href);
       if (url.origin !== location.origin || !url.pathname.startsWith("/dashboard") || url.pathname === pathname) return;
-      if (typeof node.animate === "function" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+      if (typeof node.animate === "function" && !motionReduced())
         node.animate([{ opacity: 1 }, { opacity: 0.65 }], { duration: 120, fill: "none" });
     };
     document.addEventListener("click", exit, true);

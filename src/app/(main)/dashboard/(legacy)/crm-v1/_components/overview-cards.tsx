@@ -1,7 +1,7 @@
 "use client";
 
 import { format, subMonths } from "date-fns";
-import { BadgeDollarSign, Wallet } from "lucide-react";
+import { Banknote, Wallet } from "lucide-react";
 import { Area, AreaChart, Bar, BarChart, Line, LineChart, XAxis } from "recharts";
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -91,7 +91,7 @@ export function OverviewCards() {
             <CardTitle>Revenue</CardTitle>
             <CardDescription>Last 6 Months</CardDescription>
           </div>
-          <p className="text-2xl font-medium tabular-nums">$56,050</p>
+          <p className="text-2xl font-medium tabular-nums">R 56,050</p>
           <div className="w-fit rounded-md bg-green-500/10 px-2 py-1 text-xs font-medium text-green-500">+22.2%</div>
         </CardContent>
       </Card>
@@ -99,7 +99,7 @@ export function OverviewCards() {
       <Card>
         <CardHeader>
           <div className="bg-destructive/10 w-fit rounded-lg p-2">
-            <BadgeDollarSign className="text-destructive size-5" />
+            <Banknote className="text-destructive size-5" />
           </div>
         </CardHeader>
         <CardContent className="flex size-full flex-col justify-between">

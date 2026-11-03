@@ -29,11 +29,11 @@ export interface InfrastructureGroup {
 
 export const infrastructureGroups: InfrastructureGroup[] = [
   {
-    name: "Admin Console",
-    organization: "Weblabs Studio",
+    name: "Workspace control",
+    organization: "NOREVA Operations",
     rows: [
       {
-        domain: "next-shadcn-admin-dashboard.vercel.app/dashboard",
+        domain: "cloud.noreva.example/dashboard",
         platform: {
           name: "Next.js",
           icon: siNextdotjs,
@@ -43,8 +43,8 @@ export const infrastructureGroups: InfrastructureGroup[] = [
         latency: "86ms",
         uptime: "8d 23h",
         server: "Hetzner Cloud",
-        countryCode: "DE",
-        plan: "CX33, Falkenstein",
+        countryCode: "ZA",
+        plan: "Cape Town · Demo region",
         resources: { cpu: 60, ram: 73, disk: 41 },
       },
     ],
@@ -54,7 +54,7 @@ export const infrastructureGroups: InfrastructureGroup[] = [
     organization: "NOREVA Cloud",
     rows: [
       {
-        domain: "next-shadcn-admin-dashboard.vercel.app/analytics",
+        domain: "cloud.noreva.example/analytics",
         platform: {
           name: "React",
           icon: siReact,
@@ -64,12 +64,12 @@ export const infrastructureGroups: InfrastructureGroup[] = [
         latency: "246ms",
         uptime: "9d 23h",
         server: "AWS",
-        countryCode: "NL",
-        plan: "eu-west-1, Amsterdam",
+        countryCode: "ZA",
+        plan: "af-south-1, Cape Town",
         resources: { cpu: 49, ram: 42, disk: 44 },
       },
       {
-        domain: "next-shadcn-admin-dashboard.vercel.app/reports",
+        domain: "cloud.noreva.example/reports",
         platform: {
           name: "Remix",
           icon: siRemix,
@@ -79,8 +79,8 @@ export const infrastructureGroups: InfrastructureGroup[] = [
         latency: "110ms",
         uptime: "9d 23h",
         server: "Azure",
-        countryCode: "EE",
-        plan: "North Europe, Tallinn",
+        countryCode: "KE",
+        plan: "Africa East · Demo region",
         resources: { cpu: 37, ram: 46, disk: 64 },
       },
     ],
@@ -90,7 +90,7 @@ export const infrastructureGroups: InfrastructureGroup[] = [
     organization: "Storeframe",
     rows: [
       {
-        domain: "next-shadcn-admin-dashboard.vercel.app/kanban",
+        domain: "cloud.noreva.example/kanban",
         platform: {
           name: "Node.js",
           icon: siNodedotjs,
@@ -100,7 +100,7 @@ export const infrastructureGroups: InfrastructureGroup[] = [
         latency: "25ms",
         uptime: "10d 23h",
         server: "Bare Metal / Custom",
-        countryCode: "DE",
+        countryCode: "ZA",
         plan: "EX101, Falkenstein",
         resources: { cpu: 1, ram: 21, disk: 4 },
       },

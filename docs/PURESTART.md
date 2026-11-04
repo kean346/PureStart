@@ -1,6 +1,6 @@
 # PureStart OS · concept by paceIT
 
-PureStart lives at `/purestart`. The existing `/dashboard/*`, `/enquire`, root redirect and Winglo storage are preserved. No dependency or lockfile changes are needed.
+The homepage opens PureStart at `/purestart`. The existing `/dashboard/*`, `/enquire` and Winglo storage are preserved. No dependency or lockfile changes are needed.
 
 ## Run locally
 

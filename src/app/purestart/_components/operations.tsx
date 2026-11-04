@@ -19,6 +19,7 @@ import {
   Zap,
 } from "lucide-react";
 
+import { AnimatedValue } from "@/components/motion/animated-value";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { FieldGroup } from "@/components/ui/field";
@@ -556,15 +557,21 @@ export function Billing({ data }: { data: Data }) {
       <div className="ps-metrics ps-metrics-three">
         <div>
           <small>INVOICED AMOUNTS</small>
-          <strong>{money(a.invoiced)}</strong>
+          <strong>
+            <AnimatedValue text={String(money(a.invoiced))} />
+          </strong>
         </div>
         <div>
           <small>PAID REVENUE · DEMO</small>
-          <strong>{money(a.paid)}</strong>
+          <strong>
+            <AnimatedValue text={String(money(a.paid))} />
+          </strong>
         </div>
         <div>
           <small>OUTSTANDING PAYMENTS</small>
-          <strong>{money(a.outstanding)}</strong>
+          <strong>
+            <AnimatedValue text={String(money(a.outstanding))} />
+          </strong>
         </div>
       </div>
       <Panel
@@ -709,19 +716,27 @@ export function Insights({ data }: { data: Data }) {
       <div className="ps-metrics">
         <div>
           <small>PAID REVENUE</small>
-          <strong>{money(a.paid)}</strong>
+          <strong>
+            <AnimatedValue text={String(money(a.paid))} />
+          </strong>
         </div>
         <div>
           <small>COMPLETED ORDERS</small>
-          <strong>{a.completed}</strong>
+          <strong>
+            <AnimatedValue text={String(a.completed)} />
+          </strong>
         </div>
         <div>
           <small>AVERAGE ORDER VALUE</small>
-          <strong>{money(a.average)}</strong>
+          <strong>
+            <AnimatedValue text={String(money(a.average))} />
+          </strong>
         </div>
         <div>
           <small>REPEAT CUSTOMERS</small>
-          <strong>{a.repeat}</strong>
+          <strong>
+            <AnimatedValue text={String(a.repeat)} />
+          </strong>
         </div>
       </div>
       <Revenue data={data} days={days} />

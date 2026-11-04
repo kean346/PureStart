@@ -14,6 +14,7 @@ import {
   CreditCard,
   LayoutDashboard,
   Menu,
+  Moon,
   Package,
   Play,
   Plus,
@@ -21,6 +22,7 @@ import {
   Settings2,
   Shirt,
   Sparkles,
+  Sun,
   TrendingUp,
   Truck,
   Users,
@@ -28,9 +30,11 @@ import {
   Zap,
 } from "lucide-react";
 
+import { AnimatedValue } from "@/components/motion/animated-value";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Skeleton } from "@/components/ui/skeleton";
+import { transitionTheme } from "@/lib/preferences/theme-transition";
 
 import { Revenue } from "./charts";
 import { analytics, type Data, day, displayDate, money, stages } from "./model";
@@ -170,7 +174,9 @@ function Overview({ data, openNew, live }: { data: Data; openNew: () => void; li
               <m.icon size={18} />
             </span>
             <small>{m.label}</small>
-            <strong>{m.value}</strong>
+            <strong>
+              <AnimatedValue text={String(m.value)} />
+            </strong>
             <p>{m.hint}</p>
           </div>
         ))}
@@ -193,7 +199,9 @@ function Overview({ data, openNew, live }: { data: Data; openNew: () => void; li
             return (
               <Link href={`/purestart/orders?status=${encodeURIComponent(s)}`} key={s}>
                 <Icon size={20} />
-                <strong>{data.orders.filter((o) => o.status === s).length}</strong>
+                <strong>
+                  <AnimatedValue text={String(data.orders.filter((o) => o.status === s).length)} />
+                </strong>
                 <span>{s === "Ready for Delivery" ? "Ready" : s === "Out for Delivery" ? "Out for delivery" : s}</span>
                 <ChevronRight size={14} className="ps-pipeline-arrow" />
               </Link>
@@ -276,6 +284,8 @@ function Overview({ data, openNew, live }: { data: Data; openNew: () => void; li
 }
 export function PureStart({ section, orderId }: { section: string; orderId?: string }) {
   const data = useDemo((s) => s.data);
+  const palette = useDemo((s) => s.palette);
+  const setPalette = useDemo((s) => s.setPalette);
   const hydrate = useDemo((s) => s.hydrate);
   const update = useDemo((s) => s.update);
   const storageError = useDemo((s) => s.storageError);
@@ -341,7 +351,7 @@ export function PureStart({ section, orderId }: { section: string; orderId?: str
   const collected = stages.indexOf(data.orders.find((o) => o.id === "PS-1042")?.status ?? "Scheduled") >= 2;
   const gated = tour === 2 && !collected;
   return (
-    <div className="ps-theme" data-tour={tour !== null}>
+    <div className="ps-theme" data-palette={palette} data-tour={tour !== null}>
       <aside className="ps-sidebar" data-open={mobile}>
         <Link href="/purestart" className="ps-brand" onClick={() => setMobile(false)}>
           <span className="ps-logomark">
@@ -420,6 +430,17 @@ export function PureStart({ section, orderId }: { section: string; orderId?: str
             <span className="ps-header-date">
               {new Date().toLocaleDateString("en-ZA", { day: "numeric", month: "short", year: "numeric" })}
             </span>
+            <Button
+              variant="outline"
+              size="icon"
+              aria-label={palette === "light" ? "Switch to dark view" : "Switch to light view"}
+              aria-pressed={palette === "dark"}
+              onClick={() => transitionTheme(() => setPalette(palette === "light" ? "dark" : "light"))}
+            >
+              <span key={palette} className="noreva-theme-icon inline-flex" aria-hidden="true">
+                {palette === "light" ? <Moon /> : <Sun />}
+              </span>
+            </Button>
             <Button variant="ghost" size="icon" aria-label="Reopen welcome" onClick={() => setWelcome(true)}>
               <CircleHelp />
             </Button>

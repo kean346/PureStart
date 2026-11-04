@@ -1,0 +1,52 @@
+const assert = require("node:assert/strict");
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
+const base = process.env.BASE_URL || "http://127.0.0.1:3000";
+(async () => {
+  const browser = await chromium.launch({ executablePath: "/usr/bin/chromium", args: ["--no-sandbox"] });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, reducedMotion: "no-preference" });
+  const errors = [];
+  page.on("pageerror", (e) => errors.push(e.message));
+  await page.goto(`${base}/purestart`);
+  await page.getByRole("button", { name: "Explore PureStart OS", exact: true }).click();
+  await page.waitForTimeout(1800);
+  const businessData = await page.evaluate(() => localStorage.getItem("purestart-os-v1"));
+  await page.reload();
+  const count = page.locator("#overview-metrics [data-motion-counter]").first();
+  await count.waitFor();
+  const early = await count.textContent();
+  await page.waitForTimeout(1800);
+  assert.notEqual(await count.textContent(), early, "Counter should load from zero to the derived total");
+  await page.locator("[data-slot=chart]").first().scrollIntoViewIfNeeded();
+  await page.locator(".recharts-area-curve[data-motion-run]").waitFor();
+  await page.getByRole("button", { name: "Switch to dark view", exact: true }).click();
+  await page.waitForTimeout(1400);
+  assert.equal(await page.locator(".ps-theme").getAttribute("data-palette"), "dark");
+  assert.equal(await page.evaluate(() => localStorage.getItem("purestart-os-v1")), businessData);
+  await page.reload();
+  await page.getByRole("button", { name: "Switch to light view", exact: true }).waitFor();
+  assert.equal(await page.locator(".ps-theme").getAttribute("data-palette"), "dark");
+  await page.getByRole("button", { name: "Reopen welcome", exact: true }).click();
+  assert.equal(await page.locator(".ps-surface").evaluate((e) => getComputedStyle(e).colorScheme), "dark");
+  await page.getByRole("button", { name: "Explore PureStart OS", exact: true }).click();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.getByRole("button", { name: "Switch to light view", exact: true }).click();
+  await page.waitForTimeout(1400);
+  assert.equal(await page.locator(".ps-theme").getAttribute("data-palette"), "light");
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.getByRole("button", { name: "Switch to dark view", exact: true }).click();
+  assert.equal(await page.locator(".ps-theme").getAttribute("data-palette"), "dark");
+  assert.equal(await page.locator("html").getAttribute("data-theme-transition"), null);
+  await page.goto(`${base}/purestart/insights`);
+  await page.getByLabel("Insight period").selectOption("30");
+  await page.locator(".recharts-bar-rectangle").first().waitFor();
+  assert.equal(await page.locator(".recharts-area-curve[data-motion-run]").count(), 0);
+  assert.deepEqual(errors, []);
+  console.log(
+    "PASS animated counters/chart reveal; dark palette persistence; unchanged business data; themed dialogs; mobile toggle; reduced motion; chart filters",
+  );
+  await browser.close();
+})().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});

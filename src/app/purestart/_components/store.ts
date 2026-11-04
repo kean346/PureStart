@@ -6,6 +6,8 @@ import { type Data, dataSchema, seed } from "./model";
 const KEY = "purestart-os-v1";
 type Store = {
   data: Data | null;
+  palette: "light" | "dark";
+  setPalette: (palette: "light" | "dark") => void;
   tour: number | null;
   setTour: (tour: number | null) => void;
   storageError: string;
@@ -14,12 +16,23 @@ type Store = {
 };
 export const useDemo = create<Store>((set, get) => ({
   data: null,
+  palette: "light",
+  setPalette: (palette) => {
+    set({ palette });
+    try {
+      localStorage.setItem("purestart-palette-v1", palette);
+    } catch {
+      set({ storageError: "Your theme could not be saved. It will apply for this session." });
+    }
+  },
   tour: null,
   setTour: (tour) => set({ tour }),
   storageError: "",
   hydrate: () => {
     if (get().data) return;
     try {
+      const palette = localStorage.getItem("purestart-palette-v1");
+      set({ palette: palette === "dark" ? "dark" : "light" });
       const raw = localStorage.getItem(KEY);
       set({ data: raw ? dataSchema.parse(JSON.parse(raw)) : seed() });
     } catch {

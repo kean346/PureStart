@@ -28,7 +28,7 @@ The nine modules include searchable/filterable orders; multiple service items; c
 - Central types, runtime Zod schema, deterministic transition functions, pricing and analytics: `src/app/purestart/_components/model.ts`.
 - Zustand persistence boundary: `store.ts`, localStorage key `purestart-os-v1`. Hydration runs only in the browser. Storage errors are surfaced. Data is isolated per browser; simultaneous tabs are not synchronised.
 - Next.js server route validates the nine paths and composes the client application. Orders have deep links under `/purestart/orders/<id>`.
-- Scoped semantic tokens in `globals.css` keep PureStart light regardless of the inherited workspace theme. Existing UI primitives and bundled Geist fonts are reused without modifications. Motion honours reduced-motion preferences.
+- Scoped semantic tokens in `globals.css` provide an independent light/dark palette. The sun/moon button in the header uses the existing circular theme reveal and saves its choice under `purestart-palette-v1`, without changing Winglo preferences. Existing UI primitives and bundled Geist fonts are reused without modifications. Motion honours reduced-motion preferences.
 - Revenue charts and paid totals use payment dates; invoice/outstanding totals use invoice issue dates; order statistics use order creation dates. Pending value excludes invoiced orders. These are simulated payments, not bank transactions. Changing rates never recalculates historical invoices.
 - All identities are fictional, contact emails use example.com, and dates are relative to initial seed/reset. Times follow the browser timezone. Prices are examples, not verified official PureStart rates. No VAT registration or VAT charge is assumed. Printed invoices are labelled **Not a tax invoice**.
 
@@ -63,3 +63,5 @@ Repository-wide `npm run check` already had formatting in `public/maps/countries
 - Full repository check reports exactly the two pre-existing map-format/import-order errors identified above.
 - Production browser acceptance passed all workflow groups, mobile/tablet sizes, and no page errors. Chromium generated a one-page invoice PDF; text extraction verified the invoice title, disclaimer, customer/items/total and exclusion of dashboard navigation.
 - Screenshot artifacts were inspected on desktop and mobile. Existing Winglo overview entry controls were verified alongside PureStart.
+
+PureStart reuses Winglo’s managed AnimatedValue counters and shared motion controller for card entrances, line drawing, area reveals and rising bars. Counters replay on page visits and value changes; charts replay on visits and date-filter changes. System/repository reduced-motion preferences disable these animations.
